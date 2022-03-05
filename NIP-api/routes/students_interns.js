@@ -61,8 +61,10 @@ var upload_product = multer({
       completion: req.body.completion,
       student_document: req.file.filename
       
-  
     }
+
+    console.log(student_details);
+    
     try {
       res.json(await studentsIntern.newStudentInterns(student_details));
     } catch (err) {

@@ -154,7 +154,7 @@ async function createNewInternship(newInternships){
     // const offset = helper.getOffset(page, config.listPerPage);
     try{
     const rows = await db.query(
-      `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships WHERE institution = "International University of Management (IUM)" 
       `
@@ -184,7 +184,7 @@ async function createNewInternship(newInternships){
 
     try{
     const rows = await db.query(
-      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships WHERE institution = 'Namibia University of Science and Technology (NUST)' 
       `
@@ -211,7 +211,7 @@ async function createNewInternship(newInternships){
 
     try{
     const rows = await db.query(
-      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships WHERE institution = 'Namibia Institute of Mining and Technology (NIMT)' 
       `
@@ -239,7 +239,7 @@ async function createNewInternship(newInternships){
 
     try{
     const rows = await db.query(
-      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships WHERE institution = 'University of Namibia (UNAM)' 
       `
@@ -267,7 +267,7 @@ async function createNewInternship(newInternships){
 
     try{
     const rows = await db.query(
-      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships WHERE institution = 'Vocational Training Centre (VTC) through the Namibia Training Authority (NTA)' 
       `
@@ -297,7 +297,7 @@ async function createNewInternship(newInternships){
 
     try{
     const rows = await db.query(
-      `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file,
+      `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
       AS closing_date FROM new_internships`
       // [offset, config.listPerPage]

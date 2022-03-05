@@ -18,7 +18,7 @@ export class RegisterAdminComponent implements OnInit {
     {
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
       role: new FormControl('', [Validators.required]),
       institution_company: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
@@ -78,7 +78,7 @@ export class RegisterAdminComponent implements OnInit {
     if (this.data === undefined ||  this.data === null) {
       this.router.navigate(['/user-management'])
     } else if (this.data.updateAdmin) {
-      //creating the form and making the values not required
+      // creating the form and making the values not required
       // this.adminForm = this.formBuilder.group(
       //   {
       //     firstname: [""], 
@@ -109,7 +109,6 @@ export class RegisterAdminComponent implements OnInit {
 
     }  else if (this.data.addAdmin) {
       //craating the form and making the value required
-     
 
       this.admintext = 'Add admin';
 
@@ -169,7 +168,6 @@ export class RegisterAdminComponent implements OnInit {
       
     
       this.submitted = true;
-    console.log('register',)
 
     if (this.adminForm?.invalid) {
       return false;
@@ -203,16 +201,16 @@ export class RegisterAdminComponent implements OnInit {
 
         if (data.success) {
 
-          this.loading = true;
-          this.btnWait = true;
+          // this.loading = true;
+          // this.btnWait = true;
 
           this.showtoast2 = true;
           
           setTimeout(() => {
-            this.router.navigate(['/usermanagement']);
+            this.router.navigate(['/user-management']);
           }, 3000);
         } else {
-          // console.log(data);
+          console.log(data);
         }
       },
        
@@ -236,8 +234,8 @@ export class RegisterAdminComponent implements OnInit {
 
       if (password === confirmPassword) {
 
-      this.adminAuthenticationService.registerAdmin(user).subscribe(
-        (data: any) => {
+        this.adminAuthenticationService.registerAdmin(user).subscribe((data: any) => {
+
           if (data.success) {
 
             // this.loading = true;
@@ -245,7 +243,7 @@ export class RegisterAdminComponent implements OnInit {
             
             this.showtoast = true;
             setTimeout(() => {
-              this.router.navigate(['/usermanagement']);
+              this.router.navigate(['/user-management']);
 
             }, 3000);
           } else {

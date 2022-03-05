@@ -19,24 +19,7 @@
                 <!--Create Profile Form-->
                 <form [formGroup]="studentForm" (ngSubmit)="onSubmit($event)" class="text-left mt-4 offset-override">
   
-                    <!--Form Errors-->
-                    <div *ngIf="submitted">
-                        <div *ngIf="missingImage" class="alert alert-danger" role="alert">
-                            Please upload a document for the post.
-                        </div>
-                        <div *ngIf="wrongType" class="alert alert-danger" role="alert">
-                            Invalid file type.
-                        </div>
-                        <div *ngIf="sizeLimit" class="alert alert-danger" role="alert">
-                            Maximum file size is 3MB.
-                        </div>
-                        <div *ngIf="maxUpload" class="alert alert-danger" role="alert">
-                            You already uploaded.
-                        </div>
-                        <div *ngIf="otherErr" class="alert alert-danger" role="alert">
-                            Unexpected Error.
-                        </div>
-                    </div>
+            
                     <app-error-message [obs]="errorMessage"></app-error-message>
   
                     <div class="row">
@@ -101,6 +84,8 @@
                                 <div *ngIf="submitted && f?.student_number?.errors" class="invalid-feedback">
                                     <div *ngIf="f?.student_number?.errors?.required">Student number is required.</div>
                                     <div *ngIf="f?.student_number?.errors?.pattern">Enter a valid student number.</div>
+                                    <div *ngIf="f?.student_number?.errors?.minlength">Minimum length of student number is 7 digits</div>
+
                                 </div>
                             </div>
                         </div>
@@ -121,6 +106,8 @@
                             <div *ngIf="submitted && f?.student_phoneNumber?.errors" class="invalid-feedback">
                                 <div *ngIf="f?.student_phoneNumber?.errors?.required">Student phone number is required.</div>
                                 <div *ngIf="f?.student_phoneNumber?.errors?.pattern">Enter a valid student phone number.</div>
+                                <div *ngIf="f?.student_phoneNumber?.errors?.minlength">Enter a valid phone number</div>
+
                             </div>
                             </div>
                         </div>
@@ -134,7 +121,7 @@
                             [ngClass]="{ 'is-invalid': submitted && f?.student_email?.errors, 'danger-border': submitted && f?.student_email?.errors }">
                                 <div *ngIf="submitted && f?.student_email?.errors" class="invalid-feedback">
                                     <div *ngIf="f?.student_email?.errors?.required">Student email address is required.</div>
-                                    <div *ngIf="f?.student_email?.errors?.pattern">Enter a valid student company address.</div>
+                                    <div *ngIf="f?.student_email?.errors?.pattern">Enter a valid student email address.</div>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +143,7 @@
                     <div class="form-group mb-3">
                         <label for="internships_name" class="text-secondary">Internship Post name <span class="text-danger">*</span></label>
                         <input type="text" name="internships_name" required formControlName="internships_name" class="form-control primary-border"
-                            [ngClass]="{ 'is-invalid': submitted && f?.internships_name?.errors, 'danger-border': submitted && f?.internships_name?.errors }">
+                            [ngClass]="{ 'is-invalid': submitted && f?.internships_name?.errors, 'danger-border': submitted && f?.internships_name?.errors }" readonly>
   
                         <div *ngIf="submitted && f?.internships_name?.errors" class="invalid-feedback">
                             <div *ngIf="f?.internships_name?.errors?.required">Internship post is required.</div>
@@ -169,7 +156,7 @@
                   <div class="form-group mb-3">
                     <label for="institution" class="text-secondary">Institution name<span class="text-danger">*</span></label>
                     <input type="text" name="institution" required formControlName="institution" class="form-control primary-border"
-                        [ngClass]="{ 'is-invalid': submitted && f?.institution?.errors, 'danger-border': submitted && f?.institution?.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && f?.institution?.errors, 'danger-border': submitted && f?.institution?.errors }" readonly>
   
                     <div *ngIf="submitted && f?.institution?.errors" class="invalid-feedback">
                         <div *ngIf="f?.institution?.errors?.required">Enter an institution is required.</div>
@@ -190,12 +177,31 @@
                         <div class="text-primary" *ngIf="!submitted || !f?.logo?.errors">
   
                         </div>
+
+                                <!--Form Errors-->
+                    <div *ngIf="submitted">
+                        <div *ngIf="missingImage" class="alert alert-danger" role="alert">
+                            Please upload a student documents for the post.
+                        </div>
+                        <div *ngIf="wrongType" class="alert alert-danger" role="alert">
+                            Invalid file type.
+                        </div>
+                        <div *ngIf="sizeLimit" class="alert alert-danger" role="alert">
+                            Maximum file size is 3MB.
+                        </div>
+                        <div *ngIf="maxUpload" class="alert alert-danger" role="alert">
+                            You already uploaded.
+                        </div>
+                        <div *ngIf="otherErr" class="alert alert-danger" role="alert">
+                            Unexpected Error.
+                        </div>
+                    </div>
                     </div>
                 <!--company-->
                 <div class="form-group mb-3">
                   <label for="company" class="text-secondary">Company name<span class="text-danger">*</span></label>
                   <input type="text" name="company" required formControlName="company" class="form-control primary-border"
-                      [ngClass]="{ 'is-invalid': submitted && f?.company?.errors, 'danger-border': submitted && f?.company?.errors }">
+                      [ngClass]="{ 'is-invalid': submitted && f?.company?.errors, 'danger-border': submitted && f?.company?.errors }" readonly>
   
                   <div *ngIf="submitted && f?.company?.errors" class="invalid-feedback">
                       <div *ngIf="f?.company?.errors?.required">Email is required.</div>
@@ -206,7 +212,7 @@
               <div class="form-group mb-3">
                 <label for="company_email" class="text-secondary">Company email <span class="text-danger">*</span></label>
                 <input type="text" name="company_email" required formControlName="company_email" class="form-control primary-border"
-                    [ngClass]="{ 'is-invalid': submitted && f?.company_email?.errors, 'danger-border': submitted && f?.company_email?.errors }">
+                    [ngClass]="{ 'is-invalid': submitted && f?.company_email?.errors, 'danger-border': submitted && f?.company_email?.errors }" readonly>
   
                 <div *ngIf="submitted && f?.company_email?.errors" class="invalid-feedback">
                     <div *ngIf="f?.company_email?.errors?.required">Company email is required.</div>
@@ -218,13 +224,24 @@
              <div class="form-group mb-3">
                 <label for="company_registrationNo" class="text-secondary">Company registration number<span class="text-danger">*</span></label>
                 <input type="text" name="company_registrationNo" required formControlName="company_registrationNo" class="form-control primary-border"
-                    [ngClass]="{ 'is-invalid': submitted && f?.company_registrationNo?.errors, 'danger-border': submitted && f?.company_registrationNo?.errors }">
+                    [ngClass]="{ 'is-invalid': submitted && f?.company_registrationNo?.errors, 'danger-border': submitted && f?.company_registrationNo?.errors }" readonly>
 
                 <div *ngIf="submitted && f?.company_registrationNo?.errors" class="invalid-feedback">
                     <div *ngIf="f?.company_registrationNo?.errors?.required">Company registration number is required.</div>
                     <div *ngIf="f?.company_registrationNo?.errors?.pattern">Enter a valid company registration number.</div>
                 </div>
             </div>
+
+
+            <div class="col-12">
+                <div class="row aqua-gradient">
+                  <div class="col-12">
+                    <div *ngIf="showtoast">
+                      <p id="toast">Student details successfully sent</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               
 
      

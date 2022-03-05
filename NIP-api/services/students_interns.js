@@ -10,9 +10,10 @@ const fs = require('fs');
 
 
 async function newStudentInterns(students_interns, res){
+
+
   try{
-
-
+    
   const result  = await db.query(
     `INSERT INTO students_interns 
     (firstname, surname, idNo_or_passportNo, student_number, student_email, student_phoneNumber, institution, field_of_study, internships_name,

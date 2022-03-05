@@ -102,50 +102,7 @@
             </div>
         </div>
 
-        <section *ngIf="changepwd">
-            <div id="form-login-password" class="form-group">
-              <label for="password" class="float-label">Password</label>
-              <input *ngIf="data" class="form-control" [ngClass]="{
-              'is-invalid': submitted && f?.password?.errors
-            }" id="passwd" formControlName="password" type="password" size="18" alt="password" />
-              <input *ngIf="!data" id="passwd" formControlName="password" [ngClass]="{
-                  'is-invalid': submitted && f?.password?.errors
-                }" class="form-control" name="password" type="password" size="18" alt="password" required />
-              <!-- <span class=""><small><a (click)="generate()" class="a-text">Auto generate a password?</a></small></span> -->
-              <span class="form-highlight"></span>
-              <span class="form-bar"></span>
-              <div *ngIf="submitted && f?.password?.errors" class="invalid-feedback">
-                <div *ngIf="f?.password?.errors?.required">
-                  <strong> Password is required </strong>
-                </div>
-                <div *ngIf="f?.password?.errors?.minlength">
-                  <strong>
-                    Password should be atleast six (6) characters
-                  </strong>
-                </div>
-              </div>
-            </div>
-            <div id="form-login-password" class="form-group">
-              <label for="password" class="float-label">Confirm Password
-              </label>
-              <input *ngIf="data" id="confirmpasswd" formControlName="confirmPassword" [ngClass]="{
-              'is-invalid': submitted && f?.confirmPassword?.errors
-            }" class="form-control" type="password" size="18" alt="password" />
-              <input *ngIf="!data" id="confirmpasswd" formControlName="confirmPassword" [ngClass]="{
-                  'is-invalid': submitted && f?.confirmPassword?.errors
-                }" class="form-control" name="password" type="password" size="18" alt="password" required />
-              <span class="form-highlight"></span>
-              <span class="form-bar"></span>
-              <div *ngIf="submitted && f?.confirmPassword?.errors" class="invalid-feedback">
-                <div *ngIf="f?.confirmPassword?.errors?.required">
-                  <strong> Please confirm your password </strong>
-                </div>
-                <div *ngIf="f?.confirmPassword?.errors?.mustMatch">
-                  <strong> Password mismatch </strong>
-                </div>
-              </div>
-            </div>
-          </section>
+     
            
           <div *ngIf="data.addAdmin">
 
@@ -180,9 +137,62 @@
               </div>
 
             </div>
+  
 
+            <div *ngIf="data.updateAdmin">
+              <a id="submit_btn" class="btn btn-block" style="text-align: center; background:#007ac0; color:white" (click)="changePwdToggle()"
+                alt="sign in">
+                {{inner_value}}
+              </a>
+    
+              <section *ngIf="changepwd">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f?.password?.errors }" required/>
+                  <div *ngIf="submitted && f?.password?.errors" class="invalid-feedback">
+                      <div *ngIf="f?.password?.errors?.required">Password is required</div>
+                      <div *ngIf="f?.password?.errors?.minlength">Password must be at least 6 characters</div>
+                  </div>
+              </div>
+  
+              <div id="form-login-password" class="form-group">
+                  <label for="password" class="float-label">Confirm Password
+                  </label>
+                  <input *ngIf="data" id="confirmpasswd" formControlName="confirmPassword" [ngClass]="{
+                  'is-invalid': submitted && f?.confirmPassword?.errors
+                }" class="form-control" type="password" size="18" alt="password" required />
+                  <input *ngIf="!data" id="confirmpasswd" formControlName="confirmPassword" [ngClass]="{
+                      'is-invalid': submitted && f?.confirmPassword?.errors
+                    }" class="form-control" name="password" type="password" size="18" alt="password" required />
+                  <span class="form-highlight"></span>
+                  <span class="form-bar"></span>
+                  <div *ngIf="submitted && f?.confirmPassword?.errors" class="invalid-feedback">
+                    <div *ngIf="f?.confirmPassword?.errors?.required">
+                      <strong> Please confirm your password </strong>
+                    </div>
+                    <div *ngIf="f?.confirmPassword?.errors?.mustMatch">
+                      <strong> Password mismatch </strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-6">
+                <div class="col-12 col-sm-12">
+
+                  
+                <div class="col-12">
+                  <div class="row aqua-gradient">
+                    <div class="col-12">
+                      <div *ngIf="showtoast">
+                        <p id="toast">User successfully registered</p>
+                      </div>
+                      <div *ngIf="showtoast2">
+                        <p id="toast">Information was successfully updated</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           
                 <div class="form-group mb-3">
                     <button [disabled]="loading || btnWait" class="btn btn-login btn-primary btn-block mt-4 py-3" ><span *ngIf="!loading" style="font-size: 2rem;">{{admintext}}</span>
@@ -193,7 +203,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <a routerLink="../usermanagement" class="btn btn-danger" style="color:white;">Cancel</a>
+                    <a routerLink="/user-management" class="btn btn-danger btn-block mt-4 py-3" style="color:white;">Cancel</a>
                 </div>
                 </div>
                 </div>

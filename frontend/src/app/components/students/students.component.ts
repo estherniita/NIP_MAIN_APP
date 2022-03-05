@@ -22,14 +22,14 @@ export class StudentsComponent implements OnInit {
     firstname: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
     idNo_or_passportNo: new FormControl('', [Validators.required]),
-    student_number: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    student_email: new FormControl('', [Validators.required, Validators.email]),
-    student_phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
+    student_number: new FormControl('', [Validators.required, Validators.minLength(7), Validators.pattern('[- +()0-9]+')]),
+    student_email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+    student_phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(8)]),
     institution: new FormControl('', [Validators.required]),
     field_of_study: new FormControl('', [Validators.required]),
     internships_name: new FormControl('', [Validators.required]),
     company: new FormControl('', [Validators.required]),
-    company_email: new FormControl('', [Validators.required, Validators.email]),
+    company_email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
     company_registrationNo: new FormControl('', [Validators.required]),
     admission: new FormControl('',),
     completion: new FormControl('',),
@@ -55,6 +55,12 @@ export class StudentsComponent implements OnInit {
   sizeLimit: Boolean = false;
   otherErr: Boolean = false;
   errorMessage: Subject<string> = new Subject();
+  showtoast: Boolean = false;
+  showUError: any;
+  showPwd = false;
+  closeAlert = false;
+  // errorMessage: any;
+
 
   constructor(
     private router: Router,
@@ -115,9 +121,12 @@ export class StudentsComponent implements OnInit {
   }
 
   async onSubmit(event: Event) {
+
     event.preventDefault();
     this.submitted = true;
     this.resetErrors();
+
+    console.log('here now');
 
     if (this.studentForm.invalid) {
       return;
@@ -132,6 +141,7 @@ export class StudentsComponent implements OnInit {
     this.loading = true;
     this.btnWait = true;
 
+    console.log('valid');
 
     //create new post
     this.studentService.newStudentInterns(
@@ -150,9 +160,32 @@ export class StudentsComponent implements OnInit {
       this.completion,
       this.admission,
       this.image
+
+
     ).then(async (data: any) => {
       if(data.success) {
+
         
+      console.log('student details',
+      this.f.firstname.value,
+      this.f.surname.value,
+      this.f.idNo_or_passportNo.value,
+      this.f.student_number.value,
+      this.f.student_email.value,
+      this.f.student_phoneNumber.value,
+      this.f.institution.value,
+      this.f.field_of_study.value,
+      this.f.internships_name.value,
+      this.f.company.value,
+      this.f.company_email.value,
+      this.f.company_registrationNo.value,
+      this.completion,
+      this.admission,
+      this.image);
+
+        this.showtoast = true;
+
+        console.log('submitted');
         //  email data
         const userdata = {
           email: this.studentForm.value.company_email,
@@ -169,6 +202,28 @@ export class StudentsComponent implements OnInit {
         // this.ngOnInit()
 
       }
+
+     else{
+
+      if (data.message === 'Error while sending details') {
+        this.showUError = 'something went wrong try again later';
+
+        console.log('eerror', this.showUError);
+        setTimeout(() => {
+          this.showUError = null;
+          // this.router.navigate(['/login']);
+        }, 10000);
+        // this.waiting = false;
+
+        this.showPwd = true;
+        setTimeout(() => {
+          this.closeAlert = true;
+          this.showPwd = false;
+        }, 10000);
+      } 
+
+        
+     }
 
     }).finally(() => {
       this.onComplete();

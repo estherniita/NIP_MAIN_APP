@@ -14,7 +14,7 @@
           <br />
           <div class="heading-container">
         <h2 class="h-m h-fw-1 news__heading">Welcome to Companies Dashboard</h2>    
-        <a type="button" class="btn-get-started scrollto" ngbTooltip="Use this button to open a form to fill and send the new internship posts available" (click)="sendAvailableInternships(this.companyData)">
+        <a type="button" class="btn-get-started scrollto" data-toggle="tooltip" title="Use this tab to open a form to fill and send the new internship posts available" (click)="sendAvailableInternships(this.companyData)">
               Send New Post(s)</a>&nbsp;
         </div>
      
@@ -23,7 +23,7 @@
 
 
         <div class="col-md-6 md-4" >
-            <a [routerLink]="'/companystudentlist'" data-toggle="tooltip" placement="top" title="This shows the total number of students who are offered internships and who are still to be offered">
+            <a [routerLink]="'/companystudentlist'" data-toggle="tooltip" placement="top" title="Click on this tab to view the student who were submitted to your company for the internship post">
 
             <div class="card text-center h-100 card-info"  >
                 <div class="card-body blue-gradient" >
@@ -51,7 +51,7 @@
 
 
         <div class="col-md-6 md-4" >
-            <a [routerLink]="'/internships'" data-toggle="tooltip" placement="top" title="This function shows the total number of companies who have offered internship, you can click on the button to view their names" >
+            <a [routerLink]="'/internships'" data-toggle="tooltip" placement="top" title="This tab shows the different internship requests from different companies and organizations" >
 
             <div class="card text-center h-100 card-info"  >
                 <div class="card-body blue-gradient">
@@ -61,8 +61,8 @@
                 <div class="row p-2 no-gutters rounded" >
                     <div class="col-12 rounded">
                         <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                            <h3>View the names</h3>
-                            <span class="small text-uppercase">Total</span>
+                            <h3>Click on</h3>
+                            <span class="small text-uppercase">this tab</span>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         <div class="col-12 rounded">
                             <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
                                 <h3>Organization reports for interns who completed their internship </h3>
-                                <span class="medium text-uppercase">50</span>
+                                <span class="medium text-uppercase"></span>
                             </div>
                         </div>
                         <!-- <div class="col-6 rounded">
@@ -106,11 +106,11 @@
     
     
             <div class="col-md-6 md-4">
-                <a [routerLink]="'/CompanyAndInstitutionsReport'" data-toggle="tooltip" placement="top" >
+                <a [routerLink]="'/CompanyAndInstitutionsReport'" data-toggle="tooltip" placement="top"  title="Use this tab to view the total number of students per institution and organization">
     
                 <div class="card text-center h-100 card-info"  >
                     <div class="card-body blue-gradient" >
-                        <h2 class="card-title">Organizations and companies who have offered</h2>
+                        <h2 class="card-title">Student per organization and institution</h2>
                         <h3><i class="fa fa-building fa-2x"></i></h3>
                     </div>
                     <div class="row p-2 no-gutters rounded" >
