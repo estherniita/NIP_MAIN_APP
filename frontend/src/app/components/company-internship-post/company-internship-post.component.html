@@ -1,0 +1,213 @@
+<div class="no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+ <div class="heading-container" style="margin-bottom: -5rem;margin-top: 3rem;">
+        <h1 class="h-m h-fw-1 news__heading">Post New Internship</h1>
+        
+        <span class="partition"></span><p style="z-index: 1 !important;">Use this form to submit new available internships</p>
+      </div>
+  <div class="container-fluid bg-lightest">
+   
+    <div class="row">
+  
+        <div class="col col-12 col-lg-7 col-xl-8 justify-content-center text-center form">
+            <div class="mt-4">
+                  
+                <!--Create Profile Form-->
+                <form [formGroup]="createForm" (ngSubmit)="onSubmit($event)" class="text-left mt-4 offset-override">
+  
+                    <!--Form Errors-->
+                    <div *ngIf="submitted">
+                        <div *ngIf="missingImage" class="alert alert-danger" role="alert">
+                            Please upload a document for the post.
+                        </div>
+                        <div *ngIf="wrongType" class="alert alert-danger" role="alert">
+                            Invalid file type.
+                        </div>
+                        <div *ngIf="sizeLimit" class="alert alert-danger" role="alert">
+                            Maximum file size is 3MB.
+                        </div>
+                        <div *ngIf="maxUpload" class="alert alert-danger" role="alert">
+                            You already uploaded.
+                        </div>
+                        <div *ngIf="otherErr" class="alert alert-danger" role="alert">
+                            Unexpected Error.
+                        </div>
+                    </div>
+                    <app-error-message [obs]="errorMessage"></app-error-message>
+  
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6">
+  
+                        <!--First Name-->
+                        <div class="form-group mb-3">
+                            <label for="company_name" class="text-secondary">Company Name <span class="text-danger">*</span></label>
+                            <input type="text" required class="form-control primary-border" id="company_name" name="company_name"
+                            formControlName="company_name" readonly
+                            [ngClass]="{ 'is-invalid': submitted && f?.company_name?.errors, 'danger-border': submitted && f?.company_name?.errors }">
+  
+                            <div *ngIf="submitted && f?.company_name?.errors" class="invalid-feedback">
+                                <div *ngIf="f?.company_name?.errors?.required">Company name is required.</div>
+                                <div *ngIf="f?.company_name?.errors?.pattern">Enter a valid company name.</div>
+                            </div>
+                            </div>
+                        </div>
+  
+                        <!--Industry-->
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="registration_number" class="text-secondary">Company registration number <span class="text-danger">*</span></label>
+                                <input type="text" required class="form-control primary-border" id="registration_number" name="registration_number"
+                            formControlName="registration_number" readonly
+                            [ngClass]="{ 'is-invalid': submitted && f?.registration_number?.errors, 'danger-border': submitted && f?.registration_number?.errors }">
+                                <div *ngIf="submitted && f?.registration_number?.errors" class="invalid-feedback">
+                                    <div *ngIf="f?.registration_number?.errors?.required">Company registration number is required.</div>
+                                    <div *ngIf="f?.registration_number?.errors?.pattern">Enter a valid registration number.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="town_city" class="text-secondary">Town or City <span class="text-danger">*</span></label>
+                        <input type="text" name="town_city" required formControlName="town_city" class="form-control primary-border"
+                            [ngClass]="{ 'is-invalid': submitted && f?.town_city?.errors, 'danger-border': submitted && f?.town_city?.errors }">
+  
+                        <div *ngIf="submitted && f?.town_city?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.town_city?.errors?.required">Town or city where the internship will be completed is required</div>
+                            <div *ngIf="f?.internship_name?.errors?.pattern">Enter a valid town or city.</div>
+                        </div>
+                    </div>
+  
+                    <!--address-->
+                    <div class="form-group mb-3">
+                        <label for="internship_name" class="text-secondary">Field of study <span class="text-danger">*</span></label>
+                        <input type="text" name="internship_name" required formControlName="internship_name" class="form-control primary-border"
+                            [ngClass]="{ 'is-invalid': submitted && f?.internship_name?.errors, 'danger-border': submitted && f?.internship_name?.errors }">
+  
+                        <div *ngIf="submitted && f?.internship_name?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.internship_name?.errors?.required">Internship post is required.</div>
+                            <div *ngIf="f?.internship_name?.errors?.pattern">Enter a valid post.</div>
+                        </div>
+                    </div>
+  
+  
+                  <!--phone-->
+                  <div class="form-group mb-3">
+                    <label for="number_of_positions" class="text-secondary">Number of positions <span class="text-danger">*</span></label>
+                    <input type="number" name="number_of_positions" required formControlName="number_of_positions" class="form-control primary-border"
+                        [ngClass]="{ 'is-invalid': submitted && f?.number_of_positions?.errors, 'danger-border': submitted && f?.number_of_positions?.errors }">
+  
+                    <div *ngIf="submitted && f?.number_of_positions?.errors" class="invalid-feedback">
+                        <div *ngIf="f?.number_of_positions?.errors?.required">Number of positions is required.</div>
+                        <div *ngIf="f?.number_of_positions?.errors?.pattern">Enter a valid number.</div>
+                    </div>
+                </div>
+                <!--Image Upload-->
+                    <div class="form-group mb-3">
+                        <label for="pdf_file">Upload PDF Document <span class="text-danger">*</span></label>
+                        <br>
+                        <label class="btn btn-secondary-light">
+                            Browse <input type="file" name="pdf_file" hidden accept="application/pdf" formControlName="pdf_file"
+                            (change)="selectImage($event)">
+                        </label>
+                        <span class="ml-2 f4 ">
+                            {{ fileMessage }}
+                        </span>
+                        <div class="text-primary" *ngIf="!submitted || !f?.logo?.errors">
+  
+                        </div>
+
+                             <!--Form Errors-->
+                    <div *ngIf="submitted">
+                        <div *ngIf="missingImage" class="alert alert-danger" role="alert">
+                            Please upload a document for the post.
+                        </div>
+                        <div *ngIf="wrongType" class="alert alert-danger" role="alert">
+                            Invalid file type.
+                        </div>
+                        <div *ngIf="sizeLimit" class="alert alert-danger" role="alert">
+                            Maximum file size is 3MB.
+                        </div>
+                        <div *ngIf="maxUpload" class="alert alert-danger" role="alert">
+                            You already uploaded.
+                        </div>
+                        <div *ngIf="otherErr" class="alert alert-danger" role="alert">
+                            Unexpected Error.
+                        </div>
+                    </div>
+                    </div>
+                <!--email-->
+                <div class="form-group mb-3">
+                  <label for="email" class="text-secondary">Email Address<span class="text-danger">*</span></label>
+                  <input type="text" name="email" required formControlName="email" class="form-control primary-border"
+                      [ngClass]="{ 'is-invalid': submitted && f?.email?.errors, 'danger-border': submitted && f?.email?.errors }" readonly>
+  
+                  <div *ngIf="submitted && f?.email?.errors" class="invalid-feedback">
+                      <div *ngIf="f?.email?.errors?.required">Email is required.</div>
+                      <div *ngIf="f?.email?.errors?.pattern">Enter a valid email address.</div>
+                  </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="closing_date" class="text-secondary">Closing Date <span class="text-danger">*</span></label>
+                <input type="date" name="closing_date" required formControlName="closing_date" class="form-control primary-border"
+                    [ngClass]="{ 'is-invalid': submitted && f?.closing_date?.errors, 'danger-border': submitted && f?.closing_date?.errors }">
+  
+                <div *ngIf="submitted && f?.closing_date?.errors" class="invalid-feedback">
+                    <div *ngIf="f?.closing_date?.errors?.required">Closing date is required.</div>
+                    <div *ngIf="f?.closing_date?.errors?.minlength">Enter a  valid closing date.</div>
+                </div>
+            </div>
+              
+                    <!--description-->
+                    <!-- <div class="form-group mb-3">
+                        <label for="description" class="text-secondary">Company bio<span class="text-danger">*</span></label>
+                        <textarea name="description" rows="3" required formControlName="description" class="form-control primary-border"
+                            [ngClass]="{ 'is-invalid': submitted && f?.description?.errors, 'danger-border': submitted && f?.description?.errors }"></textarea>
+  
+                        <div *ngIf="submitted && f?.description?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.description?.errors?.required">Please tell us about your company.</div>
+                            <div *ngIf="f?.description?.errors?.minlength">Min limit is 20 characters.</div>
+                        </div>
+                    </div> -->
+
+                    <div class="text-center" id="errorMsg" *ngIf=" showUError">
+                        <!-- <span style="color: red; font-weight: bold;"><i class="fa fa-times-circle"></i> {{showUsername}}</span> -->
+                        <div *ngIf=" showUError" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{showUError}}</div>
+                      </div>
+
+                    <div class="col-12">
+                        <div class="row aqua-gradient">
+                          <div class="col-12">
+                            <div *ngIf="showtoast">
+                              <p id="toast">Internships Request Send Successfully</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                    <!--SUBMIT-->
+                    <div class="form-group mb-2">
+                        <button [disabled]="loading || btnWait" class="btn btn-login btn-primary btn-block mt-4 py-3" ><span *ngIf="!loading" style="font-size: 2rem;">Create post</span>
+                        <div *ngIf="loading" class="spinner-border text-white" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="text-center ">By clicking this button, you agree to our <a [routerLink]="['/terms']" target="_blank" class="acolor"><span class="f4">Terms and Conditions</span></a></div>
+  
+                </form>
+            </div>
+        </div>
+  
+        <!--IMAGE-->
+        <div class="col col-0 col-lg-5 col-xl-4 col-override p-0" style="min-height: 100vh;">
+            <div class="landing-pic d-none d-lg-block d-xl-block"></div>
+        </div>
+    </div>
+  </div>
+  
+  

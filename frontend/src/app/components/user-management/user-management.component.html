@@ -1,0 +1,75 @@
+<div class="no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="heading-container" style="margin-bottom: -5rem;margin-top: 3rem;">
+        <h1 class="h-m h-fw-1 news__heading">All users</h1>
+        
+        <span class="partition"></span>
+        <p style="z-index: 1 !important;">Find below all the registered users and their roles:</p>
+        
+      </div>
+    <div class="col-12">
+        <a type="button" class="btn-get-started scrollto" (click)="addAdmin()">
+            <i class="fa fa-plus"> </i> Add New User</a>&nbsp;
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="well ">
+            
+          </div>
+          
+          <table id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+            st-safe-src="Users">
+            <thead>
+              <tr>
+                <th colspan="7">
+                  <input st-search placeholder="Search User using username" class="input-sm form-control" type="search"
+                    [(ngModel)]="search" />
+                </th>
+              </tr>
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
+                <!-- <th>Profile</th> -->
+                <th>First name(s):</th>
+                <th>Last name:</th>
+                <th>Email:</th>
+                <th>Role:</th>
+                <th>Institution/ Company:</th>
+                <th>Username:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let admin of admins | usernameFilter: search; let i = index">
+                <td>{{ admin.firstname }}</td>
+                <td>{{ admin.lastname }}</td>
+                <td>{{ admin.email }}</td>
+                <td>{{ admin.role }}</td>
+                <td>{{ admin.institution_company }}</td>
+                <td>{{ admin.username }}</td>
+                <td>
+                  <div class="btn-group " role="group" aria-label="...">
+                    <!-- <button type="button" class="btn btn-info" (click)="viewRecord(admin)"
+                      ngbTooltip="View Details?" style="float: right;">
+                      <i class="fa fa-search"> </i>
+                    </button> -->
+                    <button type="button" class="btn btn-default" (click)="editRecord(admin)"
+                      ngbTooltip="Edit User?">
+                      <i class="fa fa-pencil-square-o"> </i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="deleteAdmin(admin, i)"
+                      ngbTooltip="Delete User?">
+                      <i class="fa fa-trash-o"> </i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

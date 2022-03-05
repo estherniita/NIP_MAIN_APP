@@ -1,0 +1,203 @@
+<div class="no-gutter">
+  <div class="home-intro">
+      <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+      <div class="appOverlay"></div> 
+  </div>
+</div>
+  <section>
+    <div *ngIf="userService.isUserAuthenticatedrole()" class="container" style="margin-top: 50px; margin-bottom:50px;">
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="heading-container">
+                <h1 class="h-m h-fw-1 news__heading ">Browse Internships</h1>
+                <span class="partition"></span>
+                <p>Click on the send request button to send the request to the institutions.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div *ngIf="!userService.isUserAuthenticatedrole()" class="container" style="margin-top: 50px; margin-bottom:50px;">
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="heading-container">
+                <h1 class="h-m h-fw-1 news__heading ">Browse Internships</h1>
+                <span class="partition"></span>
+                <p>Instructions on how to apply:</p>
+                
+              </div>
+
+              <p style="font-weight: bold;">Ensure that you are currently registered at any of the following institutions And required to Work Intergrated Learning (WIL) or internship:</p>
+              <p style="font-weight: bold;">NB!! Your institution is the one to send student details.</p>
+
+              <ol >
+                <li>International University of Management (IUM)</li>
+                <li>Namibia University of Science and Technology (NUST)</li>
+                <li>Namibian  Institute  of  Mining  and  Technology (NIMT)</li>
+                <li>University  of Namibia (UNAM)</li>
+                <li>Vocation  Training  Centers(VTC) through the Namibia Training Authority (NTA)</li>
+              </ol>
+              
+            </div>
+          </div>
+      </div>
+      <div class=" col-lg-12 col-md-12 col-xs-12">
+      <div *ngIf="userService.isUserAuthenticatedrole()  && Internships.length">
+      <div  class="job-listings"   *ngFor="let availableinternships of Internships"  let i = index>
+        <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="job-company-logo">
+        
+        </div>
+        <div class="job-details">
+        <h3>{{availableinternships.internship_name}}</h3>
+        <span class="company-neme"> 
+          {{ availableinternships.company_name}}
+        </span>
+        <span class="company-neme" hidden> 
+          {{ availableinternships.company_email}} 
+        </span>
+     
+     
+        <span class="company-neme" hidden> 
+          {{ availableinternships.registration_number}} 
+        </span>
+        <span class="company-neme" hidden> 
+          {{ availableinternships.number_of_positions}} 
+        </span>
+        </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-12 text-left">
+        <span class="btn-open">
+          {{ availableinternships.number_of_positions}} post(s)
+        </span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
+        <div class="location">
+         {{ availableinternships.town_city }}
+        </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
+        <span class="btn-full-time">Due: {{availableinternships.closing_date}}</span>
+        </div>
+        <div class="col-lg-2 col-md-3 col-xs-12 text-left">
+        <span class="btn-apply" (click)="sendInternship(availableinternships)">Send request</span>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf=" !userService.isUserAuthenticatedrole()  && Internships.length">
+      <div  class="job-listings"   *ngFor="let availableinternships of Internships"  let i = index>
+        <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="job-company-logo">
+        
+        </div>
+        <div class="job-details">
+        <h3>{{availableinternships.internship_name}}</h3>
+        <span class="company-neme"> 
+          {{ availableinternships.company_name }} 
+        </span>
+
+        <span class="company-neme" hidden> 
+          
+          <a class="job-listings" target="_blank" href="assets/documents/{{availableinternships.pdf_file}}" 
+          *ngFor="let availableinternships of Internships"  let i = index>{{availableinternships.pdf_file}}</a>
+        </span>
+
+<!--       
+          <span class="company-neme"> 
+            {{ availableinternships.pdf_file }}
+            <a class="job-listings" target="_blank" href="assets/documents/{{availableinternships.pdf_file}}"
+             *ngFor="let availableinternships of Internships"  let i = index>download</a> 
+          </span> -->
+       
+        </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-center">
+        <span class="btn-open">
+          {{ availableinternships.number_of_positions}} post(s)
+        </span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
+        <div class="location">
+        <i class="lni-map-marker"></i>{{ availableinternships.town_city }}
+        </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
+        <span class="btn-full-time">Due: {{availableinternships.closing_date}}</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 text-right">
+        <span class="btn-apply">
+          <a  target="_blank" href="assets/documents/companies/{{availableinternships.pdf_file}}" 
+          *ngFor="let availableinternships of Internships"  let i = index> {{availableinternships.pdf_file}}</a>
+        </span>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+   <!-- Modal -->
+<div class="modal fade" id="internshipModal" tabindex="-1" role="dialog" aria-labelledby="internshipModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="internshipModalLabel">Instruction on how to apply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p>Ensure that you are currently registered at any of the following institutions:</p>
+        <ol>
+          <li>International University of Management (IUM)</li>
+          <li>Namibia University of Science and Technology (NUST)</li>
+          <li>Namibian  Institute  of  Mining  and  Technology (NIMT)</li>
+          <li>University  of Namibia (UNAM)</li>
+          <li>Vocation  Training  Centers(VTC) through the Namibia Training Authority (NTA)</li>
+        </ol>
+        
+        <p>And Work Intergrated Learning (WIL) or internship is one
+        </p>
+        <!-- <div *ngIf="userService.isUserAuthenticatedInstitutions()"> -->
+          <p> For companies and Institutions:</p>
+       <p style="font-weight: bold;"> Companies </p>
+       <p>All the internships your company have submitted will be displayed here, only if is still open based on the closing date.</p>
+          
+          <p>And Work Intergrated Learning (WIL) or internship is one
+          </p>  <br>
+          
+          <p style="font-weight: bold;"> Institutions</p> 
+          <p>This are all open internship post and they will only be sent to your institution by MTC, FOR YOUR INSTITUTION TO SEND THE QUALIFIED STUDENT FOR THE INTERNSHIP YOU RECEIVE.</p>
+             
+             <p> Work Intergrated Learning (WIL) or internship 
+             </p><br>
+
+           
+        <!-- </div> -->
+
+        <!-- <div *ngIf="!userService.isUserAuthenticatedInstitutions()"> -->
+        
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+<div *ngIf="!Internships.length" style="height: 100%; padding: 2rem;">
+  <h1 class="text-center">Currently there are no new internship(s) post..</h1> 
+</div>
+
+        
+       </div>
+  </section>

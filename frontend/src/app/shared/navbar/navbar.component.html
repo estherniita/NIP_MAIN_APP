@@ -1,0 +1,189 @@
+<button type="button" id="mobile-nav-toggle" (click)="toggleNav()">
+  <i [className]="navOpen ? 'fa fa-times' : 'fa fa-bars'"></i>
+</button>
+<header id="header" style="background: 'navColor'">
+  <div class="container-fluid">
+    <div id="logo" class="pull-left">
+    <a [routerLink]="['/']" class=""><img class="logo" src="../../../assets/images/mtc-logo-flat-main.png"></a>
+    </div>
+    <!-- <h4 class="name">National Internship Program</h4>  -->
+    <nav  #nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li routerLinkActive="menu-active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()" routerLinkActive="menu-active" [routerLinkActiveOptions]="{ exact: true }">
+          <a [routerLink]="['/admin-dashboard']">Admin Dashboard</a>
+        </li>
+        <li >
+          <a [routerLink]="['/about-nip']">About NIP</a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedCompany()">
+          <a  [routerLink]="['/companies']">Company Dashboard</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()">
+          <a  [routerLink]="['/companies']">Company Dashboard</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()">
+          <a  [routerLink]="['/user-management']">User Management</a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedIUM()">
+          <a  [routerLink]="['/institutionDashboard']">International University of Management<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedNUST()">
+          <a  [routerLink]="['/institutionDashboard']">Namibia University of Science and Technology<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedNIMT()">
+          <a  [routerLink]="['/institutionDashboard']">Namibian  Institute  of  Mining  and  Technology<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedUNAM()">
+          <a  [routerLink]="['/institutionDashboard']">University  of Namibia<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedVTC()">
+          <a  [routerLink]="['/institutionDashboard']">Vocation  Training  Centers(VTC) through NTA<span class="sr-only">(current)</span></a>
+        </li>
+        <li >
+          <a [routerLink]="['/internships']">Internships</a>
+        </li>
+        <!-- <li class="menu-has-children">
+          <a [routerLink]="['/']">External Procurement Unit</a>
+          <ul>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Open Bids</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Notice of Selection of awards</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Awards</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Bid Opening Register</a>
+            </li>
+          </ul>
+        </li> -->
+
+
+        <!-- <li class="menu-has-children">
+          <a [routerLink]="" >Procurement Management Unit</a>
+          <ul>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Annual Procurement Plan</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Open Bids/Request for Quotations</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Awards</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Bid Opening Register</a>
+            </li>
+
+          </ul>
+        </li> -->
+        <!-- <li class="menu-has-children">
+          <a [routerLink]="['/']" fragment="contact">Media Centre</a>
+          <ul>
+            <li>
+              <a [routerLink]="['/']" class="text-center">News</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Events Calendar</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Press Releases</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Annual Reports</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Newsletters</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Procurement Statistics</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Photo Gallery</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Video Gallery</a>
+            </li>
+            <li>
+              <a [routerLink]="['/']" class="text-center">Monitoring & Evaluation</a>
+            </li>
+          </ul>
+        </li> -->
+        <li>
+          <a [routerLink]="['/faq']" ><a>FAQ</a></a>
+        </li>
+        <li>
+          <a [routerLink]="['/']" >Contact Us</a>
+        </li>
+        <li *ngIf="!userService.isUserAuthenticated() ">
+          <a [routerLink]="['/auth/signin']" >Sign In</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticated() ">
+          <a (click)="logout()" >Sign Out</a>
+        </li>
+      </ul>
+
+    </nav>
+    <nav id="mobile-nav" (click)="toggleNav()">
+      <img class="logo-mobile" src="../../../assets/images/mtc-logo-flat-main.png">
+      <ul>
+        <li>
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()">
+          <a [routerLink]="['/admin-dashboard']">Admin Dashboard</a>
+        </li>
+        <li>
+          <a [routerLink]="['/about-nip']">About NIP</a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedCompany()">
+          <a [routerLink]="['/companies']">Company Dashboard</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()">
+          <a [routerLink]="['/companies']">Company Dashboard</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticatedrole()">
+          <a [routerLink]="['/user-management']">User Management</a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedIUM()">
+          <a [routerLink]="['/institutionDashboard']">International University of Management<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedNUST()">
+          <a [routerLink]="['/institutionDashboard']">Namibia University of Science and Technology<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedNIMT()">
+          <a [routerLink]="['/institutionDashboard']">Namibian  Institute  of  Mining  and  Technology<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedUNAM()">
+          <a [routerLink]="['/institutionDashboard']">University  of Namibia<span class="sr-only">(current)</span></a>
+        </li>
+        <li *ngIf="adminAuthenticationService.isUserAuthenticatedVTC()">
+          <a [routerLink]="['/institutionDashboard']">Vocation  Training  Centers(VTC) through NTA<span class="sr-only">(current)</span></a>
+        </li>
+       
+
+        <li>
+          <a [routerLink]="['/internships']" fragment="contact">Internships</a>
+        </li>
+        <li>
+          <a [routerLink]="['/faq']" fragment="contact">FAQ</a>
+        </li>
+        <li>
+          <a [routerLink]="['/']" >Contact Us</a>
+        </li>
+        <li *ngIf="!userService.isUserAuthenticated() ">
+          <a [routerLink]="['/']" fragment="contact">Sign In</a>
+        </li>
+        <li *ngIf="userService.isUserAuthenticated() ">
+          <a (click)="logout()" >Sign Out</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mobile-body-overly" [style.display]="navOpen ? 'block' : 'none'"></div>
+  </div>
+</header>

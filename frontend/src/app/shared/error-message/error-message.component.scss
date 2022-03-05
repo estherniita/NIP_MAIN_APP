@@ -1,0 +1,14 @@
+.error {
+  width: 100%;
+  padding: 8px 15px;
+  border-left: 6px solid var(--color-red);
+  border-right: 6px solid var(--color-red);
+  background-color: var(--color-white);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+
+  &.no-margin {
+      margin: 0;
+  }
+}

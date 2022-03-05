@@ -1,0 +1,131 @@
+<div class="no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <section class="company">
+
+    <div class="container">
+
+        <div class="well ">
+            
+          </div>
+          <br />
+          <div class="heading-container">
+        <h2 class="h-m h-fw-1 news__heading">Welcome to Companies Dashboard</h2>    
+        <a type="button" class="btn-get-started scrollto" ngbTooltip="Use this button to open a form to fill and send the new internship posts available" (click)="sendAvailableInternships(this.companyData)">
+              Send New Post(s)</a>&nbsp;
+        </div>
+     
+
+      <div class="row">
+
+
+        <div class="col-md-6 md-4" >
+            <a [routerLink]="'/companystudentlist'" data-toggle="tooltip" placement="top" title="This shows the total number of students who are offered internships and who are still to be offered">
+
+            <div class="card text-center h-100 card-info"  >
+                <div class="card-body blue-gradient" >
+                    <h2 class="card-title">Company Intern students</h2>
+                    <h3><i class="fa fa-female fa-2x"></i> <i class="fa fa-male fa-2x" style="margin-left: 2rem;"></i></h3>
+                </div>
+                <div class="row p-2 no-gutters rounded" >
+                    <div class="col-6 rounded">
+                        <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                            <h3>Completed</h3>
+                            <span class="medium text-uppercase">50</span>
+                        </div>
+                    </div>
+                    <div class="col-6 rounded">
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <h3>Not completed</h3>
+                            <span class="medium text-uppercase">110</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </a>
+
+      </div>
+
+
+        <div class="col-md-6 md-4" >
+            <a [routerLink]="'/internships'" data-toggle="tooltip" placement="top" title="This function shows the total number of companies who have offered internship, you can click on the button to view their names" >
+
+            <div class="card text-center h-100 card-info"  >
+                <div class="card-body blue-gradient">
+                    <h2 class="card-title">Organizations and companies who have offered</h2>
+                    <h3><i class="fa fa-building fa-2x"></i></h3>
+                </div>
+                <div class="row p-2 no-gutters rounded" >
+                    <div class="col-12 rounded">
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <h3>View the names</h3>
+                            <span class="small text-uppercase">Total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </a>
+
+      </div>
+        </div>
+
+
+
+        <div class="row">
+
+
+            <div class="col-md-6 md-4" >
+                <a [routerLink]="" data-toggle="tooltip" placement="top" title="Click on this button to submit the report of all the interns who have completed">
+    
+                <div class="card text-center h-100 card-info"  >
+                    <div class="card-body blue-gradient" >
+                        <h2 class="card-title" >Submit Report</h2>
+                        <h3><i class="fa fa-envelope-square fa-2x"></i></h3>
+                    </div>
+                    <div class="row p-2 no-gutters rounded" >
+                        <div class="col-12 rounded">
+                            <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>Organization reports for interns who completed their internship </h3>
+                                <span class="medium text-uppercase">50</span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-6 rounded">
+                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>Still to be offered</h3>
+                                <span class="medium text-uppercase">110</span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+              </a>
+    
+          </div>
+    
+    
+            <div class="col-md-6 md-4">
+                <a [routerLink]="'/CompanyAndInstitutionsReport'" data-toggle="tooltip" placement="top" >
+    
+                <div class="card text-center h-100 card-info"  >
+                    <div class="card-body blue-gradient" >
+                        <h2 class="card-title">Organizations and companies who have offered</h2>
+                        <h3><i class="fa fa-building fa-2x"></i></h3>
+                    </div>
+                    <div class="row p-2 no-gutters rounded" >
+                        <div class="col-12 rounded">
+                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>View the names</h3>
+                                <span class="small text-uppercase">Total</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </a>
+    
+          </div>
+            </div>
+
+        </div>
+</section>

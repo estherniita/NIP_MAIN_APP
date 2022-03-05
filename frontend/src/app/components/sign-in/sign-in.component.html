@@ -1,0 +1,85 @@
+<head>
+  
+  <script src="https://kit.fontawesome.com/dd8c49730d.js" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.js">
+</script>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form>
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social"><i class="fab fa-instagram"></i></a>
+        </div>
+        <span>Create an account for free </span>
+        <input type="text" placeholder="Name" />
+        <input type="username" placeholder="username" />
+        <input type="password" placeholder="Password" />
+        <button>Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form [formGroup]="loginForm">
+
+        <div class="text-center" id="errorMsg" *ngIf=" showUError|| errorMessage || showPwd">
+          <!-- <span style="color: red; font-weight: bold;"><i class="fa fa-times-circle"></i> {{showUsername}}</span> -->
+          <div *ngIf=" showUError" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
+          <div *ngIf="errorMessage" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
+        </div>
+
+        <h1>Sign In</h1>
+        <div class="social-container">
+        </div>
+        <span>Already have account ? </span>
+        <div class="username-block">
+        <input type="username" placeholder="Username" formControlName="username" />
+        <div class="error" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched ">
+          <div class="username-error text-white text-center" *ngIf="loginForm.get('username')?.errors?.username" >
+            Please enter a valid username
+          </div>
+          <div class="username-req-error text-white text-center" *ngIf="loginForm.get('username')?.errors?.required">
+            Username is required
+          </div>
+        </div>
+        </div>
+        <div class="password-block">
+        <input type="password" placeholder="Password" formControlName="password"/>
+        <div class="error" *ngIf=" loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <div class="password-req-error text-white text-center" *ngIf="loginForm.get('password')?.errors?.required" >
+            Password is required
+          </div>
+         </div>
+        </div>
+        <!-- <button>Sign In</button> -->
+        <button type="submit" (click)="signIn($event)" [disabled]="loginForm.status !== 'VALID' || waiting" class="sign-in-btn"
+      [ngClass]="waiting ? 'sign-in-btn__loading' : '' ">
+       <span *ngIf="!waiting"> Sign in</span>
+       <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
+      </button>
+      </form>
+      <div class="forgot"><a [routerLink]="['/auth/forgot-password']">I forgot my password</a></div>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back</h1>
+          <p> If you already have account please login to keep connected with us</p>
+          <button class="ghost" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Welcome Back</h1>
+          <p>Don't have account? Please sign up with your details to connect with us ! </p>
+      <button (click)="redirectToSignUp()" class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+    
+</body>
+

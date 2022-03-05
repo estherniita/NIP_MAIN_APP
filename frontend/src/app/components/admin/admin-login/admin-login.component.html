@@ -1,0 +1,84 @@
+<div class="container admin_login">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="card mt-3">
+        <div class="card-header text-center">
+          <h1>Sign In</h1>
+          <p>Enter your login credentials</p>
+          <div class="alert alert-info" *ngIf="loading">
+            <img
+              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            {{loadingMsg}}</div>
+          <div *ngIf="errorMsg" class="alert alert-danger">
+            <p>{{errorMsg}}</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <form action="" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <label for="">Email<label class="red-text">*</label></label>
+              <div class="input-group mb-2">
+                <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                  placeholder="Email">
+                <!--Validation-->
+                <!--<div *ngIf="submitted && f.email.errors" class="alert alert-danger">-->
+              </div>
+              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger validation error">
+                <div class="alertMsg text-center" *ngIf="f.email.errors?.required">
+                  Email is required
+                </div>
+                <div class="alertMsg text-center" *ngIf="f.email.errors?.email">
+                  Enter a valid email
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="">Password<label class="red-text">*</label></label>
+              <div class="input-group mb-2">
+
+                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" id="password" name="password"
+                  formControlName="password" placeholder="Password">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fa" [ngClass]="{
+                            'fa-eye-slash': !fieldTextType,
+                            'fa-eye': fieldTextType
+                          }" (click)="toggleFieldTextType()"></i>
+                  </span>
+                </div>
+
+              </div>
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger validation error">
+                <div class="alertMsg text-center" *ngIf="f.password.errors?.required">
+                  Password is required
+                </div>
+                 </div>
+            </div>
+
+            <div class="links d-flex justify-content-between flex-sm-column w-100">
+              <div class="remember order-0 ">
+                <label for="" class="">Remember me</label>
+                <input type="checkbox" name="" id="" class="">
+              </div>
+
+            </div>
+            <button class="btn btn-outline-danger btn-block" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i>
+              Sign in</button>
+
+
+            <div class="col-sm-12 pt-2 text-center">
+              <a routerLink="/auth/forgot-password">Forgot password?</a>
+            </div>
+
+
+
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

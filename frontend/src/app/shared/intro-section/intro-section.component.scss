@@ -1,0 +1,61 @@
+.app-intro {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-attachment: fixed !important;
+    background-position: center center !important;
+  }
+  .app-intro-inner {
+    width: 100%;
+    height:400px;
+    position: relative;
+    overflow: hidden;
+  }
+  .appIntro img { 
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: top;
+    z-index: 2;
+    filter: blur(2px);
+  }
+  .textHolder {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .textHolder p {
+        position: relative;
+        bottom: 10px;
+        // font-family: $font-title !important;
+        font-weight: 400 !important;
+    }
+  
+  .appOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 600px;
+    background: rgba(172, 28, 28, 0.4);
+    z-index: 2;
+  } 
+    /*background: url("img/cap.jpg") no-repeat top center;
+  
+    background-repeat: no-repeat;
+    background-position: top center;
+    
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;*/

@@ -1,0 +1,116 @@
+<head>
+  
+    <script src="https://kit.fontawesome.com/dd8c49730d.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/main.js">
+  </script>
+  </head>
+  
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form [formGroup]="registerForm">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <app-error-message [obs]="errorMessage"></app-error-message>
+          </div>
+          <span>Create an account to register your organization with NIP </span>
+          <div class="username-block">
+          <input type="text" placeholder="Organization Name" id="organization_name" formControlName="organization_name"/>
+          <div class="error" *ngIf="registerForm.get('organization_name')?.invalid && registerForm.get('organization_name')?.touched ">
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('organization_name')?.errors?.required">
+              Organization name is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="text" placeholder="Organization Reg Number" id="registration_number" formControlName="registration_number"/>
+          <div class="error" *ngIf="registerForm.get('registration_number')?.invalid && registerForm.get('registration_number')?.touched ">
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('registration_number')?.errors?.required">
+              Registration number is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="text" placeholder="Organization Physical Address" id="physical_address" formControlName="physical_address"/>
+          <div class="error" *ngIf="registerForm.get('physical_address')?.invalid && registerForm.get('physical_address')?.touched ">
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('physical_address')?.errors?.required">
+              Physical address is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="text" placeholder="Contact Person Full Name" id="contact_person_fullname" formControlName="contact_person_fullname"/>
+          <div class="error" *ngIf="registerForm.get('contact_person_fullname')?.invalid && registerForm.get('contact_person_fullname')?.touched ">
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('contact_person_fullname')?.errors?.required">
+              Contact Person fullname is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="text" placeholder="Contact Number" id="contact_number" formControlName="contact_number"/>
+          <div class="error" *ngIf="registerForm.get('contact_number')?.invalid && registerForm.get('contact_number')?.touched ">
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('contact_number')?.errors?.required">
+              Contact number is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="email" placeholder="Email Address" id="email" formControlName="email"/>
+          <div class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched ">
+            <div class="email-error text-red text-center" *ngIf="registerForm.get('email')?.errors?.email" >
+              Please enter a valid email
+            </div>
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('email')?.errors?.required">
+              Email is required
+            </div>
+            </div>
+          </div>
+          <div class="username-block">
+          <input type="password" placeholder="Password" id="password" formControlName="password"/>
+          <div class="error" *ngIf=" registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <div class="password-req-error text-red text-center" *ngIf="registerForm.get('password')?.errors?.required" >
+              Password is required
+            </div>
+           </div>
+          </div>
+          <div class="username-block">
+          <input type="password" placeholder="Confrim Password" id="confirmPassword" formControlName="confirmPassword"/>
+          <div class="error" *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+            <div class="again-req-error text-red" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+              Please confirm your password
+            </div>
+            <div class="again-req-error text-white text-center" *ngIf="registerForm.get('confirmPassword')?.errors?.mustMatch">
+              Password does not match
+            </div>
+          </div>
+          </div>
+          <button type="submit" (click)="signUp($event)" [disabled]="registerForm.status !== 'VALID' || waiting"
+          class="btn btn-fullsize sign-up-btn"
+          [ngClass]="waiting ? 'sign-up-btn__loading' : '' ">
+          <span *ngIf="!waiting">Create account</span>
+          <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
+        </button>
+        </form>
+      </div>
+       
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-right">
+            <h1>Hello</h1>
+            <p>If you already have account please login to keep connected with us</p>
+            <button (click)="redirectToSignIn()" class="ghost" id="signIn">Sign In</button>
+          </div>
+          
+        </div>
+      </div>
+  </div>
+  
+      
+  </body>
+  
+  

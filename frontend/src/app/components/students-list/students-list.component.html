@@ -1,0 +1,66 @@
+<div class="row no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <section>
+<div class="body-section">
+    <div class="heading-container">
+    <h1 class="h-m h-fw-1 news__heading">All National Internship Program Interns</h1>
+</div>
+    <div class="col-12">
+      <div class="row">
+        <!-- <div class="col-md-12 col-sm-12"> -->
+           
+            
+        <table mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        st-safe-src="Users">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                      <input st-search placeholder="Search student using institution name" class="input-sm form-control" type="search"
+                        [(ngModel)]="search" />
+                    </th>
+                  </tr>
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
+                <th>Organization/ company and town</th>
+                <th> Contact person</th>
+                <th>student fullname</th>
+                <th>Student number</th>
+                <th>Institution</th>
+                <th>Field of Study</th>
+                <th>Student phone number and email</th>
+                <th>Student documents</th>
+
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of students | searchInstitution: search; let i = index">
+               
+                <td>{{student.company}}, {{student.town_city}}</td>
+                <td>{{student.supervisor_details}}</td>
+                <td>{{student.firstname}} {{student.surname}}</td>
+                <td>{{student.student_number}}</td>
+                <td>{{student.institution}}</td>
+                <td>{{student.field_of_study}}</td>
+                <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
+                <td>{{student.student_document}} 
+                   <!-- <button (click)="downloadStudentDocuments()">
+                  Download</button> -->
+                  
+          <a class="job-listings" target="_blank" href="assets/documents/{{student.student_document}}" 
+          *ngFor="let availableinternships of Internships"  let i = index>Download</a>
+  
+                </td>
+  
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+</section>

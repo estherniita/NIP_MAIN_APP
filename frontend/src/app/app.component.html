@@ -1,0 +1,16 @@
+<div *ngIf="!isLoading">
+<app-scroll-to-top></app-scroll-to-top>
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+</div>
+
+<div
+  *ngIf="isLoading"
+  style="height: 100vh; display: flex; align-items: center;
+    justify-content: center;
+  "
+>
+  <app-loader></app-loader>
+
+</div>

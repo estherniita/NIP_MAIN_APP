@@ -1,0 +1,59 @@
+
+<div class="row no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <section>
+<div class="body-section">
+    <div class="heading-container">
+        <h1 class="h-m h-fw-1 news__heading">All internships sent to Institutions</h1>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        
+        <table mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        st-safe-src="Users">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                      <input st-search placeholder="Search internsnship using institution name" class="input-sm form-control" type="search"
+                        [(ngModel)]="search" />
+                    </th>
+                  </tr>
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
+                <th >Internship Post </th>
+                <th> Institution</th>
+                <th>Company </th>
+                <th>Registration number </th>
+                <th>Number of Post(s) </th>
+                <th>Institution Email Address </th>
+                <th>Date Sent </th>
+                <th>Closing Date</th>
+                <th>Document</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let internship of internships |searchInstitution: search; let i = index">
+               
+                <td>{{internship.internships_name}}</td>
+                <td>{{internship.institution}}</td>
+                <td>{{internship.company}}</td>
+                <td>{{internship.registration_number}}</td>
+                <td>{{internship.no_of_internship}}</td>
+                <td>{{internship.email}}</td>
+                <td>{{internship.date_received}}</td>
+                <td>{{internship.closing_date}}</td>
+                <td>{{internship.pdf_file}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        <!-- </div> -->
+    </div>
+    </div>
+</div>
+</section>

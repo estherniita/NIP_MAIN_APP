@@ -1,0 +1,55 @@
+<footer *ngIf="!isSignIn" id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-8 footer-info">
+          <!-- <img class="logo" src="../../assets/images/logo-white.png"> -->
+          <p >
+            The internship program is a three-year long initiative which marks a new and promising dawn in the Namibian
+            academic sphere. Key focus is to assist students that require internships to graduate and subsequently create
+            job ready and experienced graduates. Parallel to this objective, the program will hence be assisting institutions
+            of high learning to find internship placements for students and in the long run accelerate job creation amongst the
+            youth.
+          </p>
+          
+        </div>
+        <div class="col-lg-4 col-md-8 footer-links">
+          <h4 >Quick Links</h4>
+          <ul>
+            <li ><i class="fa fa-chevron-right"></i> <a [routerLink]="['/about-nip']">About NIP</a></li>
+            <li ><i class="fa fa-chevron-right"></i> <a [routerLink]="['/internships']">Internships</a></li>
+            <li ><i class="fa fa-chevron-right"></i> <a [routerLink]="['/']">News & Reports</a></li>
+            <li ><i class="fa fa-chevron-right"></i> <a [routerLink]="['/']">Sign up</a></li>
+            <li ><i class="fa fa-chevron-right"></i> <a [routerLink]="['/faq']">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-8 footer-contact">
+          <h4>Contact Us</h4>
+          <p >
+            <strong>MTC Headquaters</strong> <br>Cnr. of Mosé Tjitendero & Hamutenya Wanahepo Ndadi <br>
+            Street, Olympia Windhoek,<br>Namibia<br>
+
+            <strong >Phone:</strong> (+264) 61 447 700<br>
+            <strong >Email: </strong><a href="mailto:nipenquiries@mtc.com.na">nipenquiries@mtc.com.na</a><br>
+          </p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-linkedin"></i></a>
+            <!-- <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-youtube"></i></a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="copyright text-dark">
+     <strong>National Internship Program</strong> &copy; Copyright {{currentYear}}. All rights reserved.
+    </div>
+    <div class="credits text-dark">
+
+      Powered by: <a target="_blank" href="https://mtc.com.na/">Mobile Telecomunications Limited</a>
+    </div>
+  </div>
+</footer>

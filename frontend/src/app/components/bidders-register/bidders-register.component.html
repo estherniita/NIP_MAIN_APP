@@ -1,0 +1,107 @@
+<div class="register">
+  <div class="sign-up">
+    <div class="content">
+      <!-- <img class="signup-logo" src="../../../assets/images/logo.png"> -->
+      <div class="title text-center">Create new bidder account</div>
+      <app-error-message [obs]="errorMessage"></app-error-message>
+      <form [formGroup]="registerForm">
+        <div class="username-block">
+          <input type="text" name="fname" id="fname" formControlName="fname" placeholder="First name" />
+          <div class="error" *ngIf="registerForm.get('fname')?.invalid && registerForm.get('fname')?.touched ">
+
+            <div class="username-req-error text-white text-center" *ngIf="registerForm.get('fname')?.errors?.required">
+              First name is required
+            </div>
+            </div>
+          </div>
+
+          <div class="username-block">
+            <input type="text" name="lname" id="lname" formControlName="lname" placeholder="Last name" />
+            <div class="error" *ngIf="registerForm.get('lname')?.invalid && registerForm.get('lname')?.touched ">
+
+              <div class="username-req-error text-white text-center" *ngIf="registerForm.get('lname')?.errors?.required" >
+                Last name is required
+              </div>
+              </div>
+            </div>
+
+            <!-- <div class="username-block">
+              <input type="text" name="phone" id="phone" formControlName="phone" placeholder="Phone" />
+              <div class="error" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched ">
+                <div
+                  class="username-length-error text-white"
+                  *ngIf="registerForm.get('phone')?.errors?.minlength">
+                Phone must be at least 6 characters length. Current length:
+                  {{ registerForm.get("phone")?.errors?.minlength.actualLength }}
+                </div>
+                <div
+                  class="username-req-error text-white"
+                  *ngIf="registerForm.get('phone')?.errors?.required"
+                >
+                  Phone is required
+                </div>
+                </div>
+              </div> -->
+
+        <div class="username-block">
+          <input type="text" name="username" id="username" formControlName="username" placeholder="Username" />
+          <div class="error" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched ">
+            <div class="username-length-error" *ngIf="registerForm.get('username')?.errors?.minlength">
+            Username must be at least 3 characters length. Current length: {{ registerForm.get("username")?.errors?.minlength.actualLength }}
+            </div>
+            <div class="username-req-error text-center text-white" *ngIf="registerForm.get('username')?.errors?.required">
+              Username is required
+            </div>
+            </div>
+          </div>
+          <div class="email-block">
+            <input type="email" name="email" id="email" formControlName="email" placeholder="Email" />
+            <div class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            <div class="email-error text-white text-center" *ngIf="registerForm.get('email')?.errors?.email" >
+              Please enter a valid email
+            </div>
+            <div class="email-req-error text-white text-center" *ngIf="registerForm.get('email')?.errors?.required">
+              Email is required
+            </div>
+          </div>
+          </div>
+          <div class="password-block">
+            <input type="password" name="password" id="password" placeholder="Password" formControlName="password" />
+            <div class="error" *ngIf=" registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <div class="password-length-error text-white" *ngIf="registerForm.get('password')?.errors?.minlength">
+              Password must be at least 8 characters length. Current length: {{ registerForm.get("password")?.errors?.minlength.actualLength }}
+            </div>
+            <div class="password-req-error text-white text-center" *ngIf="registerForm.get('password')?.errors?.required">
+              Password is required
+            </div>
+            </div>
+          </div>
+          <div class="again-block">
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" formControlName="confirmPassword" />
+            <div class="error" *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+            <div class="again-req-error text-white" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+              Please confirm your password
+            </div>
+            <div class="again-req-error text-white text-center" *ngIf="registerForm.get('confirmPassword')?.errors?.mustMatch">
+              Password does not match
+            </div>
+          </div>
+          </div>
+
+          <button type="submit" (click)="signUp($event)" [disabled]="registerForm.status !== 'VALID' || waiting"
+            class="btn btn-fullsize sign-up-btn"
+            [ngClass]="waiting ? 'sign-up-btn__loading' : '' ">
+            <span *ngIf="!waiting">Create account</span>
+            <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
+          </button>
+      </form>
+      <div class="forgot"><a [routerLink]="['/auth/forgot-password']">I forgot my password</a></div>
+    </div>
+  </div>
+  <div class="sign-in">
+    <div class="content">
+      <div class="title">Already have an account?</div>
+      <button (click)="redirectToSignIn()" class="btn btn-center btn-dark sign-in-btn">Sign in</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+
+section
+{
+ display: block;
+ margin-bottom: 50px;
+}
+
+.body-section {
+    
+    padding-top: 8rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    margin-bottom: 8rem;
+    font-size: 1.3rem;
+}
+
+.dashboard-section {
+ min-height: 100vh !important;
+}
+h1 {
+    margin-bottom: 2rem;
+}
+
+.new {
+    float: right;
+    padding-bottom: 3rem;
+}
+
+button {
+    position: relative;
+    margin-top: 4.3%;
+}
+
+th {font-weight: bold;
+}
+
+.home-intro {
+    width: 100%;
+    height: 200px; 
+    img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+       
+    }
+  }
+
+  .appOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 175, 239, 0.342));
+    z-index: 2;
+  } 

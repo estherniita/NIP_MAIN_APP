@@ -1,0 +1,213 @@
+<div class="no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+ <div class="heading-container" style="margin-bottom: -5rem;margin-top: 3rem;">
+        <h1 class="h-m h-fw-1 news__heading">Send internship request to institution</h1>
+        
+        <span class="partition"></span><p style="z-index: 1 !important;">Use this form to submit new available internships to institutions</p>
+      </div>
+  <div class="container-fluid bg-lightest">
+   
+    <div class="row">
+  
+        <div class="col col-12 col-lg-7 col-xl-8 justify-content-center text-center form">
+            <div class="mt-4">
+                  
+                <!--Create Profile Form-->
+                <form [formGroup]="new_internshipsForm" (ngSubmit)="submitNewInternships()" class="text-left mt-4 offset-override">
+  
+  
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6">
+  
+                        <!--First Name-->
+                        <div class="form-group mb-3">
+                            <label for="internships_name" class="text-secondary">Field of study<span class="text-danger">*</span></label>
+                            <input type="text" readonly required class="form-control primary-border" id="internships_name" name="internships_name"
+                            formControlName="internships_name" 
+                            [ngClass]="{ 'is-invalid': submitted && f?.internships_name?.errors, 'danger-border': submitted && f?.internships_name?.errors }" >
+  
+                            <div *ngIf="submitted && f?.internships_name?.errors" class="invalid-feedback">
+                                <div *ngIf="f?.internships_name?.errors?.required">Field of study is required.</div>
+                                <div *ngIf="f?.internships_name?.errors?.pattern">Enter a valid field of study.</div>
+                            </div>
+                            </div>
+                        </div>
+  
+                        <!--Industry-->
+                        <div class="col-12 col-sm-6 col-md-6">
+                             <!--no_of_internship-->
+                    <div class="form-group mb-3">
+                        <label for="no_of_internship" class="text-secondary">Number of post<span class="text-danger">*</span></label>
+                        <input name="no_of_internship" readonly  itype="text" required formControlName="no_of_internship" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f?.no_of_internship?.errors, 'danger-border': submitted && f?.no_of_internship?.errors }">
+  
+                        <div *ngIf="submitted && f?.no_of_internship?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.no_of_internship?.errors?.required">Number of internship post is required</div>
+                            <div *ngIf="f?.no_of_internship?.errors?.pattern">Enter a valid number of post</div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="company" class="text-secondary">Company/organization name <span class="text-danger">*</span></label>
+                                <input type="text" readonly required class="form-control primary-border" id="company" name="company"
+                            formControlName="company" maxlength="30"
+                            [ngClass]="{ 'is-invalid': submitted && f?.company?.errors, 'danger-border': submitted && f?.company?.errors }">
+                                <div *ngIf="submitted && f?.company?.errors" class="invalid-feedback">
+                                    <div *ngIf="f?.company?.errors?.required">Company or organization name is required.</div>
+                                    <div *ngIf="f?.company?.errors?.pattern">Enter a valid name.</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-12 col-sm-6 col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="town_city" class="text-secondary">Town or City <span class="text-danger">*</span></label>
+                        <input type="text" name="town_city" readonly required formControlName="town_city" class="form-control primary-border"
+                            [ngClass]="{ 'is-invalid': submitted && f?.town_city?.errors, 'danger-border': submitted && f?.town_city?.errors }">
+  
+                        <div *ngIf="submitted && f?.town_city?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.town_city?.errors?.required">Town or city where the internship will be completed is required</div>
+                            <div *ngIf="f?.town_city?.errors?.pattern">Enter a valid town or city.</div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        
+
+             
+             <div class="row">
+                <div class="col-12 col-sm-6 col-md-6">
+                    <!--address-->
+                    <div class="form-group mb-3">
+                        <label for="company_email" class="text-secondary">Company email<span class="text-danger">*</span></label>
+                        <input type="text" name="company_email" readonly required formControlName="company_email" class="form-control primary-border"
+                            [ngClass]="{ 'is-invalid': submitted && f?.company_email?.errors, 'danger-border': submitted && f?.company_email?.errors }">
+  
+                        <div *ngIf="submitted && f?.company_email?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.company_email?.errors?.required">Company email is required.</div>
+                            <div *ngIf="f?.company_email?.errors?.pattern">Enter a valid email.</div>
+                        </div>
+                    </div>
+                </div>
+  
+
+                <div class="col-12 col-sm-6 col-md-6">
+                  <!--phone-->
+                  <div class="form-group mb-3">
+                    <label for="registration_number" class="text-secondary">Company registration number <span class="text-danger">*</span></label>
+                    <input type="text" name="registration_number" readonly required formControlName="registration_number" class="form-control primary-border"
+                        [ngClass]="{ 'is-invalid': submitted && f?.registration_number?.errors, 'danger-border': submitted && f?.registration_number?.errors }">
+  
+                    <div *ngIf="submitted && f?.registration_number?.errors" class="invalid-feedback">
+                        <div *ngIf="f?.registration_number?.errors?.required">Company registration number is required.</div>
+                        <div *ngIf="f?.registration_number?.errors?.pattern">Enter a valid registration number.</div>
+                    </div>
+                </div>
+                </div> 
+             </div>   
+                <!--email-->
+                <div class="form-group mb-3" id="Institute">
+                    <label for="Institute">Institution name</label>
+                    <select  formControlName="institution" class="form-control" type="text" (change)="setInstitutionsEmail()"
+                     [ngClass]="{ 'is-invalid': submitted && f?.institution?.errors }" placeholder="Select the institution name"  required>
+             
+                     <option value="" [disabled]="true">
+                      Select the institution name</option>          
+                        <option>International University of Management (IUM)</option>
+                        <option>Namibia University of Science and Technology (NUST)</option>
+                        <option>Namibia Institute of Mining and Technology (NIMT)</option>
+                        <option>University of Namibia (UNAM)</option>
+                        <option>Vocational Training Centre (VTC) through the Namibia Training Authority (NTA)</option>
+                    </select>
+            
+                    <div *ngIf="submitted && f?.institution?.errors" class="invalid-feedback">
+                        <div *ngIf="f.institution?.errors?.required">
+                             Institution name is required                   
+                        </div>
+                      </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="email">Institution Email Address</label>
+
+                <input type="text" class="form-control" id="email"  formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f?.email?.errors }" required>
+        
+                <div *ngIf="submitted && f?.email?.errors" class="invalid-feedback">
+                    <div *ngIf="f?.email?.errors?.required">
+                     Email address is required
+                    </div>
+                    <div *ngIf="f?.email?.errors?.pattern">
+                        Enter valid email
+                       </div>
+                  </div>
+            </div>
+              
+                   
+
+                    <div class="form-group mb-3" >
+                        <label for="closingdate">Closing date</label>
+                        <input  type="date" id="closingdate" class="form-control" rows="1" required  [ngClass]="{ 'is-invalid': submitted && f?.closing_date?.errors }"
+                                  formControlName="closing_date" required>
+                                 
+                                  <!-- <option value="" [disabled]="true">
+                                    Select the number of internship</option>
+                
+                                   <option  *ngFor="let availableinternships of Internships" [ngValue]="availableinternships">
+                                     {{availableinternships.number_of_positions }}</option>
+          
+                           </select> -->
+                        
+                        <div *ngIf="submitted && f?.closing_date?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.closing_date?.errors?.required">
+                            Closing data is required
+                            </div>
+                            <div *ngIf="f.closing_date?.errors?.pattern">
+                                Enter a valid closing date
+                                </div>
+                          </div>
+                
+                      </div>
+  
+                      <div class="form-group mb-3">
+                        <label for="pdf_file">Documents</label>
+        
+                        <input type="text" class="form-control" id="document" formControlName="pdf_file"
+                        [ngClass]="{ 'is-invalid': submitted && f?.pdf_file?.errors }" required readonly>
+                
+                        <div *ngIf="submitted && f?.pdf_file?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.pdf_file?.errors?.required">
+                             Enter document name is required
+                            </div>
+                          </div>
+                    </div>
+                    <!--SUBMIT-->
+                    <div class="form-group mb-2">
+                        <button [disabled]="loading " class="btn btn-login btn-primary btn-block mt-4 py-3" ><span *ngIf="!loading" style="font-size: 2rem;">Create post</span>
+                        <div *ngIf="loading" class="spinner-border text-white" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="text-center ">By clicking this button, you agree to our <a [routerLink]="['/terms']" target="_blank" class="acolor"><span class="f4">Terms and Conditions</span></a></div>
+  
+                </form>
+            </div>
+        </div>
+  
+        <!--IMAGE-->
+        <div class="col col-0 col-lg-5 col-xl-4 col-override p-0" style="min-height: 100vh;">
+            <div class="landing-pic d-none d-lg-block d-xl-block"></div>
+        </div>
+    </div>
+  </div>
+  
+  

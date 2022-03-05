@@ -1,0 +1,40 @@
+@import "../../../styles/abstracts/mixins";
+
+.heading{
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--color-black);
+  margin-top: 25px;
+}
+
+.activation{
+margin-top: 25vh;
+margin-bottom: 15%;
+
+@include break(small) {
+  margin-top: 20vh;
+}
+}
+
+.message{
+  max-width:1000px;
+  margin:0 auto;
+  font-size:20px;
+  line-height:1.5;
+}
+
+.fa, .fas {
+
+  font-size: 8rem;
+}
+
+.sign-up-btn {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+
+}

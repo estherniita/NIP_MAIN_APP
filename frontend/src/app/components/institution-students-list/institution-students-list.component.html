@@ -1,0 +1,63 @@
+<div class="row no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <section>
+<div class="body-section">
+    <div class="heading-container">
+    <h1 class="h-m h-fw-1 news__heading">Find all intern students of your institution</h1>
+</div>
+    <div class="col-12">
+      <div class="row">
+        <!-- <div class="col-md-12 col-sm-12"> -->
+           
+            
+        <table mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        st-safe-src="Users">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                      <input st-search placeholder="Search student using company name" class="input-sm form-control" type="search"
+                        [(ngModel)]="search" />
+                    </th>
+                  </tr>
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
+                <th>Full Name</th>
+                <th>Identification Number</th>
+                <th>Student Number</th>
+                <th>Field of Study</th>
+                <th>Company</th>
+                <th>Supervisor detail</th>
+                <th>Student document</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students |searchCompany: search; let i = index">
+                    <td>{{ student.firstname }} {{ student.surname }}</td>
+                    <td>{{ student.idNo_or_passportNo }}</td>
+                    <td>{{ student.student_number}}</td>
+                    <td>{{ student.field_of_study}}</td>
+                    <td>{{ student.company}}</td>
+                    <td>{{ student.supervisor_details}}</td>
+                    <td>{{ student.student_document }}
+                      <a href="assets/Documents/students/"
+                      class="btn btn-default"
+                         target="_blank"
+                         download={{student.student_document}} 
+                                 >Download</a>
+                    </td>
+      
+                
+                
+                  </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+</section>

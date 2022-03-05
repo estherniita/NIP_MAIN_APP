@@ -1,0 +1,229 @@
+<div class="header u-mb-s">
+  <div class="carousel-container">
+
+    <div class="carousel">
+      <ng-container *ngFor="let slide of slides; let i = index">
+        <div class="the-div">
+          <div @carouselAnimation class="carousel-content slide" *ngIf="i === currentSlide"
+            [ngStyle]="{'background': 'linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 175, 239, 0.534)), url(' + slide.src + ')', 'background-size': 'cover', 'background-position': 'center'}">
+            <!-- <img class="img" src="../../assets/images/logo.png"> -->
+            <div class="details-text carousel-content ">
+              <h2 style="margin-left: 2rem; margin-right: 2rem;">{{slide.header}}</h2>
+              <!-- <p class="" *ngIf="slide.body">{{slide.body}}</p> -->
+              <a *ngIf="slide.link" [routerLink]="[slide.link.href]"
+                class="btn-get-started scrollto">{{slide.link.text}}</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <button class="control prev" (click)="onPreviousClick()">
+        <span class="arrow left"></span>
+      </button>
+      <button class="control next" (click)="onNextClick()">
+        <span class="arrow right"></span>
+      </button>
+    </div>
+  </div>
+  <div class="u-container">
+
+
+    <img src="../../../assets/svg/waves.svg" alt="Waves" class="header__waves" />
+  </div>
+</div>
+
+<div id="about" class="container about-section" >
+  <h2 class="text-center">About NIP</h2>
+
+  <p class="text-center">
+    The internship program is a three-year long initiative which marks a new and promising dawn in the Namibian
+    academic sphere. Key focus is to assist students that require internships to graduate and subsequently create
+    job ready and experienced graduates. Parallel to this objective, the program will hence be assisting institutions
+    of high learning to find internship placements for students and in the long run accelerate job creation amongst the
+    youth.
+  </p>
+
+</div>
+
+
+<div class="u-container news">
+
+  <div class="col-12">
+
+    <div class="row cards">
+
+
+      <div class="col-md-4 mb-4 border-0 left">
+        <!-- <a placement="midde" ngbTooltip="All students who were offered and still to be offered internships"> -->
+
+        <div class="text-center  border-0">
+          <div>
+            <h3 class="text-center"><i class="fa fa-sitemap fa-4x" style="color:#e41f29; "></i></h3>
+            <h3 class="card-title">Organizations</h3>
+
+          </div>
+
+          <div class=" rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+
+            <p class="medium ">All companies and organization which have new request for internship to submit, have to
+              create their accounts.</p>
+          </div>
+
+
+        </div>
+        <a [routerLink]="'/auth/signup'"> <a class="options">Sign
+            up</a></a>
+
+      </div>
+
+
+      <div class="col-md-4 mb-4 border-0 middle">
+        <!-- <a placement="midde" ngbTooltip="All students who were offered and still to be offered internships"> -->
+
+        <div class="text-center h-90 border-0">
+          <div>
+            <h3 class="text-center"><i class="fa fa-university fa-4x" style="color:#e41f29; "></i></h3>
+            <h3 class="card-title">Institutions</h3>
+
+          </div>
+
+          <div class=" rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+
+            <p class="medium ">All Institutions which are part of the National Internship Program have to create their
+              accounts. </p>
+          </div>
+
+
+        </div>
+        <a [routerLink]="'/auth/signup'"> <a class="options">Sign
+            up</a></a>
+
+      </div>
+
+
+      <div class="col-md-4 mb-4 border-0 right">
+        <!-- <a placement="midde" ngbTooltip="All students who were offered and still to be offered internships"> -->
+
+        <div class="text-center h-90 border-0">
+          <div>
+            <h3><i class="fa fa-list fa-4x" style="color:#e41f29;"></i></h3>
+            <h3 class="card-title">Internships</h3>
+
+          </div>
+
+          <div class=" rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+
+            <p class="medium">All current requested internships which are posted by different companies and
+              organization.</p>
+          </div>
+
+
+        </div>
+        <a [routerLink]="'/internships'"><a class="options">Explore</a></a>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  <h1 class="h-m h-fw-1 news__heading u-mb-l l-h-1">Latest Internships</h1>
+  <div class="u-flex u-flex-jc-e u-mb-s news__btn">
+    <app-read-all-button [link]="'/internships'" [text]="'View all'"></app-read-all-button>
+  </div>
+  <div class="u-flex u-flex-jc-sb u-flex-flow-rw news__articles u-mb-xl">
+    <div *ngFor="let bid of bids; let i = index" class="news-card u-flex u-flex-d-c">
+      <img src="../../../assets/images/{{bid.logo}}" alt="company logo" class="news-card__img" />
+      <div class="news-card__content">
+        <h3 class="news-card__heading text-center">{{bid.title}}</h3>
+        <p class="news-card__text text-center">
+          Due Date: {{bid.dueDate}}
+        </p>
+        <a class="news-card__text text-center" href="/{{bid.downloadLink}}">Download</a>
+      </div>
+      <div class="news-card__action u-mt-xs u-pb-xs">
+        <a href="#" class="news-card__btn">APPLY ONLINE</a>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</div>
+
+<section id="call-to-action">
+  <div class="container text-center">
+    <h3>Join our mailing list!</h3>
+    <p>
+      Receive monthly newletters via email by subscribing to our mailing list.
+    </p>
+    <a class="cta-btn" href="#subscribe" rel="modal:open" target="_blank">Subscribe</a>
+  </div>
+</section>
+
+<!-- <div class="u-container news">
+  <h1 class="h-m h-fw-1 news__heading u-mb-l l-h-1">Latest News</h1>
+  <div class="u-flex u-flex-jc-e u-mb-s news__btn">
+    <app-read-all-button [link]="'/news'" [text]="'Read all'"></app-read-all-button>
+  </div>
+  <div class="u-flex u-flex-jc-sb u-flex-flow-rw news__articles u-mb-xl">
+    <div *ngFor="let bid of bids; let i = index" class="news-card u-flex u-flex-d-c">
+      <img src="../../../assets/images/logo.png" alt="Bid image" class="news-card__img" />
+      <div class="news-card__content">
+        <h3 class="news-card__heading text-center">{{bid.title}}</h3>
+        <p class="news-card__text text-center">
+          Due Date: {{bid.dueDate}}
+        </p>
+        <a class="news-card__text text-center" href="/{{bid.downloadLink}}">Download</a>
+      </div>
+      <div class="news-card__action u-mt-xs u-pb-xs">
+        <a href="#" class="news-card__btn">APPLY ONLINE</a>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</div> -->
+
+<!-- <section id="call-to-action-socials">
+  <div class="container text-center">
+    <h3>Follow us on our socials...</h3>
+    <p>Stay up to date with what is happening around the procurement board, new & open bids, board decisions, press
+      releases etc.
+    </p>
+    <div class="footer-contact social-links">
+      <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.facebook.com/" class="facebook"><i class="fa fa-instagram"></i></a>
+      <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-linkedin"></i></a>
+      <a href="https://www.youtube.com/channel/" class="youtube"><i class="fa fa-youtube"></i></a>
+    </div>
+  </div>
+</section> -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="heading-container">
+          <h1 class="h-m h-fw-1 news__heading ">Popular Documents</h1>
+          <span class="partition"></span>
+          <p>You can download some of the important documents listed below. You can also view all the documents <a
+              style="color: var(--color-primary); cursor: pointer;">here</a>;</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let doc of docs, let i = index " class="col-md-4 col-sm-6">
+        <div class="service-box">
+          <i class="far fa-file-pdf"></i>
+
+          <h3 class="news-card__heading text-center doc_title">{{doc.title}}</h3>
+          <p class="news-card__text text-center">{{doc.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <app-quick-links></app-quick-links> -->

@@ -1,0 +1,15 @@
+.oval-loader {
+  width: 3rem;
+  height: 3rem;
+  stroke: var(--color-white);
+
+  &__inverted {
+    @media (prefers-color-scheme: light) {
+      stroke: var(--color-primary);
+    }
+  }
+  &__small {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

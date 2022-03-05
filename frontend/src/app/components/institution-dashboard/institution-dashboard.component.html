@@ -1,0 +1,488 @@
+
+<div *ngIf="adminAuthenticationService.isUserAuthenticatedIUM()">
+<div class="no-gutter">
+
+    <div class="home-intro">
+        <img src="assets/images/IUM1.PNG" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+    <section class="institution">
+
+       
+    <div class="container">
+
+        <div class="well ">
+            
+          </div>
+          <br />
+
+          <div class="heading-container">
+            <h2 class="h-m h-fw-1 news__heading">Welcome to the International University of Management (IUM) Dashboard</h2>    
+          
+            </div>
+        <div class="row">
+
+
+            <div class="col-md-4 md-4" >
+                <a [routerLink]="'/institutionReceivedInternships'" data-toggle="tooltip" placement="top" title="Click on this tap to view all the current received intership opportunities">
+    
+                <div class="card text-center h-100 card-info">
+                    <div class="card-body blue-gradient" >
+                        <h2 class="card-title" >All Recieved Posts</h2>
+                        <h3><i class="fa fa-arrow-circle-o-down fa-stack-2x"></i></h3>
+                    </div>
+                    <div class="row p-2 no-gutters rounded" >
+                        <div class="col-12 rounded">
+                            <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>All internship posts send from Mobile Telecomunication (MTC)</h3>
+                            </div>
+                        </div>
+                        <!-- <div class="col-6 rounded">
+                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>Still to be offered</h3>
+                                <span class="medium text-uppercase">110</span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+              </a>
+    
+          </div>
+    
+    
+            <div class="col-md-4 md-4">
+                <a [routerLink]="'/InstitutionStudentsList'" placement="top" data-toggle="tooltip" title="Use this tab to send the new interns and view all the submitted interns" >
+    
+                <div class="card text-center h-100 card-info"  >
+                    <div class="card-body blue-gradient" >
+                        <h2 class="card-title">All IUM NIP INTERNS</h2>
+                        <h3><i class="fa fa-user-circle fa-stack-2x"></i></h3>
+                    </div>
+                    <div class="row p-2 no-gutters rounded" >
+                        <div class="col-12 rounded">
+                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>View all your institution interns</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </a>
+    
+          </div>
+
+          <div class="col-md-4 md-4">
+            <a [routerLink]="'/reference'" placement="top" data-toggle="tooltip" title="Click here to view all the reports of NIP for IUM" >
+
+            <div class="card text-center h-100 card-info"  >
+                <div class="card-body blue-gradient" >
+                    <h2 class="card-title">Data Analytics</h2>
+                    <h3><i class="fa fa-building fa-2x"></i></h3>
+                </div>
+                <div class="row p-2 no-gutters rounded" >
+                    <div class="col-12 rounded">
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <h3>All National Internship Program report for IUM</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </a>
+
+      </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<div *ngIf="adminAuthenticationService.isUserAuthenticatedNUST()">
+    <div class="no-gutter">
+    
+        <div class="home-intro">
+            <img src="assets/images/nust2.jpg" alt=""> 
+            <div class="appOverlay"></div> 
+        </div>
+      </div>
+        <section class="institution">
+    
+           
+        <div class="container">
+    
+            <div class="well ">
+                
+              </div>
+              <br />
+    
+              <div class="heading-container">
+                <h2 class="h-m h-fw-1 news__heading">Welcome to the Namibia University of Science and Technology (NUST) Dashboard</h2>    
+              
+                </div>
+            <div class="row">
+    
+    
+                <div class="col-md-4 md-4" >
+                    <a [routerLink]="'/institutionReceivedInternships'" data-toggle="tooltip" placement="top" title="Click on this tap to view all the current received intership opportunities">
+        
+                    <div class="card text-center h-100 card-info">
+                        <div class="card-body blue-gradient" >
+                            <h2 class="card-title" >All Recieved Posts</h2>
+                            <h3><i class="fa fa-arrow-circle-o-down fa-stack-2x"></i></h3>
+                        </div>
+                        <div class="row p-2 no-gutters rounded" >
+                            <div class="col-12 rounded">
+                                <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                    <h3>All internship posts send from Mobile Telecomunication (MTC)</h3>
+                                </div>
+                            </div>
+                            <!-- <div class="col-6 rounded">
+                                <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                    <h3>Still to be offered</h3>
+                                    <span class="medium text-uppercase">110</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                  </a>
+        
+              </div>
+        
+        
+                <div class="col-md-4 md-4">
+                    <a [routerLink]="'/InstitutionStudentsList'" data-toggle="tooltip" placement="top" title="Use this tab to send the new interns and view all the submitted interns" >
+        
+                    <div class="card text-center h-100 card-info"  >
+                        <div class="card-body blue-gradient" >
+                            <h2 class="card-title">All NUST NIP INTERNS</h2>
+                            <h3><i class="fa fa-user-circle fa-stack-2x"></i></h3>
+                        </div>
+                        <div class="row p-2 no-gutters rounded" >
+                            <div class="col-12 rounded">
+                                <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                    <h3>View all your institution interns</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </a>
+        
+              </div>
+    
+              <div class="col-md-4 md-4">
+                <a [routerLink]="'/reference'" placement="top" data-toggle="tooltip" title="Click here to view all the reports of NIP for IUM" >
+    
+                <div class="card text-center h-100 card-info"  >
+                    <div class="card-body blue-gradient" >
+                        <h2 class="card-title">Data Analytics</h2>
+                        <h3><i class="fa fa-building fa-2x"></i></h3>
+                    </div>
+                    <div class="row p-2 no-gutters rounded" >
+                        <div class="col-12 rounded">
+                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                <h3>All National Internship Program report for NUST</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </a>
+    
+          </div>
+                </div>
+    
+            </div>
+        </section>
+    </div>
+
+
+    <div *ngIf="adminAuthenticationService.isUserAuthenticatedNIMT()">
+        <div class="no-gutter">
+        
+            <div class="home-intro">
+                <img src="assets/images/nimt2.jpg" alt=""> 
+                <div class="appOverlay"></div> 
+            </div>
+          </div>
+            <section class="institution">
+        
+               
+            <div class="container">
+        
+                <div class="well ">
+                    
+                  </div>
+                  <br />
+        
+                  <div class="heading-container">
+                    <h2 class="h-m h-fw-1 news__heading">Welcome to the Namibian  Institute  of  Mining  and  Technology (NIMT) Dashboard</h2>    
+                  
+                    </div>
+                <div class="row">
+        
+        
+                    <div class="col-md-4 md-4" >
+                        <a [routerLink]="'/institutionReceivedInternships'" data-toggle="tooltip" placement="top" title="Click on this tap to view all the current received intership opportunities">
+            
+                        <div class="card text-center h-100 card-info">
+                            <div class="card-body blue-gradient" >
+                                <h2 class="card-title" >All Recieved Posts</h2>
+                                <h3><i class="fa fa-arrow-circle-o-down fa-stack-2x"></i></h3>
+                            </div>
+                            <div class="row p-2 no-gutters rounded" >
+                                <div class="col-12 rounded">
+                                    <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                        <h3>All internship posts send from Mobile Telecomunication (MTC)</h3>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-6 rounded">
+                                    <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                        <h3>Still to be offered</h3>
+                                        <span class="medium text-uppercase">110</span>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                      </a>
+            
+                  </div>
+            
+            
+                    <div class="col-md-4 md-4">
+                        <a [routerLink]="'/InstitutionStudentsList'" data-toggle="tooltip" placement="top" title="Use this tab to send the new interns and view all the submitted interns" >
+            
+                        <div class="card text-center h-100 card-info"  >
+                            <div class="card-body blue-gradient" >
+                                <h2 class="card-title">All NIMT NIP INTERNS</h2>
+                                <h3><i class="fa fa-user-circle fa-stack-2x"></i></h3>
+                            </div>
+                            <div class="row p-2 no-gutters rounded" >
+                                <div class="col-12 rounded">
+                                    <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                        <h3>View all your institution interns</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </a>
+            
+                  </div>
+        
+                  <div class="col-md-4 md-4">
+                    <a [routerLink]="'/reference'" placement="top" data-toggle="tooltip" title="Click here to view all the reports of NIP for IUM" >
+        
+                    <div class="card text-center h-100 card-info"  >
+                        <div class="card-body blue-gradient" >
+                            <h2 class="card-title">Data Analytics</h2>
+                            <h3><i class="fa fa-building fa-2x"></i></h3>
+                        </div>
+                        <div class="row p-2 no-gutters rounded" >
+                            <div class="col-12 rounded">
+                                <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                    <h3>All National Internship Program report for NIMT</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </a>
+        
+              </div>
+                    </div>
+        
+                </div>
+            </section>
+        </div>
+
+
+        <div *ngIf="adminAuthenticationService.isUserAuthenticatedUNAM()">
+            <div class="no-gutter">
+            
+                <div class="home-intro">
+                    <img src="assets/images/unam.jpg" alt=""> 
+                    <div class="appOverlay"></div> 
+                </div>
+              </div>
+                <section class="institution">
+            
+                   
+                <div class="container">
+            
+                    <div class="well ">
+                        
+                      </div>
+                      <br />
+            
+                      <div class="heading-container">
+                        <h2 class="h-m h-fw-1 news__heading">Welcome to the University of Namibia (UNAM) Dashboard</h2>    
+                      
+                        </div>
+                    <div class="row">
+            
+            
+                        <div class="col-md-4 md-4" >
+                            <a [routerLink]="'/institutionReceivedInternships'" data-toggle="tooltip" placement="top" title="Click on this tap to view all the current received intership opportunities">
+                
+                            <div class="card text-center h-100 card-info">
+                                <div class="card-body blue-gradient" >
+                                    <h2 class="card-title" >All Recieved Posts</h2>
+                                    <h3><i class="fa fa-arrow-circle-o-down fa-stack-2x"></i></h3>
+                                </div>
+                                <div class="row p-2 no-gutters rounded" >
+                                    <div class="col-12 rounded">
+                                        <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                            <h3>All internship posts send from Mobile Telecomunication (MTC)</h3>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-6 rounded">
+                                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                            <h3>Still to be offered</h3>
+                                            <span class="medium text-uppercase">110</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                          </a>
+                
+                      </div>
+                
+                
+                        <div class="col-md-4 md-4">
+                            <a [routerLink]="'/InstitutionStudentsList'" data-toggle="tooltip" placement="top" title="Use this tab to send the new interns and view all the submitted interns" >
+                
+                            <div class="card text-center h-100 card-info"  >
+                                <div class="card-body blue-gradient" >
+                                    <h2 class="card-title">All UNAM NIP INTERNS</h2>
+                                    <h3><i class="fa fa-user-circle fa-stack-2x"></i></h3>
+                                </div>
+                                <div class="row p-2 no-gutters rounded" >
+                                    <div class="col-12 rounded">
+                                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                            <h3>View all your institution interns</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </a>
+                
+                      </div>
+            
+                      <div class="col-md-4 md-4">
+                        <a [routerLink]="'/reference'" placement="top" data-toggle="tooltip" title="Click here to view all the reports of NIP for IUM" >
+            
+                        <div class="card text-center h-100 card-info"  >
+                            <div class="card-body blue-gradient" >
+                                <h2 class="card-title">Data Analytics</h2>
+                                <h3><i class="fa fa-building fa-2x"></i></h3>
+                            </div>
+                            <div class="row p-2 no-gutters rounded" >
+                                <div class="col-12 rounded">
+                                    <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                        <h3>All National Internship Program report for UNAM</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </a>
+            
+                  </div>
+                        </div>
+            
+                    </div>
+                </section>
+            </div>
+
+
+            <div *ngIf="adminAuthenticationService.isUserAuthenticatedVTC()">
+                <div class="no-gutter">
+                
+                    <div class="home-intro">
+                        <img src="assets/images/vtc.jpg" alt=""> 
+                        <div class="appOverlay"></div> 
+                    </div>
+                  </div>
+                    <section class="institution">
+                
+                       
+                    <div class="container">
+                
+                        <div class="well ">
+                            
+                          </div>
+                          <br />
+                
+                          <div class="heading-container">
+                            <h2 class="h-m h-fw-1 news__heading">Welcome to the Vocation  Training  Centers(VTC) through NTA Dashboard</h2>    
+                          
+                            </div>
+                        <div class="row">
+                
+                
+                            <div class="col-md-4 md-4" >
+                                <a [routerLink]="'/institutionReceivedInternships'" data-toggle="tooltip" placement="top" title="Click on this tap to view all the current received intership opportunities">
+                    
+                                <div class="card text-center h-100 card-info">
+                                    <div class="card-body blue-gradient" >
+                                        <h2 class="card-title" >All Recieved Posts</h2>
+                                        <h3><i class="fa fa-arrow-circle-o-down fa-stack-2x"></i></h3>
+                                    </div>
+                                    <div class="row p-2 no-gutters rounded" >
+                                        <div class="col-12 rounded">
+                                            <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                                <h3>All internship posts send from Mobile Telecomunication (MTC)</h3>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-6 rounded">
+                                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                                <h3>Still to be offered</h3>
+                                                <span class="medium text-uppercase">110</span>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                              </a>
+                    
+                          </div>
+                    
+                    
+                            <div class="col-md-4 md-4">
+                                <a [routerLink]="'/InstitutionStudentsList'" data-toggle="tooltip" placement="top" title="Use this tab to send the new interns and view all the submitted interns" >
+                    
+                                <div class="card text-center h-100 card-info"  >
+                                    <div class="card-body blue-gradient" >
+                                        <h2 class="card-title">All VTC NIP INTERNS</h2>
+                                        <h3><i class="fa fa-user-circle fa-stack-2x"></i></h3>
+                                    </div>
+                                    <div class="row p-2 no-gutters rounded" >
+                                        <div class="col-12 rounded">
+                                            <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                                <h3>View all your institution interns</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </a>
+                    
+                          </div>
+                
+                          <div class="col-md-4 md-4">
+                            <a [routerLink]="'/reference'" placement="top" data-toggle="tooltip" title="Click here to view all the reports of NIP for IUM" >
+                
+                            <div class="card text-center h-100 card-info"  >
+                                <div class="card-body blue-gradient" >
+                                    <h2 class="card-title">Data Analytics</h2>
+                                    <h3><i class="fa fa-building fa-2x"></i></h3>
+                                </div>
+                                <div class="row p-2 no-gutters rounded" >
+                                    <div class="col-12 rounded">
+                                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                                            <h3>All National Internship Program report for VTC</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </a>
+                
+                      </div>
+                            </div>
+                
+                        </div>
+                    </section>
+                </div>

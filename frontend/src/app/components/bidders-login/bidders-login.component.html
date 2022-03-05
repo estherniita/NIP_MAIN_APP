@@ -1,0 +1,47 @@
+<div class="login">
+  <div class="sign-up">
+    <div class="content">
+      <div class="title ">Don't have an account?</div>
+      <button (click)="redirectToSignUp()" class="sign-in-btn btn btn-block btn-fullsize sign-up-btn">
+        Sign up
+      </button>
+    </div>
+  </div>
+  <div class="sign-in">
+    <div class="content">
+      <!-- <img class="signin-logo" src="../../../assets/images/logo.png"> -->
+      <app-error-message [obs]="this.errorMessage"></app-error-message>
+      <h1 class="title text-center">Sign in: Bidders Portal</h1>
+      <form [formGroup]="loginForm">
+        <div class="email-block">
+          <input type="email" name="email" id="email" formControlName="email" placeholder="Email" />
+          <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched ">
+            <div class="email-error text-white text-center" *ngIf="loginForm.get('email')?.errors?.email" >
+              Please enter a valid email
+            </div>
+            <div class="email-req-error text-white text-center" *ngIf="loginForm.get('email')?.errors?.required">
+              Email is required
+            </div>
+          </div>
+        </div>
+        <div class="password-block">
+          <input type="password" name="password" id="password" placeholder="Password" formControlName="password"
+          />
+          <div class="error" *ngIf=" loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <div class="password-req-error text-white text-center" *ngIf="loginForm.get('password')?.errors?.required" >
+              Password is required
+            </div>
+           </div>
+        </div>
+
+        <button type="submit" (click)="signIn($event)" [disabled]="loginForm.status !== 'VALID' || waiting" class="sign-in-btn btn btn-fullsize"
+        [ngClass]="waiting ? 'sign-in-btn__loading' : '' ">
+         <span *ngIf="!waiting"> Sign in</span>
+         <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
+        </button>
+
+      </form>
+      <div class="forgot"><a [routerLink]="['/auth/forgot-password']">I forgot my password</a></div>
+    </div>
+  </div>
+</div>

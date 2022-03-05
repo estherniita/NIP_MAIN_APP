@@ -1,0 +1,23 @@
+//defining the global colors
+
+// numbers correspond to brightness of the color, -1 being the brightest one
+
+:root {
+  --color-primary: #00aeef;
+  --color-primary-gradient: linear-gradient(left, rgba(24, 116, 186, 0.281) 0%, rgba(6, 70, 94, 0.534) 100%);
+  --color-primary-brown: #312922; //need to confirm this
+  --color-grey: #333;
+  --color-black-1: #000000;
+  --color-black-2: #2c2c2c;
+  --color-white: #fff;
+  --color-blue: #09779a;
+  --color-red: #e41f29;
+  --color-orange: #e878225b;
+  --color-orange-2: #e8782291;
+  --color-orange-3: #0000;
+  --color-orange-4: #e87822d7;
+  --color-orange-5: #E87722;
+  --color-grey-dark-1: #6f6f6f;
+
+}
+
