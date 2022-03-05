@@ -240,8 +240,8 @@ export class RegisterAdminComponent implements OnInit {
         (data: any) => {
           if (data.success) {
 
-            this.loading = true;
-            this.btnWait = true;
+            // this.loading = true;
+            // this.btnWait = true;
             
             this.showtoast = true;
             setTimeout(() => {
