@@ -161,9 +161,9 @@ export class StudentsComponent implements OnInit {
       this.f.field_of_study.value,
       this.f.internships_name.value,
       this.f.company.value,
+      this.f.town_city.value,
       this.f.company_email.value,
       this.f.company_registrationNo.value,
-      this.f.town_city.value,
       this.completion,
       this.admission,
       this.image

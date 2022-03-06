@@ -418,8 +418,8 @@ async function getAllStudentInterns(){
 
     try{
     const students_interns = await db.query(
-      `SELECT COUNT (student_number) total_students, institution,
-      company FROM students_interns GROUP BY institution and  company
+      `SELECT COUNT(student_number) total_students, institution,
+       company FROM students_interns GROUP BY company, institution;
       `
       // [offset, config.listPerPage]
     );

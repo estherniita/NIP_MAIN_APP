@@ -60,7 +60,7 @@ export class CompanyStudentListComponent implements OnInit {
           
           this.students.push(val));
 
-       console.log('company', this.companyData.email);
+      //  console.log('company', this.companyData.email);
     
       }
 
