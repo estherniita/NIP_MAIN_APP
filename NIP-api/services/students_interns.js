@@ -13,17 +13,17 @@ async function newStudentInterns(students_interns, res){
 
 
   try{
-    
+
   const result  = await db.query(
     `INSERT INTO students_interns 
     (firstname, surname, idNo_or_passportNo, student_number, student_email, student_phoneNumber, institution, field_of_study, internships_name,
-      company, company_email, company_registrationNo, completion, admission, student_document ) 
+      company, town_city, company_email, company_registrationNo, completion, admission, student_document ) 
     VALUES 
-    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
     [
       students_interns.firstname, students_interns.surname, students_interns.idNo_or_passportNo, students_interns.student_number, students_interns.student_email,
       students_interns.student_phoneNumber, students_interns.institution, students_interns.field_of_study, students_interns.internships_name, students_interns.company,
-      students_interns.company_email, students_interns.company_registrationNo, students_interns.completion, students_interns.admission, students_interns.student_document
+      students_interns.town_city, students_interns.company_email, students_interns.company_registrationNo, students_interns.completion, students_interns.admission, students_interns.student_document
     
     ]
   );
@@ -119,11 +119,11 @@ async function downloadStudentInterns(err, res, students, fields){
     const result = await db.query(
       `UPDATE students_interns
       SET firstname=?, surname=?, idNo_or_passportNo=?, student_number=?, student_email=?, student_phoneNumber=?, institution=?, field_of_study=?, internships_name=?,
-      company=?, company_email=?, company_registrationNo=?, supervisor_details=?, admission=?, completion=?
+      company=?, town_city=?, company_email=?, company_registrationNo=?, supervisor_details=?, admission=?, completion=?
       WHERE id=?`, 
       [
         students_interns.firstname, students_interns.surname, students_interns.idNo_or_passportNo, students_interns.student_number, students_interns.student_email, students_interns.student_phoneNumber,
-      students_interns.institution, students_interns.field_of_study, students_interns.internships_name, students_interns.company, students_interns.company_email,
+      students_interns.institution, students_interns.field_of_study, students_interns.internships_name, students_interns.company, students_interns.town_city, students_interns.company_email,
        students_interns.company_registrationNo, students_interns.supervisor_details, students_interns.admission, students_interns.completion, id
       ]
     );

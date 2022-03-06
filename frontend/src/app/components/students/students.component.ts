@@ -34,10 +34,12 @@ export class StudentsComponent implements OnInit {
     admission: new FormControl('',),
     completion: new FormControl('',),
     student_document: new FormControl('', [Validators.required]),
+    town_city: new FormControl('', [Validators.required]),
+
     // contact_details: new FormControl('', [Validators.required]),
   },
   );
-  public data: any;
+  data: any;
   loading: Boolean = false;
     public submitted = false;
   image!: File;
@@ -90,7 +92,9 @@ export class StudentsComponent implements OnInit {
             internships_name: this.data.data.internships_name,
             company: this.data.data.company,
             company_email: this.data.data.email,
-            company_registrationNo: this.data.data.registration_number
+            company_registrationNo: this.data.data.registration_number,
+            town_city: this.data.data.town_city,
+
           });
           //getting the h1 element
          //  this.document.getElementById('header').innerText = `Edit ${this.data.data.username}'s information`;
@@ -145,6 +149,8 @@ export class StudentsComponent implements OnInit {
 
     //create new post
     this.studentService.newStudentInterns(
+
+      
       this.f.firstname.value,
       this.f.surname.value,
       this.f.idNo_or_passportNo.value,
@@ -157,31 +163,17 @@ export class StudentsComponent implements OnInit {
       this.f.company.value,
       this.f.company_email.value,
       this.f.company_registrationNo.value,
+      this.f.town_city.value,
       this.completion,
       this.admission,
       this.image
 
 
     ).then(async (data: any) => {
-      if(data.success) {
+
+      if(data.success){
 
         
-      console.log('student details',
-      this.f.firstname.value,
-      this.f.surname.value,
-      this.f.idNo_or_passportNo.value,
-      this.f.student_number.value,
-      this.f.student_email.value,
-      this.f.student_phoneNumber.value,
-      this.f.institution.value,
-      this.f.field_of_study.value,
-      this.f.internships_name.value,
-      this.f.company.value,
-      this.f.company_email.value,
-      this.f.company_registrationNo.value,
-      this.completion,
-      this.admission,
-      this.image);
 
         this.showtoast = true;
 
@@ -205,8 +197,10 @@ export class StudentsComponent implements OnInit {
 
      else{
 
-      if (data.message === 'Error while sending details') {
+      if (data.message === 'Error while sending details' || !data.success) {
         this.showUError = 'something went wrong try again later';
+        this.loading = true;
+
 
         console.log('eerror', this.showUError);
         setTimeout(() => {

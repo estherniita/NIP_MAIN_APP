@@ -89,8 +89,13 @@
             </div>
           </div>
           </div>
+
+          <div class="social-container">
+            <app-error-message [obs]="errorMessage"></app-error-message>
+          </div>
+          
           <button type="submit" (click)="signUp($event)" [disabled]="registerForm.status !== 'VALID' || waiting"
-          class="btn btn-fullsize sign-up-btn"
+          class=" ghost"
           [ngClass]="waiting ? 'sign-up-btn__loading' : '' ">
           <span *ngIf="!waiting">Create account</span>
           <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>

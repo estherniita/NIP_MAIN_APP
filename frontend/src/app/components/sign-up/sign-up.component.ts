@@ -22,6 +22,8 @@ export class SignUpComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/\d/), Validators.pattern(/[A-Z]/)]),
     confirmPassword: new FormControl('', [Validators.required]),
     contact_person_fullname: new FormControl('', [Validators.required]),
+    role: new FormControl('', ),
+
   },
 
   );
@@ -75,7 +77,7 @@ export class SignUpComponent implements OnInit {
           setTimeout(() => {
             this.waiting = false;
           }, 300);
-          this.errorMessage.next("Error: Account already exist, try resetting your password." )
+          this.errorMessage.next("Error: Account already exist, with that email address. Try resetting your password." )
         } else
         {
           //proceeding to register the user in case the email doesn't exist

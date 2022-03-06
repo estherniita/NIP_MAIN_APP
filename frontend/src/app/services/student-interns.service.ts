@@ -49,7 +49,7 @@ export class StudentInternsService {
 
 
     newStudentInterns(firstname: string, surname: string, idNo_or_passportNo: string, student_number: string, student_email: string, student_phoneNumber: string, institution: string,
-      field_of_study: string, internships_name: string, company: string, company_email: string, company_registrationNo: string, completion: string, admission: string, student_document: any): any {
+      field_of_study: string, internships_name: string, company: string, town_city: string, company_email: string, company_registrationNo: string, completion: string, admission: string, student_document: any): any {
       // const httpOptions = {
       //   headers: new HttpHeaders({
       //     'Content-Type': 'application/json',
@@ -68,6 +68,7 @@ export class StudentInternsService {
       formData.append('field_of_study', field_of_study);
       formData.append('internships_name', internships_name);
       formData.append('company', company);
+      formData.append('town_city', town_city);
       formData.append('company_email', company_email);
       formData.append('company_registrationNo', company_registrationNo);
       formData.append('completion', completion);

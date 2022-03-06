@@ -55,6 +55,7 @@ var upload_product = multer({
       field_of_study: req.body.field_of_study,
       internships_name: req.body.internships_name,
       company: req.body.company,
+      town_city: req.body.town_city,
       company_email: req.body.company_email,
       company_registrationNo: req.body.company_registrationNo,
       admission: req.body.admission,
@@ -64,7 +65,7 @@ var upload_product = multer({
     }
 
     console.log(student_details);
-    
+
     try {
       res.json(await studentsIntern.newStudentInterns(student_details));
     } catch (err) {

@@ -4,7 +4,7 @@ const config = {
   db: { /* don't expose password or any sensitive info, done only for demo */
     host: env.DB_HOST || 'localhost',
     user: env.DB_USER || 'root',
-    password: env.DB_PASSWORD || '',
+    password: env.DB_PASSWORD || '!w9(ykMKMora',
     database: env.DB_NAME || 'national_internship_programme',
     //db password: !w9(ykMKMora
   },

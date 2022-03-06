@@ -210,6 +210,17 @@
               </div>
 
               <div class="form-group mb-3">
+                <label for="town_city" class="text-secondary">Town or City<span class="text-danger">*</span></label>
+                <input type="text" name="town_city" required formControlName="town_city" class="form-control primary-border"
+                    [ngClass]="{ 'is-invalid': submitted && f?.town_city?.errors, 'danger-border': submitted && f?.town_city?.errors }" readonly>
+
+                <div *ngIf="submitted && f?.town_city?.errors" class="invalid-feedback">
+                    <div *ngIf="f?.town_city?.errors?.required">Town or city name is required.</div>
+                    <!-- <div *ngIf="f?.company?.errors?.pattern">Enter a valid company address.</div> -->
+                </div>
+            </div>
+
+              <div class="form-group mb-3">
                 <label for="company_email" class="text-secondary">Company email <span class="text-danger">*</span></label>
                 <input type="text" name="company_email" required formControlName="company_email" class="form-control primary-border"
                     [ngClass]="{ 'is-invalid': submitted && f?.company_email?.errors, 'danger-border': submitted && f?.company_email?.errors }" readonly>

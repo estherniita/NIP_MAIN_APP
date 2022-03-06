@@ -126,7 +126,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get('http://mtcuatnip.mtcdc.com.na:3000/' + 'new-internships/getIUMInternship', {
+        .get(this.server_url  + 'new-internships/getIUMInternship', {
           headers: httpOptions.headers
         })
         .pipe(map(res => res));
