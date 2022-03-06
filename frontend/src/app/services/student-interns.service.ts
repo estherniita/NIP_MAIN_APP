@@ -231,6 +231,30 @@ export class StudentInternsService {
         .pipe(map(res => res));
       
     }
+
+
+    
+
+        //method to get iterms by organizations
+        getAllInternsByOrganization(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              // Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + `student_interns/getAllInternsByOrganization`, data, {
+              headers: httpOptions.headers
+            })
+      
+            .pipe(map(res => res));
+        }
   
       //method to update student details
       updateStudentDetails(id:any, data:any) {

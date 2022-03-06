@@ -189,6 +189,18 @@
                             </div>
                           </div>
                     </div>
+
+
+                    <div class="col-12">
+                        <div class="row aqua-gradient">
+                          <div class="col-12">
+                            <div *ngIf="showtoast">
+                              <p id="toast">Internship Request successfully sent</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     <!--SUBMIT-->
                     <div class="form-group mb-2">
                         <button [disabled]="loading " class="btn btn-login btn-primary btn-block mt-4 py-3" ><span *ngIf="!loading" style="font-size: 2rem;">Create post</span>

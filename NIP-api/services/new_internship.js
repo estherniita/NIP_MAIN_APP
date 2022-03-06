@@ -156,7 +156,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships WHERE institution = "International University of Management (IUM)" 
+      AS closing_date FROM new_internships WHERE institution = "International University of Management (IUM)" ORDER BY date_received DESC
       `
       // [offset, config.listPerPage]
     );
@@ -186,7 +186,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships WHERE institution = 'Namibia University of Science and Technology (NUST)' 
+      AS closing_date FROM new_internships WHERE institution = 'Namibia University of Science and Technology (NUST) ORDER BY date_received DESC' 
       `
       // [offset, config.listPerPage]
     );
@@ -213,7 +213,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships WHERE institution = 'Namibia Institute of Mining and Technology (NIMT)' 
+      AS closing_date FROM new_internships WHERE institution = 'Namibia Institute of Mining and Technology (NIMT) ORDER BY date_received DESC' 
       `
       // [offset, config.listPerPage]
     );
@@ -241,7 +241,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships WHERE institution = 'University of Namibia (UNAM)' 
+      AS closing_date FROM new_internships WHERE institution = 'University of Namibia (UNAM) ORDER BY date_received DESC' 
       `
       // [offset, config.listPerPage]
     );
@@ -269,7 +269,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `  SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships WHERE institution = 'Vocational Training Centre (VTC) through the Namibia Training Authority (NTA)' 
+      AS closing_date FROM new_internships WHERE institution = 'Vocational Training Centre (VTC) through the Namibia Training Authority (NTA) ORDER BY date_received DESC' 
       `
       // [offset, config.listPerPage]
     );
@@ -299,7 +299,7 @@ async function createNewInternship(newInternships){
     const rows = await db.query(
       `SELECT id, internships_name, institution, company, registration_number, no_of_internship, email, company_email, pdf_file, town_city,
       DATE_FORMAT(date_received,"%d-%m-%Y %h:%i %p") AS date_received, DATE_FORMAT(closing_date,"%d-%m-%Y") 
-      AS closing_date FROM new_internships`
+      AS closing_date FROM new_internships ORDER BY date_received DESC`
       // [offset, config.listPerPage]
     );
     const data = helper.emptyOrRows(rows);

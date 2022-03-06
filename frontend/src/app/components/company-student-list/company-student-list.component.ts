@@ -34,35 +34,60 @@ export class CompanyStudentListComponent implements OnInit {
     this.allInternStudents();
   }
 
+
+
+  editRecord(students_interns: any) {
+
+
+    const datatosave = {
+      editStudent: true,
+      students_interns
+    }
+
+    //saving data in the local storage
+    localStorage.setItem('INTERNSHIPdata', JSON.stringify(datatosave));
+
+
+    //routing the admin to the registration component
+    setTimeout(() => {
+      this.router.navigate(['/companyEditStudentDetails']);
+    }, 500);
+  }
+
   
 
 
   allInternStudents(){
 
-    this.studentService.getAllStudentInterns()
-    .subscribe((result:any) => {
+    this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
+
+    console.log('registration number', this.companyData.registration_number);
+
+    this.studentService.getAllInternsByOrganization(this.companyData.registration_number)
+    .subscribe((data:any) => {
+      if ( data.match && data.success ) {
       // this.Users.push(result);
     
 
-      this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
-
-       console.log('result', result);
+       console.log('result', data);
     
     
         document.title = "Company: Post New Internship"
     
-        if (this.companyData === undefined ||  this.companyData === null) {
-          this.router.navigate(['/companies'])
-        } else if (this.companyData.isLoggedin) {
+    
     
           
-          result.students_interns.forEach((val: any) =>
+          data.students_interns.forEach((val: any) =>
           
           this.students.push(val));
 
       //  console.log('company', this.companyData.email);
-    
-      }
+     }  
+
+     else {
+
+
+     }
 
 
     });

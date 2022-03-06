@@ -5,7 +5,7 @@ var multer = require('multer');
 
 var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, '../frontend/src/assets/documents/students/');
+      callback(null, '/var/www/html/frontend/assets/documents/students/');
     
       //callback(null, './uploads/img/team');
       //Use next line in production change path to ../public/assets/profiles/...
@@ -212,6 +212,17 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
             next(err);
           }
         });
+
+
+         //get students by company
+ router.post('/getAllInternsByOrganization', async function(req, res, next) {
+  try {
+    res.json(await  studentsIntern.getAllInternsByOrganization(req.body.registration_number));
+  } catch (err) {
+    console.error(`Error while getting email`, err.message);
+    next(err);
+  }
+});
       
   
   

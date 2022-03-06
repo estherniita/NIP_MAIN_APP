@@ -95,6 +95,7 @@ export class SignUpComponent implements OnInit {
 
               //setting the user data in the
               // localStorage.setItem('user', JSON.stringify(user));
+              this.errorMessage.next("Company registered successfully." )
 
               this.ngOnInit()
               setTimeout(() => {

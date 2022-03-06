@@ -257,7 +257,7 @@ async function getAllavailableInternships(){
 
     try{
     const availableInternship = await db.query(
-      `SELECT * FROM available_internships`
+      `SELECT * FROM available_internships ORDER BY date_posted DESC`
       // [offset, config.listPerPage]
     );
 

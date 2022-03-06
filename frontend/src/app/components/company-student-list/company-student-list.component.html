@@ -51,6 +51,19 @@
           <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}">Download</a>
   
                 </td>
+
+                <td>
+                  <div class="btn-group " role="group" aria-label="...">
+                    <!-- <button type="button" class="btn btn-info" (click)="viewRecord(admin)"
+                      ngbTooltip="View Details?" style="float: right;">
+                      <i class="fa fa-search"> </i>
+                    </button> -->
+                    <button type="button" class="btn btn-default" (click)="editRecord(student)"
+                    data-toggle="tooltip" placement="top" title="Click on this button to indicate if student is admitted or not.">
+                      <i class="fa fa-pencil-square-o"> </i>
+                    </button>
+                  </div>
+                </td>
   
               </tr>
             </tbody>

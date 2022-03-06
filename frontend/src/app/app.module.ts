@@ -53,6 +53,7 @@ import { InstitutionStudentsComponent } from './components/institution-students/
 import { InstitutionStudentsListComponent } from './components/institution-students-list/institution-students-list.component';
 import { SendInternshipsToInstitutionsComponent } from './components/send-internships-to-institutions/send-internships-to-institutions.component';
 import { CompanyStudentListComponent } from './components/company-student-list/company-student-list.component';
+import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { CompanyStudentListComponent } from './components/company-student-list/c
     InstitutionStudentsListComponent,
     SendInternshipsToInstitutionsComponent,
     CompanyStudentListComponent,
+    CompanyUpdateStudentComponent,
 
 
 

@@ -51,6 +51,9 @@ export class CompanyInternshipPostComponent implements OnInit {
   showPwd = false;
   closeAlert = false;
 
+  currentDate?: string;
+
+
   // errorMessage: Subject<string> = new Subject();
   waiting: Boolean = false;
 
@@ -58,6 +61,13 @@ export class CompanyInternshipPostComponent implements OnInit {
   constructor(private router: Router, private internshipsService: InternshipsService) { }
 
   ngOnInit(): void {
+
+
+    
+    //getting the current year to show on the copyright
+    this.currentDate = new Date().toISOString().slice(0, 10);
+
+    console.log('date', this.currentDate)
     
     this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
 

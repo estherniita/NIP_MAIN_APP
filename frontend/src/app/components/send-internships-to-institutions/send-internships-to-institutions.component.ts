@@ -64,6 +64,8 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
   no_of_internship: any;
   public iname: any;
   public  intern: any;
+  showtoast: Boolean = false;
+
  
   availableinternships: any;
   availableInternship: any;
@@ -266,7 +268,7 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
             this.loading = true;
             this.btnWait = true;
            
-            // this.showtoast = true;
+            this.showtoast = true;
                
 
                  // email data

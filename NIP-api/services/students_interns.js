@@ -185,7 +185,7 @@ async function getAllStudentInterns(){
 
     try{
     const students_interns = await db.query(
-      `SELECT * FROM students_interns `
+      `SELECT * FROM students_interns ORDER BY last_updated DESC`
       // [offset, config.listPerPage]
     );
 
@@ -203,6 +203,44 @@ async function getAllStudentInterns(){
    }
 
    return{message, students_interns};
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
+
+
+  async function getAllInternsByOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT * FROM students_interns WHERE company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+   return{message, students_interns, match, success};
 
   }
   
@@ -245,7 +283,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT * FROM students_interns WHERE institution = "International University of Management (IUM)" 
-      `
+      ORDER BY last_updated DESC`
       // [offset, config.listPerPage]
     );
     
@@ -279,7 +317,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT * FROM students_interns WHERE institution = "Namibia University of Science and Technology (NUST)" 
-      `
+      ORDER BY last_updated DESC`
       // [offset, config.listPerPage]
     );
     
@@ -315,7 +353,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT * FROM students_interns WHERE institution = "Namibia Institute of Mining and Technology (NIMT)" 
-      `
+      ORDER BY last_updated DESC `
       // [offset, config.listPerPage]
     );
     
@@ -349,7 +387,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT * FROM students_interns WHERE institution = "University of Namibia (UNAM)" 
-      `
+      ORDER BY last_updated DESC`
       // [offset, config.listPerPage]
     );
     
@@ -384,7 +422,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT * FROM students_interns WHERE institution = "Vocational Training Centre (VTC) through the Namibia Training Authority (NTA)" 
-      `
+      ORDER BY last_updated DESC`
       // [offset, config.listPerPage]
     );
     
@@ -453,7 +491,7 @@ async function getAllStudentInterns(){
     try{
 
     const students_interns = await db.query(
-      `select company, institution, GROUP_CONCAT(firstname, ' ', surname) AS candidate from students_interns GROUP BY company 
+      `select COUNT(student_number) total_students, company, institution, GROUP_CONCAT(firstname, ' ', surname) AS candidate from students_interns GROUP BY company 
       `
       // [offset, config.listPerPage]
     );
@@ -495,5 +533,6 @@ async function getAllStudentInterns(){
     getUNAMStudents,
     getVTCStudents,
     getAllStudentsByInstiOrga,
-    getAllStudentsByOrga
+    getAllStudentsByOrga,
+    getAllInternsByOrganization
   }

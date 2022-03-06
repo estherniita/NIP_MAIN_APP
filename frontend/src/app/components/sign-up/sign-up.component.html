@@ -57,6 +57,10 @@
             <div class="username-req-error text-red text-center" *ngIf="registerForm.get('contact_number')?.errors?.required">
               Contact number is required
             </div>
+
+            <div class="username-req-error text-red text-center" *ngIf="registerForm.get('contact_number')?.errors?.pattern">
+              Enter a valid contact number
+            </div>
             </div>
           </div>
           <div class="username-block">

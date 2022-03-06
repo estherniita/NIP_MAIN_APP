@@ -12,11 +12,11 @@ class pdfSnippet {
 
 
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.scss']
+  selector: 'app-company-update-student',
+  templateUrl: './company-update-student.component.html',
+  styleUrls: ['./company-update-student.component.scss']
 })
-export class StudentsComponent implements OnInit {
+export class CompanyUpdateStudentComponent implements OnInit {
 
   studentForm = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
@@ -260,7 +260,7 @@ onComplete() {
 
   setTimeout(() => {
     this.btnWait = false;
-    this.router.navigate(['/institutionReceivedInternships']);
+    this.router.navigate(['/companystudentlist']);
   }, 3000);
 }
 }
