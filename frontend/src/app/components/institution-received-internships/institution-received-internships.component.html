@@ -30,7 +30,7 @@
                 <th>Institution Name</th>
                 <th>Date Received</th>
                 <th>Closing Date</th>
-                <th>Document</th>
+                <th>Internship Document</th>
                 <th hidden>Email</th>
               </tr>
             </thead>
@@ -44,9 +44,8 @@
                     <td>{{ internship.institution}}</td>
                     <td>{{ internship.date_received }}</td>
                     <td>{{ internship.closing_date }}</td>
-                    <td>{{internship.pdf_file}}
-                      <!-- <a class="job-listings" target="_blank" href="assets/documents/companies/{{internship.pdf_file}}" 
-                      *ngFor="let internship of Internships"  let i = index>Download</a> -->
+                    <td >{{internship.pdf_file}}
+                      <a class="job-listings" target="_blank" href="assets/documents/companies/{{internship.pdf_file}}">Download</a>
                     </td>
                     <td hidden>{{ internship.company_email}}</td>
       

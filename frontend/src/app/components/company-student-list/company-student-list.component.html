@@ -47,11 +47,8 @@
                 <td>{{student.field_of_study}}</td>
                 <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
                 <td>{{student.student_document}} 
-                   <!-- <button (click)="downloadStudentDocuments()">
-                  Download</button> -->
                   
-          <a class="job-listings" target="_blank" href="assets/documents/{{student.student_document}}" 
-          *ngFor="let availableinternships of Internships"  let i = index>Download</a>
+          <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}">Download</a>
   
                 </td>
   

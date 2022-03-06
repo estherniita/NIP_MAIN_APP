@@ -40,7 +40,7 @@
               <tr *ngFor="let student of students | searchInstitution: search; let i = index">
                
                 <td>{{student.company}}, {{student.town_city}}</td>
-                <td>{{student.supervisor_details}}</td>
+                <td>{{student.company_email}}</td>
                 <td>{{student.firstname}} {{student.surname}}</td>
                 <td>{{student.student_number}}</td>
                 <td>{{student.institution}}</td>
@@ -50,8 +50,7 @@
                    <!-- <button (click)="downloadStudentDocuments()">
                   Download</button> -->
                   
-          <a class="job-listings" target="_blank" href="assets/documents/{{student.student_document}}" 
-          *ngFor="let availableinternships of Internships"  let i = index>Download</a>
+          <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}" >Download</a>
   
                 </td>
   

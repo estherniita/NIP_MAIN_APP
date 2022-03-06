@@ -91,7 +91,7 @@ export class StudentsComponent implements OnInit {
             institution: this.data.data.institution,
             internships_name: this.data.data.internships_name,
             company: this.data.data.company,
-            company_email: this.data.data.email,
+            company_email: this.data.data.company_email,
             company_registrationNo: this.data.data.registration_number,
             town_city: this.data.data.town_city,
 
