@@ -30,6 +30,9 @@
             <div class="username-req-error text-red text-center" *ngIf="registerForm.get('registration_number')?.errors?.required">
               Registration number is required
             </div>
+            <div class="password-req-error text-red text-center" *ngIf="registerForm.get('registration_number')?.errors?.minlength" >
+              Registration number must be at least 6 characters!
+            </div>
             </div>
           </div>
           <div class="username-block">
@@ -39,6 +42,10 @@
             <div class="username-req-error text-red text-center" *ngIf="registerForm.get('physical_address')?.errors?.required">
               Physical address is required
             </div>
+
+            <!-- <div class="password-req-error text-red text-center" *ngIf="registerForm.get('physical_address')?.errors?.minlength" >
+              Registration number must be at least 6 characters!
+            </div> -->
             </div>
           </div>
           <div class="username-block">
@@ -80,6 +87,16 @@
             <div class="password-req-error text-red text-center" *ngIf="registerForm.get('password')?.errors?.required" >
               Password is required
             </div>
+
+            <div class="password-req-error text-red text-center" *ngIf="registerForm.get('password')?.errors?.minlength" >
+              Password must be at least 6 characters!
+            </div>
+
+            <div class="password-req-error text-red text-center" *ngIf="registerForm.get('password')?.errors?.pattern" >
+              Password must contain at least one number and an
+              upper case character
+            </div>
+           
            </div>
           </div>
           <div class="username-block">

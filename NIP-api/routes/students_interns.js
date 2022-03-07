@@ -117,8 +117,30 @@ router.get('/downloadStudentInterns', async function(req, res, next) {
     /* update student details */
   
   router.put('/updateStudentDetails/:id', async function(req, res, next) {
+
+    const student_details = {
+      firstname: req.body.firstname,
+      surname: req.body.surname,
+      idNo_or_passportNo: req.body.idNo_or_passportNo,
+      student_number: req.body.student_number,
+      student_email: req.body.student_email,
+      student_phoneNumber: req.body.student_phoneNumber,
+      institution: req.body.institution,
+      field_of_study: req.body.field_of_study,
+      internships_name: req.body.internships_name,
+      company: req.body.company,
+      town_city: req.body.town_city,
+      company_email: req.body.company_email,
+      company_registrationNo: req.body.company_registrationNo,
+      admission: req.body.admission,
+      completion: req.body.completion,
+      student_document: req.body.student_document
+      
+    }
+
+    console.log('student',student_details, req.params.id)
       try {
-        res.json(await studentsIntern.updateStudentDetails(req.params.id, req.body));
+        res.json(await studentsIntern.updateStudentDetails(req.params.id, student_details));
       } catch (err) {
         console.error(`Error while updating updating details`, err.message);
         next(err);
@@ -223,7 +245,18 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
     next(err);
   }
 });
+
+
+         //get admitted students by company
+         router.post('/getAllAdmittedInternsPerOrganization', async function(req, res, next) {
+          try {
+            res.json(await  studentsIntern.getAllAdmittedInternsPerOrganization(req.body.registration_number));
+          } catch (err) {
+            console.error(`Error while getting email`, err.message);
+            next(err);
+          }
+        });
       
-  
+
   
   module.exports = router;

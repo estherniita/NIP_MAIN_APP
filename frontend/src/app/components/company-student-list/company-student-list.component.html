@@ -14,7 +14,7 @@
         <!-- <div class="col-md-12 col-sm-12"> -->
            
             
-        <table mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        <table *ngIf="students.length" mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
         st-safe-src="Users">
             <thead>
                 <tr>
@@ -26,6 +26,7 @@
               <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
                 <th>Organization/ company and town</th>
                 <th> Contact person</th>
+                <th> Internship Request</th>
                 <th>student fullname</th>
                 <th>Student number</th>
                 <th>Institution</th>
@@ -41,6 +42,7 @@
                
                 <td>{{student.company}}, {{student.town_city}}</td>
                 <td>{{student.company_email}}</td>
+                <td>{{student.internships_name}}</td>
                 <td>{{student.firstname}} {{student.surname}}</td>
                 <td>{{student.student_number}}</td>
                 <td>{{student.institution}}</td>
@@ -51,6 +53,14 @@
           <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}">Download</a>
   
                 </td>
+
+                <td hidden>{{student.idNo_or_passportNo}}</td>
+                <td hidden>{{student.town_city}}</td>
+                <td hidden>{{student.company_registrationNo}}</td>
+                <td hidden>{{student.completion}}</td>
+                <td hidden>{{student.admission}}</td>
+                
+
 
                 <td>
                   <div class="btn-group " role="group" aria-label="...">
@@ -69,6 +79,9 @@
             </tbody>
           </table>
 
+          <div *ngIf="!students.length" style="height: 100%; padding: 2rem;">
+            <h1 class="text-center">No student(s) sent from any institution(s) for an internship request</h1> 
+          </div>
         </div>
     </div>
     <!-- </div> -->

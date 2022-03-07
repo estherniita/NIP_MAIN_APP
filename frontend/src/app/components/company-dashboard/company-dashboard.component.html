@@ -23,7 +23,7 @@
 
 
         <div class="col-md-6 md-4" >
-            <a [routerLink]="'/companystudentlist'" data-toggle="tooltip" placement="top" title="Click on this tab to view the student who were submitted to your company for the internship post">
+            <a [routerLink]="'/companystudentlist'" data-toggle="tooltip" placement="top" title="Click on this tab to view the student who were submitted to your company for the internship post and update if they are admitted or not">
 
             <div class="card text-center h-100 card-info"  >
                 <div class="card-body blue-gradient" >
@@ -31,16 +31,16 @@
                     <h3><i class="fa fa-female fa-2x"></i> <i class="fa fa-male fa-2x" style="margin-left: 2rem;"></i></h3>
                 </div>
                 <div class="row p-2 no-gutters rounded" >
-                    <div class="col-6 rounded">
+                    <!-- <div class="col-6 rounded">
                         <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
                             <h3>Completed</h3>
                             <span class="medium text-uppercase">50</span>
                         </div>
-                    </div>
-                    <div class="col-6 rounded">
+                    </div> -->
+                    <div class="col-12 rounded">
                         <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                            <h3>Not completed</h3>
-                            <span class="medium text-uppercase">110</span>
+                            <h3>To be admitted or not </h3>
+                            <span class="medium text-uppercase"></span>
                         </div>
                     </div>
                 </div>
@@ -78,17 +78,17 @@
 
 
             <div class="col-md-6 md-4" >
-                <a [routerLink]="" data-toggle="tooltip" placement="top" title="Click on this button to submit the report of all the interns who have completed">
+                <a [routerLink]="'/admittedCompletedStudentInterns'" data-toggle="tooltip" placement="top" title="Click on this button to submit the report of all the interns who have completed">
     
                 <div class="card text-center h-100 card-info"  >
                     <div class="card-body blue-gradient" >
-                        <h2 class="card-title" >Submit Report</h2>
+                        <h2 class="card-title" >Students</h2>
                         <h3><i class="fa fa-envelope-square fa-2x"></i></h3>
                     </div>
                     <div class="row p-2 no-gutters rounded" >
                         <div class="col-12 rounded">
                             <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
-                                <h3>Organization reports for interns who completed their internship </h3>
+                                <h3>Admitted and Completted</h3>
                                 <span class="medium text-uppercase"></span>
                             </div>
                         </div>

@@ -36,6 +36,7 @@ import { RegisterAdminComponent } from './components/register-admin/register-adm
 import { SendInternshipsToInstitutionsComponent } from './components/send-internships-to-institutions/send-internships-to-institutions.component';
 import { CompanyStudentListComponent } from './components/company-student-list/company-student-list.component';
 import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
+import { CompanyAdmittedComplettedStudentComponent } from './components/company-admitted-completted-student/company-admitted-completted-student.component';
 
 
 //defining our routes
@@ -147,6 +148,11 @@ const routes: Routes = [
 {
   path:'companyEditStudentDetails',  component:CompanyUpdateStudentComponent, canActivate: [AdminGuard]
 },
+
+{
+  path:'admittedCompletedStudentInterns',  component:CompanyAdmittedComplettedStudentComponent, canActivate: [AdminGuard]
+},
+
 
 
 ];

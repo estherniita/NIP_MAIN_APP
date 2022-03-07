@@ -148,7 +148,7 @@ export class CompanyInternshipPostComponent implements OnInit {
         
         //  email data
         const userdata = {
-          email: `lmartin@mtc.com.na`,
+          email: `internshipprogramme@mtc.com.na`,
           message: `${this.createForm.value.company_name} posted new post for: ${this.createForm.value.internship_name}, 
           ${this.createForm.value.number_of_positions} position.
          in ${this.createForm.value.town_city} `,

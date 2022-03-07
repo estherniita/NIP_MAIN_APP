@@ -119,12 +119,12 @@ async function downloadStudentInterns(err, res, students, fields){
     const result = await db.query(
       `UPDATE students_interns
       SET firstname=?, surname=?, idNo_or_passportNo=?, student_number=?, student_email=?, student_phoneNumber=?, institution=?, field_of_study=?, internships_name=?,
-      company=?, town_city=?, company_email=?, company_registrationNo=?, supervisor_details=?, admission=?, completion=?
+      company=?, town_city=?, company_email=?, company_registrationNo=?, admission=?, completion=?, student_document=?
       WHERE id=?`, 
       [
         students_interns.firstname, students_interns.surname, students_interns.idNo_or_passportNo, students_interns.student_number, students_interns.student_email, students_interns.student_phoneNumber,
       students_interns.institution, students_interns.field_of_study, students_interns.internships_name, students_interns.company, students_interns.town_city, students_interns.company_email,
-       students_interns.company_registrationNo, students_interns.supervisor_details, students_interns.admission, students_interns.completion, id
+       students_interns.company_registrationNo, students_interns.admission, students_interns.completion, students_interns.student_document, id
       ]
     );
   
@@ -220,7 +220,7 @@ async function getAllStudentInterns(){
 
     try{
     const students_interns = await db.query(
-      `SELECT * FROM students_interns WHERE company_registrationNo=? ORDER BY last_updated DESC`,
+      `SELECT * FROM students_interns WHERE (admission = 'No' OR admission = 'not updated') AND company_registrationNo=? ORDER BY last_updated DESC`,
       [registration_number ]
       // [offset, config.listPerPage]
     );
@@ -250,6 +250,47 @@ async function getAllStudentInterns(){
 }
   }
 
+
+  async function getAllAdmittedInternsPerOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT * FROM students_interns WHERE (admission = 'Yes' OR admission = 'admitted') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+
+   console.log('results', message, students_interns, match, success);
+   return{message, students_interns, match, success};
+
+ 
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
 
   
   async function deleteStudent(id){
@@ -457,7 +498,7 @@ async function getAllStudentInterns(){
     try{
     const students_interns = await db.query(
       `SELECT COUNT(student_number) total_students, institution,
-       company FROM students_interns GROUP BY company, institution;
+       company FROM students_interns WHERE admission = 'admitted' GROUP BY company, institution;
       `
       // [offset, config.listPerPage]
     );
@@ -491,7 +532,7 @@ async function getAllStudentInterns(){
     try{
 
     const students_interns = await db.query(
-      `select COUNT(student_number) total_students, company, institution, GROUP_CONCAT(firstname, ' ', surname) AS candidate from students_interns GROUP BY company 
+      `select COUNT(student_number) total_students, company, institution, GROUP_CONCAT(firstname, ' ', surname) AS candidate from students_interns WHERE admission = 'admitted' GROUP BY company 
       `
       // [offset, config.listPerPage]
     );
@@ -534,5 +575,6 @@ async function getAllStudentInterns(){
     getVTCStudents,
     getAllStudentsByInstiOrga,
     getAllStudentsByOrga,
-    getAllInternsByOrganization
+    getAllInternsByOrganization,
+    getAllAdmittedInternsPerOrganization
   }

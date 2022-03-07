@@ -13,7 +13,7 @@
     <div class="col-12">
       <div class="row">
         
-        <table mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        <table *ngIf="internships.length" mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
         st-safe-src="Users">
             <thead>
                 <tr>
@@ -66,6 +66,9 @@
             </tbody>
           </table>
 
+          <div *ngIf="!internships.length" style="height: 100%; padding: 2rem;">
+            <h1 class="text-center">Currently there are no internship(s) post for your institution</h1> 
+          </div>
         <!-- </div> -->
     </div>
     </div>

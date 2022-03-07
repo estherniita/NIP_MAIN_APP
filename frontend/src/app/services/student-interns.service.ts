@@ -80,6 +80,39 @@ export class StudentInternsService {
         .toPromise();
     }
 
+
+    // updateStudentDetails(firstname: string, surname: string, idNo_or_passportNo: string, student_number: string, student_email: string, student_phoneNumber: string, institution: string,
+    //   field_of_study: string, internships_name: string, company: string, town_city: string, company_email: string, company_registrationNo: string, completion: string, admission: string, student_document: any, id:any): any  {
+    //   // const httpOptions = {
+    //   //   headers: new HttpHeaders({
+    //   //     'Content-Type': 'application/json',
+    //   //     // Authorization: this.token
+    //   //   })
+    //   // };
+
+    //   const formData = new FormData();
+    //   formData.append('firstname', firstname);
+    //   formData.append('surname', surname);
+    //   formData.append('idNo_or_passportNo', idNo_or_passportNo);
+    //   formData.append('student_number', student_number);
+    //   formData.append('student_email', student_email);
+    //   formData.append('student_phoneNumber', student_phoneNumber);
+    //   formData.append('institution', institution);
+    //   formData.append('field_of_study', field_of_study);
+    //   formData.append('internships_name', internships_name);
+    //   formData.append('company', company);
+    //   formData.append('town_city', town_city);
+    //   formData.append('company_email', company_email);
+    //   formData.append('company_registrationNo', company_registrationNo);
+    //   formData.append('completion', completion);
+    //   formData.append('admission', admission);
+    //   formData.append('student_document', student_document);
+  
+    //   return this.http
+    //     .put(this.server_url + `student_interns/updateStudentDetails/${id}`, formData)
+    //     .toPromise();
+    // }
+
 //method to get interns by institution name
     getStudentByInstitution(institution: any) {
       const httpOptions = {
@@ -249,12 +282,35 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + `student_interns/getAllInternsByOrganization`, data, {
+            .post(this.server_url + 'student_interns/getAllInternsByOrganization', data, {
               headers: httpOptions.headers
             })
       
             .pipe(map(res => res));
         }
+
+
+        getAllAdmittedInternsPerOrganization(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              // Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + 'student_interns/getAllAdmittedInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
+      
+            .pipe(map(res => res));
+        }
+
+        
   
       //method to update student details
       updateStudentDetails(id:any, data:any) {
@@ -284,7 +340,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .post(this.server_url + `student_interns/deleteStudent`, { id: data }, {
+        .post(this.server_url + 'student_interns/deleteStudent', { id: data }, {
           headers: httpOptions.headers
         })
         .pipe(map(res => res));

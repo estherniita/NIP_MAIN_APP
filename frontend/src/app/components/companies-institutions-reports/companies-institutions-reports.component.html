@@ -18,7 +18,7 @@
       <div class="info-color text-center white-text" style="height: 4rem; padding: 1rem;" >
           <h2 class="card-title">Total students per institution and organization/company</h2>
       </div>
-         <table id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+         <table *ngIf="students.length"  id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
          st-safe-src="Users">
          <thead>
            <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
@@ -37,6 +37,10 @@
        </table>
 </a>
 
+<div *ngIf="!students.length" style="height: 100%; padding: 2rem;">
+  <h1 class="text-center">No admitted students</h1> 
+</div>
+
 </div>
 
 
@@ -48,7 +52,7 @@
  </div>
  
 
-    <table id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+    <table *ngIf="candidates.length"  id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
     st-safe-src="Users">
     <thead>
       <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
@@ -69,6 +73,10 @@
   </table>
 
 </a>
+
+<div *ngIf="!candidates.length" style="height: 100%; padding: 2rem;">
+  <h1 class="text-center">No admitted students</h1> 
+</div>
 
 </div>
 </div>

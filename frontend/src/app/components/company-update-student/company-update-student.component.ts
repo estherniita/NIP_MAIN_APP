@@ -31,8 +31,8 @@ export class CompanyUpdateStudentComponent implements OnInit {
     company: new FormControl('', [Validators.required]),
     company_email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
     company_registrationNo: new FormControl('', [Validators.required]),
-    admission: new FormControl('',),
-    completion: new FormControl('',),
+    admission: new FormControl('',[Validators.required]),
+    completion: new FormControl('',[Validators.required]),
     student_document: new FormControl('', [Validators.required]),
     town_city: new FormControl('', [Validators.required]),
 
@@ -43,10 +43,10 @@ export class CompanyUpdateStudentComponent implements OnInit {
   loading: Boolean = false;
     public submitted = false;
   image!: File;
-  completion: string = "not updated";
-  admission: string = "not updated";
-  selectedImage?: pdfSnippet;
-  fileMessage: string = "No pdf document uploaded";
+  // completion: string = "not updated";
+  // admission: string = "not updated";
+  // selectedImage?: pdfSnippet;
+  // fileMessage: string = "No pdf document uploaded";
   btnWait: Boolean = false;
   showSnackbar:Boolean = false;
   message?: String;
@@ -62,6 +62,7 @@ export class CompanyUpdateStudentComponent implements OnInit {
   showPwd = false;
   closeAlert = false;
   // errorMessage: any;
+  waiting: boolean = false;
 
 
   constructor(
@@ -83,17 +84,28 @@ export class CompanyUpdateStudentComponent implements OnInit {
 
         if (this.data === undefined ||  this.data === null) {
           this.router.navigate(['/institutionReceivedInternships'])
-        } else if (this.data.sendStudent) {
+        } else if (this.data.editStudent) {
           //creating the form and making the values not required
-          
+         console.log('primary key', this.data.students_interns.id);
     
           this.studentForm.patchValue({
-            institution: this.data.data.institution,
-            internships_name: this.data.data.internships_name,
-            company: this.data.data.company,
-            company_email: this.data.data.company_email,
-            company_registrationNo: this.data.data.registration_number,
-            town_city: this.data.data.town_city,
+            institution: this.data.students_interns.institution,
+            internships_name: this.data.students_interns.internships_name,
+            company: this.data.students_interns.company,
+            company_email: this.data.students_interns.company_email,
+            company_registrationNo: this.data.students_interns.company_registrationNo,
+            town_city: this.data.students_interns.town_city,
+            firstname: this.data.students_interns.firstname,
+            surname: this.data.students_interns.surname,
+            idNo_or_passportNo: this.data.students_interns.idNo_or_passportNo,
+            student_number: this.data.students_interns.student_number,
+            student_email: this.data.students_interns.student_email,
+            student_phoneNumber: this.data.students_interns.student_phoneNumber,
+            field_of_study: this.data.students_interns.field_of_study,
+            completion: this.data.students_interns.completion,
+            student_document: this.data.students_interns.student_document,
+
+            // admission: this.data.data.admission,
 
           });
           //getting the h1 element
@@ -108,21 +120,21 @@ export class CompanyUpdateStudentComponent implements OnInit {
 
   get f() { return this.studentForm?.controls }
 
-  selectImage(event:any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.image = file;
-      this.fileMessage = file.name;
-      this.missingImage = false;
-      this.sizeLimit = false;
-      this.wrongType = false;
-      const reader = new FileReader();
-      reader.addEventListener('load', (event: any) => {
-        this.selectedImage = new pdfSnippet(event.target.result, file);
-      });
-      reader.readAsDataURL(file);
-    }
-  }
+  // selectImage(event:any) {
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     this.image = file;
+  //     this.fileMessage = file.name;
+  //     this.missingImage = false;
+  //     this.sizeLimit = false;
+  //     this.wrongType = false;
+  //     const reader = new FileReader();
+  //     reader.addEventListener('load', (event: any) => {
+  //       this.selectedImage = new pdfSnippet(event.target.result, file);
+  //     });
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   async onSubmit(event: Event) {
 
@@ -130,68 +142,64 @@ export class CompanyUpdateStudentComponent implements OnInit {
     this.submitted = true;
     this.resetErrors();
 
-    console.log('here now');
 
     if (this.studentForm.invalid) {
+
       return;
+
     }
 
-    if (this.missingImage || this.wrongType || this.sizeLimit) {
-      return;
-    }
+    // if (this.missingImage || this.wrongType || this.sizeLimit) {
+    //   return;
+    // }
 
     if (this.studentForm.valid) {
     const data = JSON.parse(localStorage.getItem('userdata')!);
     this.loading = true;
     this.btnWait = true;
 
-    console.log('valid');
+    const student_details = {
+      firstname: this.studentForm.value.firstname,
+      surname: this.studentForm.value.surname,
+      idNo_or_passportNo: this.studentForm.value.idNo_or_passportNo,
+      student_number: this.studentForm.value.student_number,
+      student_email: this.studentForm.value.student_email,
+      student_phoneNumber: this.studentForm.value.student_phoneNumber,
+      institution: this.studentForm.value.institution,
+      field_of_study: this.studentForm.value.field_of_study,
+      internships_name: this.studentForm.value.internships_name,
+      company: this.studentForm.value.company,
+      town_city: this.studentForm.value.town_city,
+
+      company_email: this.studentForm.value.company_email,
+      company_registrationNo: this.studentForm.value.company_registrationNo,
+      completion: this.studentForm.value.completion,
+      admission: this.studentForm.value.admission,
+      student_document: this.studentForm.value.student_document
+       
+    };
 
     //create new post
-    this.studentService.newStudentInterns(
-
-      
-      this.f.firstname.value,
-      this.f.surname.value,
-      this.f.idNo_or_passportNo.value,
-      this.f.student_number.value,
-      this.f.student_email.value,
-      this.f.student_phoneNumber.value,
-      this.f.institution.value,
-      this.f.field_of_study.value,
-      this.f.internships_name.value,
-      this.f.company.value,
-      this.f.town_city.value,
-      this.f.company_email.value,
-      this.f.company_registrationNo.value,
-      this.completion,
-      this.admission,
-      this.image
-
-
-    ).then(async (data: any) => {
+    this.studentService.updateStudentDetails(this.data.students_interns.id, student_details).subscribe((data: any) => {
 
       if(data.success){
 
-        
-
         this.showtoast = true;
 
-        console.log('submitted');
         //  email data
         const userdata = {
-          email: this.studentForm.value.company_email,
+          email: `internshipprogramme@mtc.com.na`,
           message: ` ${this.studentForm.value.company}  
-          ${this.studentForm.value.company}
-          Find the student qualified from ${this.studentForm.value.institution} for the internship request:
-           ${this.studentForm.value.internships_name} from your company.`,
+          This student: ${this.studentForm.value.firstname} ${this.studentForm.value.surname}, 
+          student number: ${this.studentForm.value.student_number},
+          Institution: ${this.studentForm.value.institution},
+          Is ${this.studentForm.value.admission}, for ${this.studentForm.value.internship_name} at ${this.studentForm.value.company}`,
         };
 
              // sending email to the user
           this.internshipsService.sendEmailPlain(userdata).subscribe();
     
 
-        // this.ngOnInit()
 
       }
 
@@ -209,19 +217,19 @@ export class CompanyUpdateStudentComponent implements OnInit {
         }, 10000);
         // this.waiting = false;
 
-        this.showPwd = true;
+        this.ngOnInit()
         setTimeout(() => {
-          this.closeAlert = true;
-          this.showPwd = false;
-        }, 10000);
+          this.waiting = false;
+          console.log("Doneeee");
+          this.router.navigate(['/companystudentlist']);
+
+        }, 3000);
       } 
 
         
      }
 
-    }).finally(() => {
-      this.onComplete();
-    });
+    })
     }
   }
 

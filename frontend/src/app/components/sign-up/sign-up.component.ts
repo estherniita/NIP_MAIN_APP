@@ -15,11 +15,11 @@ export class SignUpComponent implements OnInit {
   //creating a form group
   registerForm = new FormGroup({
     organization_name: new FormControl('', [Validators.required]),
-    registration_number: new FormControl('', [Validators.required]),
+    registration_number: new FormControl('', [Validators.required, Validators.minLength(6)]),
     contact_number: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('[- +()0-9]+')]),
-    physical_address: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    physical_address: new FormControl('', [Validators.required]),
     email: new FormControl('',  [Validators.email, Validators.required, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/\d/), Validators.pattern(/[A-Z]/)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(/\d/), Validators.pattern(/[A-Z]/)]),
     confirmPassword: new FormControl('', [Validators.required]),
     contact_person_fullname: new FormControl('', [Validators.required]),
     role: new FormControl('', ),
