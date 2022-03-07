@@ -133,33 +133,92 @@
     <app-read-all-button [link]="'/internships'" [text]="'View all'"></app-read-all-button>
   </div>
   <div class="u-flex u-flex-jc-sb u-flex-flow-rw news__articles u-mb-xl">
-    <div *ngFor="let bid of bids; let i = index" class="news-card u-flex u-flex-d-c">
-      <img src="../../../assets/images/{{bid.logo}}" alt="company logo" class="news-card__img" />
+    <div  *ngFor="let availableinternships of Internships"  let i = index class="news-card u-flex u-flex-d-c">
+      <img src="../../../assets/images/Mtc Namibia National Internship Program Logo.png" alt="company logo" class="news-card__img" />
       <div class="news-card__content">
-        <h3 class="news-card__heading text-center">{{bid.title}}</h3>
+        <h3 class="news-card__heading text-center">{{availableinternships.internship_name}}</h3>
         <p class="news-card__text text-center">
-          Due Date: {{bid.dueDate}}
+          Due Date: {{availableinternships.closing_date}}
         </p>
-        <a class="news-card__text text-center" href="/{{bid.downloadLink}}">Download</a>
+        <a class="news-card__text text-center" target="_blank" href="assets/documents/companies/{{availableinternships.pdf_file}}" >Download</a>
       </div>
       <div class="news-card__action u-mt-xs u-pb-xs">
-        <a href="#" class="news-card__btn">APPLY ONLINE</a>
+        <a data-toggle="modal" href="#internshipModal" class="news-card__btn">More Details</a>
       </div>
     </div>
   </div>
+
+
+     <!-- Modal -->
+<div class="modal fade" id="internshipModal" tabindex="-1" role="dialog" aria-labelledby="internshipModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="internshipModalLabel">Instruction on how to apply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p>Ensure that you are currently registered at any of the following institutions:</p>
+        <ol>
+          <li>International University of Management (IUM)</li>
+          <li>Namibia University of Science and Technology (NUST)</li>
+          <li>Namibian  Institute  of  Mining  and  Technology (NIMT)</li>
+          <li>University  of Namibia (UNAM)</li>
+          <li>Vocation  Training  Centers(VTC) through the Namibia Training Authority (NTA)</li>
+        </ol>
+        
+        <p>And Work Intergrated Learning (WIL) or internship is one
+        </p>
+        <!-- <div *ngIf="userService.isUserAuthenticatedInstitutions()"> -->
+          <p> For companies and Institutions:</p>
+       <p style="font-weight: bold;"> Companies </p>
+       <p>All the internships your company have submitted will be displayed here, only if is still open based on the closing date.</p>
+          
+          <p>And Work Intergrated Learning (WIL) or internship is one
+          </p>  <br>
+          
+          <p style="font-weight: bold;"> Institutions</p> 
+          <p>This are all open internship post and they will only be sent to your institution by MTC, FOR YOUR INSTITUTION TO SEND THE QUALIFIED STUDENT FOR THE INTERNSHIP YOU RECEIVE.</p>
+             
+             <p> Work Intergrated Learning (WIL) or internship 
+             </p><br>
+
+           
+        <!-- </div> -->
+
+        <!-- <div *ngIf="!userService.isUserAuthenticatedInstitutions()"> -->
+        
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+
 
   <hr />
 </div>
 
 <section id="call-to-action">
   <div class="container text-center">
-    <h3>Join our mailing list!</h3>
+    <h3>Join NIP now!</h3>
     <p>
-      Receive monthly newletters via email by subscribing to our mailing list.
+      Signup as an organization or company to post all your internship requests and get interns with no delays.
     </p>
-    <a class="cta-btn" href="#subscribe" rel="modal:open" target="_blank">Subscribe</a>
+    <a class="cta-btn" (click)="redirectToSignUp()"  id="signUp" target="_blank">Sign Up</a>
   </div>
 </section>
+
+
+
 
 <!-- <div class="u-container news">
   <h1 class="h-m h-fw-1 news__heading u-mb-l l-h-1">Latest News</h1>
@@ -213,7 +272,7 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let doc of docs, let i = index " class="col-md-4 col-sm-6">
+      <div *ngFor="let doc of docs, let i = index " class="col-md-3 col-sm-6">
         <div class="service-box">
           <i class="far fa-file-pdf"></i>
 

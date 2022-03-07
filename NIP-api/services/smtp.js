@@ -45,7 +45,7 @@ router.post('/sendemailplain', async (req, res, next) => {
                     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
                     // Preview only available when sending through an Ethereal account
-                    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+                    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
                     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
                     res.json({ success: true, msg: 'email sent successfully' });

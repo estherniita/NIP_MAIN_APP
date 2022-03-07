@@ -292,6 +292,49 @@ async function getAllStudentInterns(){
 }
   }
 
+
+  
+  async function getAllNotAdmittedInternsPerOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT * FROM students_interns WHERE (admission = 'not admitted') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+
+   console.log('results', message, students_interns, match, success);
+   return{message, students_interns, match, success};
+
+ 
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
+
   
   async function deleteStudent(id){
 
@@ -576,5 +619,6 @@ async function getAllStudentInterns(){
     getAllStudentsByInstiOrga,
     getAllStudentsByOrga,
     getAllInternsByOrganization,
-    getAllAdmittedInternsPerOrganization
+    getAllAdmittedInternsPerOrganization,
+    getAllNotAdmittedInternsPerOrganization
   }

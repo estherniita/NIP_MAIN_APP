@@ -6,6 +6,8 @@ var multer = require('multer');
 var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
       callback(null, '/var/www/html/frontend/assets/documents/companies/');
+      // callback(null, '../frontend/src/assets/documents/companies/');
+
     
       //callback(null, './uploads/img/team');
       //Use next line in production change path to ../public/assets/profiles/...
@@ -60,6 +62,17 @@ router.get('/getAllavailableInternships', async function(req, res, next) {
   }
 });
 
+
+
+router.get('/getAllavailableInternships1', async function(req, res, next) {
+  
+  try {
+    res.json(await availableInternship.getAllavailableInternships1(req.query.page));
+  } catch (err) {
+    console.error(`Error while getting the list `, err.message);
+    next(err);
+  }
+});
 
 
 /* GET get new internship list languages. */

@@ -285,6 +285,41 @@ async function getAllavailableInternships(){
   }
 
 
+  async function getAllavailableInternships1(){
+    // const offset = helper.getOffset(page, config.listPerPage);
+
+    try{
+    const availableInternship = await db.query(
+      `SELECT * FROM available_internships WHERE closing_date >= CURRENT_DATE ORDER BY date_posted DESC`
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(availableInternship.length >0){
+    
+    message = 'Available internships';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+   return{message, availableInternship};
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
+
+  
+
+
   
   async function deleteUser(id){
 
@@ -316,5 +351,6 @@ async function getAllavailableInternships(){
     updateUser,
     deleteUser,
     authenticate,
-    getAllInternshipName
+    getAllInternshipName,
+    getAllavailableInternships1
   }

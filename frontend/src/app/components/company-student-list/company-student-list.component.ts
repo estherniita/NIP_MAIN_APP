@@ -21,6 +21,8 @@ export class CompanyStudentListComponent implements OnInit {
   search: any;
   students_interns: any;
   students: string[] = [];
+  intern: any;
+  interns: string[] = [];
   showAlert?: boolean;
   title?: string;
   public companyData: any;
@@ -32,6 +34,7 @@ export class CompanyStudentListComponent implements OnInit {
   ngOnInit(): void {
 
     this.allInternStudents();
+    this.allNotAdmittedInternStudents();
   }
 
 
@@ -80,6 +83,45 @@ export class CompanyStudentListComponent implements OnInit {
           data.students_interns.forEach((val: any) =>
           
           this.students.push(val));
+
+      //  console.log('company', this.companyData.email);
+     }  
+
+     else {
+
+
+     }
+
+
+    });
+  }
+
+
+
+
+  allNotAdmittedInternStudents(){
+
+    this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
+
+    console.log('registration number', this.companyData.registration_number);
+
+    this.studentService.getAllNotAdmittedInternsPerOrganization(this.companyData.registration_number)
+    .subscribe((data:any) => {
+      if ( data.match && data.success ) {
+      // this.Users.push(result);
+    
+
+       console.log('result', data);
+    
+    
+        document.title = "Company: Post New Internship"
+    
+    
+    
+          
+          data.students_interns.forEach((val: any) =>
+          
+          this.interns.push(val));
 
       //  console.log('company', this.companyData.email);
      }  

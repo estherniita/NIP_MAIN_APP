@@ -41,6 +41,22 @@ export class InternshipsService {
   }
 
 
+  getAllavailableInternships1(): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // Authorization: this.token
+      })
+    };
+
+    return this.http
+      .get(this.server_url + 'availableInternships/getAllavailableInternships1', {
+        headers: httpOptions.headers
+      })
+      .pipe(map(res => res));
+  }
+
+
   getAllInternshipNames(): any {
     const httpOptions = {
       headers: new HttpHeaders({

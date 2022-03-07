@@ -188,9 +188,12 @@ export class StudentsComponent implements OnInit {
         };
 
              // sending email to the user
-          this.internshipsService.sendEmailPlain(userdata).subscribe();
+          if (this.internshipsService.sendEmailPlain(userdata).subscribe()) {
+            console.log('succecc');
+          }else{
+            console.log('fail');
+          }
     
-
         // this.ngOnInit()
 
       }
