@@ -55,6 +55,9 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
 import { ReCaptchaModule } from 'angular-recaptcha3';
 import { NgxCaptchaModule } from "ngx-captcha";
 import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+
 
 
 @NgModule({
@@ -105,7 +108,7 @@ import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, Recaptcha
     CompanyStudentListComponent,
     CompanyUpdateStudentComponent,
     CompanyAdmittedComplettedStudentComponent,
-  
+    ForgotPasswordComponent,
 
 
 
@@ -122,6 +125,7 @@ import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, Recaptcha
     RecaptchaV3Module,
     NgxCaptchaModule,
     RecaptchaFormsModule,
+    NgxPaginationModule,
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: () => {

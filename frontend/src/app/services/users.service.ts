@@ -219,7 +219,7 @@ export class UsersService {
   }
 
   sendToken(token: any) {
-    return this.http.post<any>('http://localhost:3000/token_validate', { recaptcha: token });
+    return this.http.post<any>(this.server_url + 'token_validate', { recaptcha: token });
   }
 
   

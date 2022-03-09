@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  serverUrl: 'https://172.19.13.134/',
+  // serverUrl: 'https://172.19.13.134/',
+  serverUrl: 'https://namip.mtc.com.na/',
   // serverUrl: 'http://localhost:3000/
 
   recaptcha: {

@@ -34,6 +34,7 @@ import { SendInternshipsToInstitutionsComponent } from './components/send-intern
 import { CompanyStudentListComponent } from './components/company-student-list/company-student-list.component';
 import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
 import { CompanyAdmittedComplettedStudentComponent } from './components/company-admitted-completted-student/company-admitted-completted-student.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 //defining our routes
@@ -64,7 +65,7 @@ const routes: Routes = [
 },
 //forgot password route
 {
-  path: "auth/forgot-password", component: BiddersForgotPasswordComponent
+  path: "auth/forgot-password", component: ForgotPasswordComponent
 
 },
 //successful register redirect route

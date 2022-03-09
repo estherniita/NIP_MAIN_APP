@@ -133,7 +133,7 @@
     <app-read-all-button [link]="'/internships'" [text]="'View all'"></app-read-all-button>
   </div>
   <div class="u-flex u-flex-jc-sb u-flex-flow-rw news__articles u-mb-xl">
-    <div  *ngFor="let availableinternships of Internships"  let i = index class="news-card u-flex u-flex-d-c">
+    <div  *ngFor="let availableinternships of Internships | paginate: { itemsPerPage: 4, currentPage: 1 }"  let i = index class="news-card u-flex u-flex-d-c">
       <img src="../../../assets/images/Mtc Namibia National Internship Program Logo.png" alt="company logo" class="news-card__img" />
       <div class="news-card__content">
         <h3 class="news-card__heading text-center">{{availableinternships.internship_name}}</h3>
@@ -145,6 +145,10 @@
       <div class="news-card__action u-mt-xs u-pb-xs">
         <a data-toggle="modal" href="#internshipModal" class="news-card__btn">More Details</a>
       </div>
+    </div>
+
+    <div class="text-right" hidden>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 

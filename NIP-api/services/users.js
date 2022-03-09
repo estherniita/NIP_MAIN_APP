@@ -258,6 +258,7 @@ exports.loginUser = async function (user) {
   
         message ='Username does not exits';
         success = false;
+
       }else{
   
         if(result.length > 0){
@@ -289,7 +290,10 @@ exports.loginUser = async function (user) {
             //ecrypting the token using crypto
             // let enjwt = crypto.encrypt(token);
             // token1 = token;
+
             return {message, token, success, result, username};
+
+
           }
   
         message ='Incorrect password';
@@ -306,6 +310,9 @@ exports.loginUser = async function (user) {
       
             message ='Username does not exits';
             success = false;
+
+
+            
           } else{
       
             if(result.length > 0){

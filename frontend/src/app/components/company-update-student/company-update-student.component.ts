@@ -188,7 +188,9 @@ export class CompanyUpdateStudentComponent implements OnInit {
 
         //  email data
         const userdata = {
-          email: `internshipprogramme@mtc.com.na`,
+          email_from: `${this.studentForm.value.company_email}`,
+          email_subject: 'Admission of qualified students',
+          email: `internshipprogramme@mtc.com.na, ${this.studentForm.value.student_email}`,
           message: ` ${this.studentForm.value.company}  
           This student: ${this.studentForm.value.firstname} ${this.studentForm.value.surname}, 
           student number: ${this.studentForm.value.student_number},

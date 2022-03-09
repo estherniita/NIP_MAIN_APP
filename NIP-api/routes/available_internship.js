@@ -5,7 +5,7 @@ var multer = require('multer');
 
 var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, '/var/www/html/frontend/assets/documents/companies/');
+      callback(null, '../frontend/src/assets/documents/companies/');
       // callback(null, '../frontend/src/assets/documents/companies/');
 
     
