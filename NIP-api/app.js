@@ -19,6 +19,7 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
   uploadDir: './uploads'
 });
+const request = require("request");
 
 app.use(cors());
 app.use(express.json({limit: '500mb'}));
@@ -69,6 +70,45 @@ app.use((err, req, res, next) => {
 
   return;
 });
+
+app.post('/token_validate', (req, res)=>{
+      
+  let token = req.body.recaptcha;
+  const secretkey = "6LcPk74eAAAAACPJwIoIho815RC7dDrQjXRoZOLU"; 
+  
+  //token validation url 
+  
+  const url =  `https://www.google.com/recaptcha/api/siteverify?secret=${secretkey}&response=${token}&remoteip=${req.connection.remoteAddress}`
+   
+ 
+  // in node req.connection.remoteAddress gives the users ip address
+try {  
+  if(token === null || token === undefined){
+    res.status(201).send({success: false, message: "Token is empty or invalid"})
+    return console.log("recaptcha token empty", req.remoteAddress);
+  }
+  
+  request(url, function(err, response, body){
+    //the body is the data that contains success message
+    body = JSON.parse(body);
+    
+    //check if the validation failed
+    if(body.success !== undefined && !body.success){
+         res.send({success: false, 'message': "recaptcha failed"});
+         return console.log("Recaptcha failed.", req.connection.remoteAddress);
+     }
+    
+    //if passed response success message to client
+     res.send({"success": true, 'message': "Recaptcha passed"});
+    
+  })
+  
+} catch (error) {
+  console.log(error);
+}
+
+})
+
 
 app.get('/', (req, res) => {
   res.json({'message': 'ok'});

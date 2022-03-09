@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://mtcuatnip.mtcdc.com.na:3000/'
-  // serverUrl: 'http://localhost:3000/'
+  // serverUrl: 'http://mtcuatnip.mtcdc.com.na:3000/',
+  serverUrl: 'https://namip.mtc.com.na/',
+  // serverUrl: 'http://localhost:3000/',
+  recaptcha: {
+    siteKey: '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr',
+  },
 };
 
 /*

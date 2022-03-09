@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InternshipsService } from '../../services/internships.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 class pdfSnippet {
   constructor(public src: string, public file: File) {}
@@ -58,7 +59,7 @@ export class CompanyInternshipPostComponent implements OnInit {
   waiting: Boolean = false;
 
 
-  constructor(private router: Router, private internshipsService: InternshipsService) { }
+  constructor(private router: Router, private internshipsService: InternshipsService, private recaptchaV3Service: ReCaptchaV3Service) { }
 
   ngOnInit(): void {
 
@@ -125,6 +126,12 @@ export class CompanyInternshipPostComponent implements OnInit {
     }
 
     if (this.createForm.valid) {
+
+      this.recaptchaV3Service.execute('importantAction')
+    .subscribe((token: string) => {
+      console.debug(`Token [${token}] generated`);
+    });
+    
     const data = JSON.parse(localStorage.getItem('userdata')!);
     this.loading = true;
     this.btnWait = true;

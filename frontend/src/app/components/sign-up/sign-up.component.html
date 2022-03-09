@@ -8,7 +8,7 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-in-container">
-        <form [formGroup]="registerForm">
+        <form [formGroup]="registerForm" (ngSubmit)="signUp()">
           <h1>Create Account</h1>
           <div class="social-container">
             <app-error-message [obs]="errorMessage"></app-error-message>
@@ -112,15 +112,26 @@
           </div>
 
           <div class="social-container">
-            <app-error-message [obs]="errorMessage"></app-error-message>
+            <app-error-message  [obs]="errorMessage"></app-error-message>
           </div>
           
-          <button type="submit" (click)="signUp($event)" [disabled]="registerForm.status !== 'VALID' || waiting"
+          <button type="submit" (click)="handleExecute()" [disabled]="registerForm.status !== 'VALID' || waiting"
           class=" ghost"
           [ngClass]="waiting ? 'sign-up-btn__loading' : '' ">
           <span *ngIf="!waiting">Create account</span>
           <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
         </button>
+        <ngx-invisible-recaptcha
+          #captchaElem
+          [siteKey]="siteRecaptchaKey"
+          [useGlobalDomain]="false"
+          [ngModel]="recaptcha"
+          [ngModelOptions]="{standalone: true}"
+          (success)="signUp($event)"
+          badge="bottomright"
+          type="image"
+        >
+        </ngx-invisible-recaptcha>
         </form>
       </div>
        

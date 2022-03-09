@@ -23,12 +23,12 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()">
 
         <div class="text-center" id="errorMsg" *ngIf=" showUError|| errorMessage || showPwd">
           <!-- <span style="color: red; font-weight: bold;"><i class="fa fa-times-circle"></i> {{showUsername}}</span> -->
-          <div *ngIf=" showUError" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
-          <div *ngIf="errorMessage" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
+          <div *ngIf=" showUError"  class="text-danger" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
+          <div *ngIf="errorMessage" class="text-danger" (close)="closeAlert = true"><i style="margin-right: 1rem;" class="fa fa-exclamation-triangle"></i> {{ showUError}}</div>
         </div>
 
         <h1>Sign In</h1>
@@ -55,11 +55,22 @@
          </div>
         </div>
         <!-- <button>Sign In</button> -->
-        <button type="submit" (click)="signIn($event)" [disabled]="loginForm.status !== 'VALID' || waiting" class="sign-in-btn"
+        <button type="submit" (click)="handleExecute()" [disabled]="loginForm.status !== 'VALID' || waiting" class="sign-in-btn"
       [ngClass]="waiting ? 'sign-in-btn__loading' : '' ">
        <span *ngIf="!waiting"> Sign in</span>
        <app-button-loader *ngIf="waiting" [invert]="true"></app-button-loader>
       </button>
+      <ngx-invisible-recaptcha
+          #captchaElem
+          [siteKey]="siteRecaptchaKey"
+          [useGlobalDomain]="false"
+          [ngModel]="recaptcha"
+          [ngModelOptions]="{standalone: true}"
+          (success)="signIn($event)"
+          badge="bottomright"
+          type="image"
+        >
+        </ngx-invisible-recaptcha>
       </form>
       <!-- <div class="forgot"><a [routerLink]="['/auth/forgot-password']">I forgot my password</a></div> -->
     </div>

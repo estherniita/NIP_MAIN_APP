@@ -218,6 +218,10 @@ export class UsersService {
     } else { return false; }
   }
 
+  sendToken(token: any) {
+    return this.http.post<any>('http://localhost:3000/token_validate', { recaptcha: token });
+  }
+
   
 }
 

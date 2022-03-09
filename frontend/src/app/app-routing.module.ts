@@ -17,9 +17,6 @@ import {SuperadminAuthGuardService as superAdminGuard} from './services/superadm
 import {AdminAuthenticationService as AdminGuard} from './services/admin-authentication.service';
 
 
-//general ccmponents
-import { BiddersLoginComponent } from './components/bidders-login/bidders-login.component';
-import { BiddersRegisterComponent } from './components/bidders-register/bidders-register.component';
 import { BiddersForgotPasswordComponent } from './components/bidders-forgot-password/bidders-forgot-password.component';
 import { RegisterSuccessComponent } from './components/register-success/register-success.component';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';

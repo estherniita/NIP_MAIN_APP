@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { Subject } from 'rxjs';
 import { MustMatch } from '../../components/mustMatch.validator';
+import { InvisibleReCaptchaComponent, ReCaptchaV3Service } from 'ngx-captcha';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,12 +33,31 @@ export class SignUpComponent implements OnInit {
   errorMessage: Subject<string> = new Subject();
   waiting: boolean = false;
   active: boolean = false;
+  siteRecaptchaKey = '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr';
+  recaptcha: any = null;
 
-  constructor(private router: Router, private auth: UserAuthService,private formBuilder: FormBuilder) { }
+  @ViewChild('captchaElem', { static: false }) captchaElem?: InvisibleReCaptchaComponent;
+
+  constructor(
+    private router: Router, 
+    private auth: UserAuthService,
+    private formBuilder: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef,
+    private reCaptchaV3Service: ReCaptchaV3Service,
+    private service: UsersService) { }
 
   ngOnInit(): void {
 
     document.title = "Sign up: Organization National Internship Program"
+  }
+
+  handleExecute(): void {
+    // this.captchaElem?.execute();
+    this.reCaptchaV3Service.execute(this.siteRecaptchaKey, 'register', (token) => {
+      this.sendTokenToBackend(token);
+    }, {
+      useGlobalDomain: false
+    });
   }
 
   redirectToSignIn() {
@@ -46,10 +67,14 @@ export class SignUpComponent implements OnInit {
 
 
   //function for signing up 
-  async signUp(event: Event) {
-    event.preventDefault();
+  async signUp(event?: any) {
+    event?.preventDefault();
 
     this.waiting = true;
+
+    if (event) {
+      this.sendTokenToBackend(event);
+    }
 
     const password = this.registerForm.value.password;
     const confirmPassword = this.registerForm.value.confirmPassword;
@@ -89,7 +114,9 @@ export class SignUpComponent implements OnInit {
                 isLoggedin: false
               };
 
-              console.log('Message information', data.message);
+              this.captchaElem?.resetCaptcha();
+              this.changeDetectorRef.detectChanges(); 
+              // console.log('Message information', data.message);
 
               this.sendUserData(data.message);
 
@@ -100,7 +127,7 @@ export class SignUpComponent implements OnInit {
               this.ngOnInit()
               setTimeout(() => {
                 this.waiting = false;
-                console.log("Doneeee");
+                // console.log("Doneeee");
                 this.router.navigate(['/auth/signup-success']);
 
               }, 3000);
@@ -116,6 +143,28 @@ export class SignUpComponent implements OnInit {
 
   sendUserData(message: string) {
     this.auth.nextUserMessage(message);
+  }
+
+  // function to resolve the reCaptcha and retrieve a token
+  async resolved(captchaResponse: string, res: any) {
+    console.log(`Resolved response token: ${captchaResponse}`);
+    await this.sendTokenToBackend(captchaResponse); // declaring the token send function with a token parameter
+
+  }
+
+  // function to send the token to the node server
+  sendTokenToBackend(captchaResponse: any) {
+    // calling the service and passing the token to the service
+
+    this.service.sendToken(captchaResponse).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (err: any) => {
+        console.log(err);
+      },
+      () => { }
+    );
   }
 
 }

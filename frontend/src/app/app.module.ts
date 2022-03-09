@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { BiddersLoginComponent } from './components/bidders-login/bidders-login.component';
-import { BiddersRegisterComponent } from './components/bidders-register/bidders-register.component';
 import { BiddersForgotPasswordComponent } from './components/bidders-forgot-password/bidders-forgot-password.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { ReadAllButtonComponent } from './shared/read-all-button/read-all-button.component';
@@ -43,8 +41,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { NotLoggedInComponent } from './components/sign-in/notLoggedIn.component';
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JwtModule } from '@auth0/angular-jwt';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InstitutionDashboardComponent } from './components/institution-dashboard/institution-dashboard.component';
 import { InstitutionReceivedInternshipsComponent } from './components/institution-received-internships/institution-received-internships.component';
 import { StudentsComponent } from './components/students/students.component';
@@ -55,6 +52,10 @@ import { SendInternshipsToInstitutionsComponent } from './components/send-intern
 import { CompanyStudentListComponent } from './components/company-student-list/company-student-list.component';
 import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
 import { CompanyAdmittedComplettedStudentComponent } from './components/company-admitted-completted-student/company-admitted-completted-student.component';
+import { ReCaptchaModule } from 'angular-recaptcha3';
+import { NgxCaptchaModule } from "ngx-captcha";
+import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+
 
 @NgModule({
   declarations: [
@@ -62,8 +63,6 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
     NavbarComponent,
     FooterComponent,
     LandingComponent,
-    BiddersLoginComponent,
-    BiddersRegisterComponent,
     BiddersForgotPasswordComponent,
     LoaderComponent,
     ReadAllButtonComponent,
@@ -106,6 +105,7 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
     CompanyStudentListComponent,
     CompanyUpdateStudentComponent,
     CompanyAdmittedComplettedStudentComponent,
+  
 
 
 
@@ -118,17 +118,33 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
     HttpClientModule,
     ReactiveFormsModule,
     AccordionModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
-        allowedDomains: ['http://mtcuatnip.mtcdc.com.na:3000'],
-        disallowedRoutes: []
-      }
-    })
+    RecaptchaModule,
+    RecaptchaV3Module,
+    NgxCaptchaModule,
+    RecaptchaFormsModule,
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: () => {
+    //       return localStorage.getItem('access_token');
+    //     },
+    //     allowedDomains: ['http://mtcuatnip.mtcdc.com.na:3000'],
+    //     disallowedRoutes: []
+    //   }
+    // })
+
+    ReCaptchaModule.forRoot({
+      invisible: {
+          sitekey: '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr', 
+      },
+      normal: {
+          sitekey: '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr', 
+      },
+      language: 'en'
+  }),
   ],
-  providers: [NgbActiveModal],
+  providers: [
+    NgbActiveModal,
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
