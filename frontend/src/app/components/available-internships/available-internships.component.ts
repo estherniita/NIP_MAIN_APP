@@ -4,6 +4,8 @@ import {UsersService} from '../../services/users.service';
 import { DOCUMENT } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import $ from 'jquery';
+import { saveAs } from 'file-saver';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -51,6 +53,13 @@ export class AvailableInternshipsComponent implements OnInit {
   no_of_internship: any;
   public iname: any;
   public  intern: any;
+
+  file_name?: string;
+
+  bracket1 = "{{";
+
+  bracket2 = "}}";
+
  
   availableinternships: any;
   availableInternship: any;
@@ -90,6 +99,18 @@ export class AvailableInternshipsComponent implements OnInit {
   }
     }
   
+
+  
+    download(pdf_file: any){
+
+      this.internshipsService.download(pdf_file).subscribe((data: any) => {
+
+          saveAs(data, `Company Internship Document ${new Date().toLocaleDateString('en-GB')}.pdf`)
+         
+
+      });
+
+    }
 
 
 

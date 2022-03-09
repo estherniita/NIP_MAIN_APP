@@ -11,6 +11,7 @@ import { UsersService} from '../../services/users.service';
 import {ConfirmDeleteComponent} from  '../confirm-delete/confirm-delete.component';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";  
 import {AdminAuthenticationService} from '../../services/admin-authentication.service';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -138,6 +139,21 @@ export class InstitutionReceivedInternshipsComponent implements OnInit {
   }
 
 
+
+     //download method
+     download(file_pdf: any){
+
+    
+
+
+      this.internshipsService.download(file_pdf).subscribe((data: any) => {
+  
+          saveAs(data, `Company Internship Document ${new Date().toLocaleDateString('en-GB')}.pdf`)
+         
+  
+      });
+  
+    }
 
 
 }

@@ -6,6 +6,9 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import {StudentInternsService} from '../../services/student-interns.service';
 import { DOCUMENT } from '@angular/common';
+import { saveAs } from 'file-saver';
+
+
 
 @Component({
   selector: 'app-company-student-list',
@@ -135,14 +138,19 @@ export class CompanyStudentListComponent implements OnInit {
     });
   }
 
-   //download method
-   downloadStudentDocuments() {
-    let link = document.createElement("a");
-    link.download = "NIP-1646079281222.pdf.pdf";
-    link.href = "assets/Documents/students/NIP-1646079281222.pdf";
-    link.click();
 
-    this.activeModal.dismiss();
+   //download method
+   download(student_document: any){
+
+    
+
+
+    this.studentService.download(student_document).subscribe((data: any) => {
+
+        saveAs(data, `Student Documents ${new Date().toLocaleDateString('en-GB')}.pdf`)
+       
+
+    });
 
   }
   

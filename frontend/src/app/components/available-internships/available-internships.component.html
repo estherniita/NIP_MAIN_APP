@@ -74,7 +74,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
         <div class="location">
-         {{ availableinternships.town_city }}
+         {{ availableinternships.town_city}}
         </div>
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
@@ -82,8 +82,7 @@
         </div>
         <div class="col-lg-2 col-md-3 col-xs-12 text-left">
         <span class="btn-apply" (click)="sendInternship(availableinternships)">Send request</span>
-        <a  target="_blank" href="assets/documents/companies/{{availableinternships.pdf_file}}" 
-        > More Details</a>
+        <a (click)="download(availableinternships.pdf_file)" class="btn"> More Details</a>
         </div>
         </div>
       </div>
@@ -133,7 +132,10 @@
         </div>
         <div class="col-lg-2 col-md-2 col-xs-12 text-right">
         <span class="btn-apply">
-          <a  target="_blank" href="assets/documents/companies/{{availableinternships.pdf_file}}"> More Details</a>
+          <!-- <a  target="_blank" href="assets/documents/companies/{{availableinternships.pdf_file}}"> More Details</a> -->
+
+          <a (click)="download(availableinternships.pdf_file)" class="btn">   More Details</a>
+
         </span>
         </div>
         </div>

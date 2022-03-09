@@ -5,7 +5,6 @@ import { Users } from '../Users';
 import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -230,6 +229,28 @@ export class InternshipsService {
         .pipe(map(res => res));
     }
 
+
+      //method to download pdf files
+      download(pdf_file: any): any {
+        const data = {
+          pdf_file
+        };
+    
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            // Authorization: this.token
+          })
+        };
+    
+        return this.http
+          .post(this.server_url + `availableInternships/download`, data, {responseType: 'blob',
+            headers: httpOptions.headers
+          })
+    
+          .pipe(map(res => res));
+      }
+    
 }
 
 

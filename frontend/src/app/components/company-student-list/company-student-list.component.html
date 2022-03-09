@@ -51,7 +51,7 @@
                 <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
                 <td>{{student.student_document}} 
                   
-          <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}">Download</a>
+                  <a (click)="download(student.student_document)" class="btn">Download</a>
   
                 </td>
 
@@ -129,7 +129,7 @@
                 <td>{{intern.student_email}}, {{intern.student_phoneNumber}}</td>
                 <td>{{intern.student_document}} 
                   
-          <a class="job-listings" target="_blank" href="assets/documents/students/{{intern.student_document}}">Download</a>
+                  <a (click)="download(intern.student_document)">Download</a>
   
                 </td>
 

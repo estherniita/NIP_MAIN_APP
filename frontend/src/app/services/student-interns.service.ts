@@ -367,5 +367,25 @@ export class StudentInternsService {
     }
   
   
+          //method to download student pdf files
+          download(student_document: any): any {
+            const data = {
+              student_document
+            };
+        
+            const httpOptions = {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                // Authorization: this.token
+              })
+            };
+        
+            return this.http
+              .post(this.server_url + `student_interns/download`, data, {responseType: 'blob',
+                headers: httpOptions.headers
+              })
+        
+              .pipe(map(res => res));
+          }
   
 }

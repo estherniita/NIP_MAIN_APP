@@ -45,7 +45,7 @@
                     <td>{{ internship.date_received }}</td>
                     <td>{{ internship.closing_date }}</td>
                     <td >{{internship.pdf_file}}
-                      <a class="job-listings" target="_blank" href="assets/documents/companies/{{internship.pdf_file}}">Download</a>
+                      <a (click)="download(internship.pdf_file)" class="btn">Download</a>
                     </td>
                     <td hidden>{{ internship.company_email}}</td>
       
