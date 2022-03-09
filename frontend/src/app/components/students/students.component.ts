@@ -181,6 +181,7 @@ export class StudentsComponent implements OnInit {
         //  email data
         const userdata = {
           email: this.studentForm.value.company_email,
+          email_subject: 'Student(s) details for the internship request(s)',
           message: ` ${this.studentForm.value.company}  
           ${this.studentForm.value.company}
           Find the student qualified from ${this.studentForm.value.institution} for the internship request:

@@ -148,10 +148,13 @@ export class CompanyInternshipPostComponent implements OnInit {
         
         //  email data
         const userdata = {
-          email: `internshipprogramme@mtc.com.na`,
+          email_from: `${this.createForm.value.email}`,
+          email: 'internshipprogramme@mtc.com.na',
+          email_subject: 'New Available Internship Request(s)',
           message: `${this.createForm.value.company_name} posted new post for: ${this.createForm.value.internship_name}, 
           ${this.createForm.value.number_of_positions} position.
-         in ${this.createForm.value.town_city} `,
+         in ${this.createForm.value.town_city}.
+         Please log on to the NIP admin dashboard to send the request to specific institutions. `,
         };
 
              // sending email to the user

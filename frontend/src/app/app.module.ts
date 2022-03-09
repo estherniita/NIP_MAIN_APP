@@ -43,8 +43,8 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { NotLoggedInComponent } from './components/sign-in/notLoggedIn.component';
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JwtModule } from '@auth0/angular-jwt';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+// import { JwtModule } from '@auth0/angular-jwt';
 import { InstitutionDashboardComponent } from './components/institution-dashboard/institution-dashboard.component';
 import { InstitutionReceivedInternshipsComponent } from './components/institution-received-internships/institution-received-internships.component';
 import { StudentsComponent } from './components/students/students.component';
@@ -55,6 +55,10 @@ import { SendInternshipsToInstitutionsComponent } from './components/send-intern
 import { CompanyStudentListComponent } from './components/company-student-list/company-student-list.component';
 import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
 import { CompanyAdmittedComplettedStudentComponent } from './components/company-admitted-completted-student/company-admitted-completted-student.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+
+
 
 @NgModule({
   declarations: [
@@ -106,6 +110,7 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
     CompanyStudentListComponent,
     CompanyUpdateStudentComponent,
     CompanyAdmittedComplettedStudentComponent,
+    ForgotPasswordComponent,
 
 
 
@@ -118,15 +123,16 @@ import { CompanyAdmittedComplettedStudentComponent } from './components/company-
     HttpClientModule,
     ReactiveFormsModule,
     AccordionModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
-        allowedDomains: ['http://mtcuatnip.mtcdc.com.na:3000'],
-        disallowedRoutes: []
-      }
-    })
+    NgxPaginationModule,
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: () => {
+    //       return localStorage.getItem('access_token');
+    //     },
+    //     allowedDomains: ['http://mtcuatnip.mtcdc.com.na:3000'],
+    //     disallowedRoutes: []
+    //   }
+    // })
   ],
   providers: [NgbActiveModal],
   bootstrap: [AppComponent]

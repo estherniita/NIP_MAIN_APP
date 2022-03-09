@@ -273,12 +273,22 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
 
                  // email data
                  const userdata = {
+                  email_from: 'internshipprogramme@mtc.com.na',
                   email: this.new_internshipsForm.value.email,
+                  email_subject: 'New Internship Request(s)',
                   message: ` ${this.new_internshipsForm.value.institution} 
                   Good day sir/madam.
-                  Find the availabe internship post for your institution and send the qualified student for the position:
-                   ${this.new_internshipsForm.value.internships_name} and there are ${this.new_internshipsForm.value.no_of_internship} position(s).`,
+                  Find the availabe internship post on your institution NIP dashboard, for your institution and send the qualified student for the position:
+                   ${this.new_internshipsForm.value.internships_name} and there is ${this.new_internshipsForm.value.no_of_internship} position(s).`
+
+
+
+
+
+
                 };
+
+                console.log('userdata', userdata)
 
                      // sending email to the user
             this.internshipsService.sendEmailPlain(userdata).subscribe();

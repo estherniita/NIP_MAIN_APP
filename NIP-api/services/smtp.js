@@ -35,13 +35,13 @@ router.post('/sendemailplain', async (req, res, next) => {
 
                 // send mail with defined transport object
                 let info = await transporter.sendMail({
-                    from: '"MTC" <EShivute@mtc.com.na>', // sender address
+                    from: `${req.body.email_from}`, // sender address
                     to: `${req.body.email}`, // list of receivers
-                    subject: 'New available Internships', // Subject line
+                    subject: `${req.body.email_subject}`, // Subject line
                     text: `${req.body.message}`,
 
                 }).then(result => {
-                    console.log("Message sent: %s");
+                    // console.log("Message sent: %s");
                     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
                     // Preview only available when sending through an Ethereal account

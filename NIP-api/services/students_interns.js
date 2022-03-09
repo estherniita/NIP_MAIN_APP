@@ -279,7 +279,7 @@ async function getAllStudentInterns(){
    }
 
 
-   console.log('results', message, students_interns, match, success);
+  //  console.log('results', message, students_interns, match, success);
    return{message, students_interns, match, success};
 
  
@@ -322,7 +322,7 @@ async function getAllStudentInterns(){
    }
 
 
-   console.log('results', message, students_interns, match, success);
+  //  console.log('results', message, students_interns, match, success);
    return{message, students_interns, match, success};
 
  

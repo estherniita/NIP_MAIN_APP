@@ -116,6 +116,10 @@ export class LandingComponent implements OnInit {
   availableinternships: any;
   availableInternship: any;
 
+   // Pagination parameters.
+   p: Number = 1;
+   count: Number = 4;
+   pageOfItems!: Array<any>;
  
 
   constructor(private router: Router, private internshipsService: InternshipsService, public userService: UsersService) { }
@@ -125,6 +129,9 @@ export class LandingComponent implements OnInit {
     this.getAvailableInternships();
 
   }
+
+
+  
 
 
   
@@ -140,7 +147,7 @@ export class LandingComponent implements OnInit {
 
 
   getAvailableInternships() {
-    this.internshipsService.getAllavailableInternships1()
+    this.internshipsService.getAllavailableInternships()
       .subscribe((result: any) => {
 
 
