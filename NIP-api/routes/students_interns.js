@@ -5,8 +5,8 @@ var multer = require('multer');
 
 var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, '/var/www/html/frontend/assets/documents/students/');
-      // callback(null, '../frontend/src/assets/documents/students/');
+    callback(null, './documents/student_documents');
+    // callback(null, '../frontend/src/assets/documents/students/');
 
     
       //callback(null, './uploads/img/team');
@@ -272,5 +272,19 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
             });
       
 
+
+               //Download student route
+ router.post('/download', async function(req, res, next) {
+  try {
+
+
+    const file = `./documents/student_documents/${req.body.student_document}`;
+    res.download(file); // Set disposition and send it.
+
+  } catch (err) {
+    console.error(`Error while downloading file`, err.message);
+    next(err);
+  }
+});
   
   module.exports = router;

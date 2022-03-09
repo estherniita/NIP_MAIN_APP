@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://mtcuatnip.mtcdc.com.na:3000/'
-  // serverUrl: 'http://localhost:3000/'
+  // serverUrl: 'http://mtcuatnip.mtcdc.com.na:3000/'
+  serverUrl: 'http://localhost:3000/'
+  // serverUrl: 'https://namip.mtc.com.na/'
+
 };
 
 /*

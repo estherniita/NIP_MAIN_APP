@@ -54,8 +54,7 @@
                 <td>{{student.student_document}} 
                    <!-- <button (click)="downloadStudentDocuments()">
                   Download</button> -->
-                  
-          <a class="job-listings" target="_blank" href="assets/documents/students/{{student.student_document}}" >Download</a>
+                  <a (click)="download(student.student_document)" class="btn">Download</a>
   
                 </td>
   

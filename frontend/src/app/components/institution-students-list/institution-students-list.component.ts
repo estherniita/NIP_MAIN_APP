@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {StudentInternsService} from '../../services/student-interns.service';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
- 
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-institution-students-list',
@@ -127,7 +128,18 @@ export class InstitutionStudentsListComponent implements OnInit {
     }
   
   
-  
+      //download method
+      download(student_document: any){
+
+        this.studentService.download(student_document).subscribe((data: any) => {
+    
+            saveAs(data, `Student Documents ${new Date().toLocaleDateString('en-GB')}.pdf`)
+           
+    
+        });
+    
+      }
+
   
   }
   

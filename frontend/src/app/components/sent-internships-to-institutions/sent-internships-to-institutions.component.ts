@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {InternshipsService} from '../../services/internships.service';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -34,5 +35,18 @@ export class SentInternshipsToInstitutionsComponent implements OnInit {
       result.data.forEach((val: any) => this.internships.push(val));
     });
   }
+
+
+    //download method
+    download(file_pdf: any){
+
+      this.internshipsService.download(file_pdf).subscribe((data: any) => {
+  
+          saveAs(data, `Company Internship Document ${new Date().toLocaleDateString('en-GB')}.pdf`)
+         
+  
+      });
+  
+    }
 
 }

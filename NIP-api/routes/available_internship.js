@@ -5,7 +5,7 @@ var multer = require('multer');
 
 var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, '../frontend/src/assets/documents/companies/');
+      callback(null, './documents/company_documents');
       // callback(null, '../frontend/src/assets/documents/companies/');
 
     
@@ -130,5 +130,30 @@ router.delete('/deleteNewInternship/:id', async function(req, res, next) {
       next(err);
     }
   });
+
+
+
+  // router.get('/download', function(req, res){
+
+  //   const file = `./documents/company_documents/${req.body.pdf_file}`;
+  //   res.download(file); // Set disposition and send it.
+  // });
+
+
+
+   //Download route
+ router.post('/download', async function(req, res, next) {
+  try {
+
+
+    const file = `./documents/company_documents/${req.body.pdf_file}`;
+    res.download(file); // Set disposition and send it.
+
+  } catch (err) {
+    console.error(`Error while downloading file`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;

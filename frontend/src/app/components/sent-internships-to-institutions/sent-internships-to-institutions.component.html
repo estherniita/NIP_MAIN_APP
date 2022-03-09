@@ -46,7 +46,10 @@
                 <td>{{internship.email}}</td>
                 <td>{{internship.date_received}}</td>
                 <td>{{internship.closing_date}}</td>
-                <td>{{internship.pdf_file}}</td>
+                <td>{{internship.pdf_file}}
+                  <a (click)="download(internship.pdf_file)" class="btn">Download</a>
+
+                </td>
 
               </tr>
             </tbody>
