@@ -148,7 +148,11 @@ async function getOrganizationByRegistrationNo( registration_number){
 
   try{
 
-  const rows = await db.query(
+    let message = 'Registration number not found';
+    match = false;
+  success = false;
+
+  const result = await db.query(
 
     `Select * from organization_register
 
@@ -156,12 +160,13 @@ async function getOrganizationByRegistrationNo( registration_number){
     [registration_number]
   );
 
-  const data = helper.emptyOrRows(rows);
-  // const meta = {page};
-
-  return {
-    data
+  if (result.length >0) {
+    message = 'Registration number already in use';
+    match = true;
+    success = true;
   }
+
+  return {message, match, success};
 
 }
   

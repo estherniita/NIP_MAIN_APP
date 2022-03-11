@@ -38,7 +38,7 @@ router.get('/getAllRegisteredOrganization', async function(req, res, next) {
 
 
 /* GET the registration number. */
-router.get('/getOrganizationByRegistrationNo', async function(req, res, next) {
+router.post('/getOrganizationByRegistrationNo', async function(req, res, next) {
   try {
     res.json(await registeredOrganizations.getOrganizationByRegistrationNo(req.body.registration_number));
   } catch (err) {

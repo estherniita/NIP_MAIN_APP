@@ -111,7 +111,8 @@ export class SignUpComponent implements OnInit {
         {
 
                //check if the registration number already exist in the database
-      this.auth.getEmail(this.registerForm.value.registration_number).subscribe((data: any) => {
+      this.auth.getOrganizationByRegistrationNo(this.registerForm.value.registration_number).subscribe((data: any) => {
+        console.log('regno', data.match && data.success)
         if ( data.match && data.success ) {
           setTimeout(() => {
             this.waiting = false;

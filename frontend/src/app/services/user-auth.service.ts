@@ -46,7 +46,7 @@ export class UserAuthService {
     };
 
     return this.http
-      .post(this.server_url + 'organization_register/registerOrganizations', user, {
+      .post('http://localhost:3000/' + 'organization_register/registerOrganizations', user, {
         headers: httpOptions.headers
       })
       .pipe(map(res => res));
@@ -129,6 +129,11 @@ export class UserAuthService {
   }
 
   getOrganizationByRegistrationNo(registration_number: any) {
+
+    const data = {
+      registration_number
+    };
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -137,9 +142,10 @@ export class UserAuthService {
     };
 
     return this.http
-      .post(this.server_url + "organization_register/getOrganizationByRegistrationNo", registration_number, {
+      .post(this.server_url + "organization_register/getOrganizationByRegistrationNo", data, {
         headers: httpOptions.headers
       })
+
       .pipe(map(res => res));
   }
 
