@@ -7,11 +7,6 @@ var storage_product = multer.diskStorage({
   destination: function (req, file, callback) {
       callback(null, './documents/company_documents');
       // callback(null, '../frontend/src/assets/documents/companies/');
-
-    
-      //callback(null, './uploads/img/team');
-      //Use next line in production change path to ../public/assets/profiles/...
-      //!callback(null, '../client/uploads');
   },
   filename: function (req, file, callback) {
       const prefix = "NIP";
@@ -51,7 +46,7 @@ var upload_product = multer({
 
 
 
-/* GET get new internship list languages. */
+/* GET get new internship list . */
 router.get('/getAllavailableInternships', async function(req, res, next) {
   
   try {
@@ -75,7 +70,7 @@ router.get('/getAllavailableInternships1', async function(req, res, next) {
 });
 
 
-/* GET get new internship list languages. */
+/* GET get new internship list by name. */
 router.get('/getAllInternshipName', async function(req, res, next) {
   try {
     res.json(await availableInternship.getAllInternshipName(req.query.page));
@@ -85,7 +80,8 @@ router.get('/getAllInternshipName', async function(req, res, next) {
   }
 });
 
-/* POST new internships */
+
+/* POST new internships by organizations */
 router.post('/availableInternship', upload_product.single('pdf_file'), async function(req, res, next) {
   const internship = {
     company_name: req.body.company_name,
@@ -109,39 +105,21 @@ router.post('/availableInternship', upload_product.single('pdf_file'), async fun
   
 
 
-  /* update new internships */
-
-router.put('/updateNewinternships/:id', async function(req, res, next) {
-    try {
-      res.json(await availableInternship.update(req.params.id, req.body));
-    } catch (err) {
-      console.error(`Error while updating new internships`, err.message);
-      next(err);
-    }
-  });
-
-
   /* DELETE new internship */
-router.delete('/deleteNewInternship/:id', async function(req, res, next) {
-    try {
-      res.json(await availableInternship.deleteInternship(req.params.id));
-    } catch (err) {
-      console.error(`Error while deleting new internship`, err.message);
-      next(err);
-    }
-  });
+// router.delete('/deleteNewInternship/:id', async function(req, res, next) {
+//     try {
+//       res.json(await availableInternship.deleteInternship(req.params.id));
+//     } catch (err) {
+//       console.error(`Error while deleting new internship`, err.message);
+//       next(err);
+//     }
+//   });
 
 
 
-  // router.get('/download', function(req, res){
-
-  //   const file = `./documents/company_documents/${req.body.pdf_file}`;
-  //   res.download(file); // Set disposition and send it.
-  // });
 
 
-
-   //Download route
+   //Download internship document route
  router.post('/download', async function(req, res, next) {
   try {
 
@@ -154,6 +132,7 @@ router.delete('/deleteNewInternship/:id', async function(req, res, next) {
     next(err);
   }
 });
+
 
 
 module.exports = router;

@@ -55,58 +55,8 @@ router.post('/register', async function(req, res,  next) {
 
          
       });
-    // } catch (err) {
-    //   console.error(`Error while creating new user`, err.message);
-    //   next(err);
-    // }
-  
-
-
-
-  router.post("/register2", (req, res, next) =>{
-    // let newUser = new User({
-    //     fname: req.body.fname,
-    //     lname: req.body.lname,
-    //     phone: req.body.phone,
-    //     citizenship: req.body.citizenship,
-    //     email: req.body.email,
-    //     username: req.body.username,
-    //     password: req.body.password
-    // });
-
-    //adding the user to the 
-    newUsers.register(req.body, (err, user) => {
-        try {
-            if (err) {
-                next(err);
-            } else {
-                const token = jwt.sign({ user }, config.secret, {
-                    //1 wek in seconds this to force the use to log in after every week, that is when the token
-                    //gets expired
-                    expiresIn: "5h"
-                });
-
-                res.json({
-                    success: true,
-                    token: crypto.encrypt(token, config.secret),
-                    user: {
-                        username: user.username,
-                        email: user.email,
-                        role: user.role,
-                        applicant: true
-                    }
-                });
-            }
-        } catch (error) {
-            console; log(err)
-        }
-
-    });
-});
-
-
-
-
+    
+      
  
   /* update user details */
 
@@ -190,50 +140,6 @@ router.post('/deleteUser', async function(req, res, next) {
         });
 
     
-
-  exports.login = async function(req,res){
-    var username= req.body.username;
-    var password = req.body.password;
-    db.query('SELECT * FROM users WHERE username = ?',[username], async function (error, results, fields) {
-      if (error) {
-        res.send({
-          "code":400,
-          "failed":"error ocurred"
-        })
-      }else{
-        if(results.length >0){
-
-          try{
-          const comparision = await bcrypt.compare(password, results[0].password)
-          if(comparision){
-              res.send({
-                "code":200,
-                "success":"login sucessfull"
-              })
-          }
-          else{
-            res.send({
-                 "code":204,
-                 "success":"Username and password does not match"
-            })
-          }
-
-           }
-      catch (err) {
-        console.error(`Error occured`, err.message);
-        next(err);
-      }
-        }
-        else{
-          res.send({
-            "code":206,
-            "success":"username does not exits"
-              });
-        }
-     
-      }
-      });
-  }
 
 
 module.exports = router;

@@ -30,7 +30,10 @@ export class SignUpComponent implements OnInit {
 
   );
 
+
   errorMessage: Subject<string> = new Subject();
+  regNoerrorMessage: Subject<string> = new Subject();
+
   waiting: boolean = false;
   active: boolean = false;
   siteRecaptchaKey = '6LcPk74eAAAAALx7eJez8wDT_d3i5E7NXX5FbZnr';
@@ -104,7 +107,19 @@ export class SignUpComponent implements OnInit {
           }, 300);
           this.errorMessage.next("Error: Account already exist, with that email address. Try resetting your password." )
         } else
+
         {
+
+               //check if the registration number already exist in the database
+      this.auth.getEmail(this.registerForm.value.registration_number).subscribe((data: any) => {
+        if ( data.match && data.success ) {
+          setTimeout(() => {
+            this.waiting = false;
+          }, 300);
+          this.regNoerrorMessage.next("Error: Account already exist, with that egistration." )
+        } 
+        else {
+
           //proceeding to register the user in case the email doesn't exist
           this.auth.registerUser(user).subscribe((data: any) => {
             if (data.success) {
@@ -132,9 +147,13 @@ export class SignUpComponent implements OnInit {
 
               }, 3000);
              }
-          })
+      
+        })
+
         }
-      })
+      }) //end
+   }
+  })
 
   } else {
     this.errorMessage.next("Passwords do not match");

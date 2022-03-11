@@ -4,6 +4,7 @@ const config = require('../config');
 const New_internships = require("../models/new_internship");
 
 
+
 async function getMultiple(page = 1){
   // const offset = helper.getOffset(page, config.listPerPage);
 
@@ -65,6 +66,7 @@ async function createNewInternship(newInternships){
   }
 
  
+  
   async function getEmail(id, newInternships){
 
     try{

@@ -1,6 +1,4 @@
 const db = require('./db');
-const students_interns = require("../models/students_interns");
-const {validationResult} = require('express-validator');
 const jwt = require("jsonwebtoken");
 const {body} = require('express-validator');
 const crypto = require("../cryptojs");

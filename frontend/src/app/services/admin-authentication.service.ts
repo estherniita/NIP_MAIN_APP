@@ -120,7 +120,7 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post('http://mtcuatnip.mtcdc.com.na:3000/' + 'admin/register', user, {
+      .post(this.server_url + 'admin/register', user, {
         headers: httpOptions.headers
       })
       .pipe(map(res => res));

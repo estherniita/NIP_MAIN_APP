@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const registeredOrganizations = require('../services/organization_register');
 
+
 /* GET get the list of all registered organizations. */
 router.get('/getAllRegisteredOrganization', async function(req, res, next) {
   try {
@@ -24,10 +25,22 @@ router.get('/getAllRegisteredOrganization', async function(req, res, next) {
 });
    
 
+ //getRegistrationNumber validation route
+ router.post('/getRegistrationNumber', async function(req, res, next) {
+  try {
+    res.json(await  registeredOrganizations.getRegistrationNumber(req.body.registration_number));
+  } catch (err) {
+    console.error(`Error while getting registration number`, err.message);
+    next(err);
+  }
+});
+
+
+
 /* GET the registration number. */
 router.get('/getOrganizationByRegistrationNo', async function(req, res, next) {
   try {
-    res.json(await registeredOrganizations.getOrganizationByRegistrationNo(req.query.page));
+    res.json(await registeredOrganizations.getOrganizationByRegistrationNo(req.body.registration_number));
   } catch (err) {
     console.error(`Error while getting the list of registration number`, err.message);
     next(err);

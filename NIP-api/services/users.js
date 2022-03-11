@@ -41,27 +41,10 @@ async function register(newUser, res){
   
     if (result.affectedRows) {
 
-    //   const token = jwt.sign({ newUser}, config.secret, {
-    //     //1 wek in seconds this to force the use to log in after every week, that is when the token
-    //     //gets expired
-    //     expiresIn: "5h"
-    // });
-
     message = 'user registered'
     success = true;
     match = false;
     
-
-    // result.json({
-    //     success: true,
-  //  const   token = crypto.encrypt(token, config.secret);
-    //     user: {
-    //         username: user.username,
-    //         email: user.email,
-    //         role: user.role,
-    //         applicant: true
-    //     }
-    // });
     }
   
     return {message, success, match};
@@ -74,6 +57,7 @@ async function register(newUser, res){
   
 }
 }
+
 
 
 async function getEmail( email){
@@ -145,99 +129,6 @@ catch (error) {
 
 
 
-exports.loginUser = async function (user) {
-  // Creating a new Mongoose Object by using the new keyword
-  try {
-      // Find the User 
-      var _details = await User.findOne({ username: user.username });
-      var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
-      if (!passwordIsValid) throw Error("Invalid username/password")
-      var token = jwt.sign({id: _details._id}, config.SECRET, {
-          expiresIn: 86400 // expires in 24 hours
-      });
-      return token;
-  } catch (e) {
-      // return a Error message describing the reason     
-      throw Error("Error while Login User")
-  }
-}
-
-
-
- async function authenticate1(username, password, user){
-  // const username = User.username;
-  // const password = User.password;
-
-  try{
-
-   let message = 'user not found';
-   let  success = false;   
-  const result = await db.query(`SELECT * FROM users WHERE username =?`,[username]);
-    if (result.length < 0) {
-      // res.send({
-      //   "code":400,
-      //   "failed":"error ocurred"
-      // })
-
-      message ='error occured';
-      success = false;
-    }else{
-
-      if(result.length > 0){
-        const comparision = await bcrypt.compare(password, result[0].password)
-        if(comparision){
-            // res.send({
-            //   "code":200,
-            //   "success":"login sucessfull"
-            // })
-
-            const token1 = jwt.sign({ user }, config.secret, {
-              //1 wek in seconds this to force the use to log in after every week, that is when the token
-              //gets expired
-              expiresIn: "5h"
-          });
-          
-          message = 'User "' + username + '" is logged in successfully';
-         token =   token1;
-         success = true;
-
-          // res.send({
-          //      "code":204,
-          //      "success":"Username and password does not match"
-          // })
-
-          // let encryptedEmail = crypto.encrypt(user.email, config.secret);
-
-          //ecrypting the token using crypto
-          // let enjwt = crypto.encrypt(token);
-          // token1 = token;
-          return {message, token, success, result};
-        }
-
-      message ='Incorrect password';
-      }
-      else{
-        // res.send({
-        //   "code":206,
-        //   "success":"Username does not exits"
-        //     });
-
-        message =('Username does not exits'), {success: false};
-      }
-    }
-
-    return {message};
-
-  }
-  
-  catch (error) {
-    console.error(error);
- 
-}
-   
- 
-  }
-
 
   async function authenticate(username, password, user){
     // const username = User.username;
@@ -250,6 +141,7 @@ exports.loginUser = async function (user) {
      let  admin = false;  
      let  organization = false; 
      let  users = false;    
+
     const result = await db.query(`SELECT * FROM users WHERE username =?`,[username]);
       if (result.length < 0) {
         // res.send({
@@ -279,17 +171,7 @@ exports.loginUser = async function (user) {
            token =   token1;
            success = true;
             users = true;
-  
-            // res.send({
-            //      "code":204,
-            //      "success":"Username and password does not match"
-            // })
-  
-            // let encryptedEmail = crypto.encrypt(user.email, config.secret);
-  
-            //ecrypting the token using crypto
-            // let enjwt = crypto.encrypt(token);
-            // token1 = token;
+
 
             return {message, token, success, result, username};
 
@@ -334,16 +216,7 @@ exports.loginUser = async function (user) {
                success = true;
                 admin = true;
       
-                // res.send({
-                //      "code":204,
-                //      "success":"Username and password does not match"
-                // })
-      
-                // let encryptedEmail = crypto.encrypt(user.email, config.secret);
-      
-                //ecrypting the token using crypto
-                // let enjwt = crypto.encrypt(token);
-                // token1 = token;
+          
                 return {message, token, success, result, admin, user};
               }
       
@@ -355,10 +228,7 @@ exports.loginUser = async function (user) {
           const result = await db.query(`SELECT * FROM organization_register WHERE registration_number =?`,[username]);
 
           if (result.length < 0) {
-            // res.send({
-            //   "code":400,        //   "failed":"error ocurred"
-            // })
-      
+         
             message ='Username does not exits';
             success = false;
           } else{
@@ -366,14 +236,9 @@ exports.loginUser = async function (user) {
             if(result.length > 0){
               const comparision = await bcrypt.compare(password, result[0].password)
               if(comparision){
-                  // res.send({
-                  //   "code":200,
-                  //   "success":"login sucessfull"
-                  // })
       
                   const token1 = jwt.sign({ user }, config.secret, {
-                    //1 wek in seconds this to force the use to log in after every week, that is when the token
-                    //gets expired
+                   
                     expiresIn: "5h"
                 });
                 
@@ -382,26 +247,14 @@ exports.loginUser = async function (user) {
                success = true;
                 organization = true;
       
-                // res.send({
-                //      "code":204,
-                //      "success":"Username and password does not match"
-                // })
-      
-                // let encryptedEmail = crypto.encrypt(user.email, config.secret);
-      
-                //ecrypting the token using crypto
-                // let enjwt = crypto.encrypt(token);
-                // token1 = token;
+            
                 return {message, token, success, result, organization, user};
               }
       
             message ='Incorrect password';
             }
             else{
-              // res.send({
-              //   "code":206,
-              //   "success":"Username does not exits"
-              //     });
+            
       
               message =('Incorrect password'), {success: false};
             }
@@ -435,27 +288,7 @@ exports.loginUser = async function (user) {
    
     }
 
-    // let message = 'user not found';
-
-
-    // if (result.length >0) {
-    //   message = 'User "' + username + '" is logged in';
-    // }
-
-
-
-  //   async function authenticates({ username, password }) {
-
-  //     const user = await db.query(`SELECT * FROM users WHERE username =?`,[username]);
-  //     // const user = await db.query.scope('withHash').findOne({ where: { username } });
   
-  //     if (user || !(await bcrypt.compare(password, user.password)))
-  //         throw 'Username or password is incorrect';
-  
-  //     // authentication successful
-  //     const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '1d' });
-  //     return { ...omitHash(user.get()), token };
-  // }
 
   async function updateUser(id, newUser){
 
@@ -496,13 +329,6 @@ exports.loginUser = async function (user) {
   
   }
 
-// }
-// catch (error) {
-//   console.error(error);
-//   // expected output: ReferenceError: nonExistentFunction is not defined
-//   // Note - error messages will vary depending on browser
-
-// }
   
 
   
@@ -558,35 +384,6 @@ async function getAllUsers(page = 1){
   }
 
 
-
-
-  async function resetPassword1( email){
-
-    try{
-    const user = await db.query(
-  
-      `Select email from users
-  
-      WHERE email=?`, 
-      [email]
-    );
-  
-    let message = 'Email exist';
-  
-    if (user.length > 0) {
-      message = 'Email not found';
-    }
-
-    return {message};
-  }
-  
-  catch (error) {
-    console.error(error);
- 
-}
-  }
-
-
   
   
 async function resetPassword( email) {
@@ -621,85 +418,6 @@ catch (error) {
  
 }
 
-
-function randomTokenString() {
-  return crypto1.randomBytes(40).toString('hex');
-}
-
-
-  async function resetPassword2(email, err, res){
-
-    try{
-
-  var message;
-    const user = await db.query(
-  
-      `Select email from users
-  
-      WHERE email=?`, 
-      [email]
-    );
-  
-
-
-  
-    if (user.length < 0 && user.email == "") {
-      message = 'Email not found or enter a valid email';
-
-      console.log(message);
-    }
-    
-    else  {
-              //assigning the userid variable
-              _userId = user.id;
-
-              const resettoken = jwt.sign({
-                  _userId: user.id,
-                  email: user.email
-
-              }, config.secret, { expiresIn: '1h' });
-      user.resetPasswordToken = resettoken;
-      user.resetPasswordExpires = Date.now() + 3600000;
-
-   
-              console.log(resettoken)
-              // let newToken = new passwordResetToken ({
-              //     _userId: user.id,
-              //     resettoken: user.resetPasswordToken,
-              //     createAt: user.resetPasswordExpires
-              // });
-
-
-              // const passwordResetToken = await db.query(
-  
-              //   `Insert into passwordResetToken (_userId, resettoken, createAt) 
-              //   VALUES 
-              //   (?, ?, ?)`, 
-              //   [user.id, user.resetPasswordToken, user.resetPasswordExpires]
-              // );
-
-              // let newToken = passwordResetToken;
-
-              // newToken.save(newToken, (err) => {
-              //     if (err) {
-              //         next(err);
-              //     }
-              // })
-
-              message = 'Reset password successfully';
-              // return res.status(200).json({ message: 'Reset password successfully' });
-
-    }
-  
-return {message, user};
-
-}
-  
-catch (error) {
-  console.error(error);
-
-}
-  }
 
 
 
@@ -738,7 +456,6 @@ catch (error) {
   module.exports = {
     getAllUsers,
     register,
-    // registration,
     updateUser,
     deleteUser,
     getEmail,

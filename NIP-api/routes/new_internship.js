@@ -6,22 +6,6 @@ const newInternship = require('../models/new_internship');
 
 
 
-/* GET all new internships submitted to different institututions. */
-router.get('/getAll', (req,res)=>{
-
-try{
-  newInternship.all((data)=>{
-      res.json(data);
-  })
-
-
-} catch (error) {
-
-  console.error(`Error while getting the list`, err.message);
-  next(error);
-}
-});
-
 /* POST new internships */
 
 
@@ -33,34 +17,6 @@ router.post('/sendNewInternships', async function(req, res, next) {
     next(err);
   }
 });
-
-// router.post('/sendNewInternships', (req,res, next)=>{
-  
-//   // try {
-
-//   const cols = "`internships_name`, `company`, `institution`, `email`, `no_of_internship`, `closing_date`";
-//   const vals = [`"${req.body.internships_name}"`, `"${req.body.company}"`, `"${req.body.institution}"`, `"${req.body.email}"`, `"${req.body.no_of_internship}"`, `"${req.body.closing_date}"`];
-
-// newInternship.create(cols, vals,  (err, result)=>{
-   
-    
-//   if (err) {
-//     res.json({ success: false, msg: 'Failed to register the admin' });
-// } else {
-//     res.json({ success: true, msg: 'Admin successfully registered' });
-// }
-
-
-  
- 
-//     });
-
-//   // } catch (error) {
-//   //   next(error);
-//   // }
- 
-// })
-
 
 
 
@@ -140,6 +96,8 @@ router.get('/getNIMTInternship', async function(req, res, next) {
     }
   });
 
+  
+//get all send internships to different intitutions
   router.get('/getAllSendInternship', async function(req, res, next) {
     try {
       res.json(await newInternships.getAllSendInternship(req.query.page));

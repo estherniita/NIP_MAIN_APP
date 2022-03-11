@@ -3,7 +3,7 @@ const router = express.Router();
 const registeredInstitutions = require('../services/institution_admins');
 
 
-/* POST new institution */
+/* POST new institution  registration */
 router.post('/registerInstitution', async function(req, res, next) {
     try {
       res.json(await registeredInstitutions.register(req.body));
@@ -13,7 +13,8 @@ router.post('/registerInstitution', async function(req, res, next) {
     }
   });
 
-/* GET get the list of all registered organizations. */
+
+/* GET get the list of all registered institutions. */
 router.get('/getAllRegisteredInstitution', async function(req, res, next) {
   try {
     res.json(await registeredInstitutions.getAllRegisteredInstitution(req.query.page));
@@ -35,19 +36,9 @@ router.get('/getAllRegisteredInstitution', async function(req, res, next) {
 });
    
 
-/* GET the registration number. */
-router.get('/getOrganizationByRegistrationNo', async function(req, res, next) {
-  try {
-    res.json(await registeredInstitutions.getOrganizationByRegistrationNo(req.query.page));
-  } catch (err) {
-    console.error(`Error while getting the list of registration number`, err.message);
-    next(err);
-  }
-});
 
 
-
-  /* update new organization details */
+  /* update new institution details */
 
 router.put('/updateInstitutionDetails/:id', async function(req, res, next) {
     try {
@@ -59,7 +50,8 @@ router.put('/updateInstitutionDetails/:id', async function(req, res, next) {
   });
 
 
-  /* DELETE organization */
+  
+  /* DELETE institution */
 router.delete('deleteInstitution/:id', async function(req, res, next) {
     try {
       res.json(await registeredInstitutions.deleteInstitution(req.params.id));

@@ -34,6 +34,11 @@
               Registration number must be at least 6 characters!
             </div>
             </div>
+
+            <div class="social-container">
+              <app-error-message  [obs]="regNoerrorMessage"></app-error-message>
+            </div>
+
           </div>
           <div class="username-block">
           <input type="text" placeholder="Organization Physical Address" id="physical_address" formControlName="physical_address"/>
@@ -81,6 +86,8 @@
             </div>
             </div>
           </div>
+
+
           <div class="username-block">
           <input type="password" placeholder="Password" id="password" formControlName="password"/>
           <div class="error" *ngIf=" registerForm.get('password')?.invalid && registerForm.get('password')?.touched">

@@ -127,6 +127,23 @@ export class UserAuthService {
       errMsg
     );
   }
+
+  getOrganizationByRegistrationNo(registration_number: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // Authorization: this.token
+      })
+    };
+
+    return this.http
+      .post(this.server_url + "organization_register/getOrganizationByRegistrationNo", registration_number, {
+        headers: httpOptions.headers
+      })
+      .pipe(map(res => res));
+  }
+
+
 }
 
 

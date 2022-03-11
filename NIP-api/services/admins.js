@@ -11,14 +11,11 @@ const crypto = require("../cryptojs");
 const crypto1 = require("crypto");
 
 
+//service to register mtc super admins and institution admins
 
 async function registerAdmin(newAdmin, res){
 
   try{
-
-  //   if (await db.users.findOne({ where: { username: newAdmin.username } })) {
-  //     throw 'Username "' + newAdmin.username + '" is already taken';
-  // }
 
     const hashPass = await bcrypt.hash(newAdmin.password, 12);
 
@@ -43,23 +40,12 @@ async function registerAdmin(newAdmin, res){
     if (result.affectedRows) {
 
       const token = jwt.sign({ newAdmin}, config.secret, {
-        //1 wek in seconds this to force the use to log in after every week, that is when the token
-        //gets expired
+    
         expiresIn: "5h"
     });
 
     message = 'Admin registered'
     success = true;
-    // res.json({
-    //     success: true,
-    //     token: crypto.encrypt(token, config.secret),
-    //     user: {
-    //         username: user.username,
-    //         email: user.email
-    //         // role: user.role,
-    //         // applicant: true
-    //     }
-    // });
     }
   
     return {message, success};
@@ -71,6 +57,8 @@ async function registerAdmin(newAdmin, res){
 }
 }
 
+
+//services to check if email already registered in the system
 
 async function getEmail( email){
 
@@ -102,6 +90,8 @@ catch (error) {
 }
 
 
+//service to get admins by username
+
 async function getAdminByUsername( username){
 
   try{
@@ -115,8 +105,6 @@ async function getAdminByUsername( username){
   );
 
   const data = helper.emptyOrRows(rows);
-  // const meta = {page};
-
   return {
     data
   }
@@ -129,22 +117,8 @@ catch (error) {
 
 }
 
-exports.loginUser = async function (user) {
-  // Creating a new Mongoose Object by using the new keyword
-  try {
-      // Find the User 
-      var _details = await User.findOne({ username: user.username });
-      var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
-      if (!passwordIsValid) throw Error("Invalid username/password")
-      var token = jwt.sign({id: _details._id}, config.SECRET, {
-          expiresIn: 86400 // expires in 24 hours
-      });
-      return token;
-  } catch (e) {
-      // return a Error message describing the reason     
-      throw Error("Error while Login User")
-  }
-}
+
+//service to authenticate users to login
 
  async function authenticate(username, password, admin){
   // const username = User.username;
@@ -154,10 +128,6 @@ exports.loginUser = async function (user) {
    let  success = false;   
   const result = await db.query(`SELECT * FROM admins WHERE username =?`,[username]);
     if (result.length < 0) {
-      // res.send({
-      //   "code":400,
-      //   "failed":"error ocurred"
-      // })
 
       message ='error occured';
       success = false;
@@ -186,11 +156,7 @@ exports.loginUser = async function (user) {
           //      "success":"Username and password does not match"
           // })
 
-          // let encryptedEmail = crypto.encrypt(user.email, config.secret);
-
-          //ecrypting the token using crypto
-          // let enjwt = crypto.encrypt(token);
-          // token1 = token;
+       
           return {message, token, success, result};
         }
 
@@ -211,10 +177,10 @@ exports.loginUser = async function (user) {
  
   }
 
-    // let message = 'user not found';
+
 
  
-
+//service to update admin details
   async function updateAdmin(id, newAdmin){
 
     try {
@@ -257,6 +223,8 @@ catch (error) {
 } 
 
 
+
+
 async function updateAdmin1(id, newAdmin){
 
   try{
@@ -293,14 +261,11 @@ catch (error) {
 
 } 
 
-// }
-// catch (error) {
-//   console.error(error);
-//   // expected output: ReferenceError: nonExistentFunction is not defined
-//   // Note - error messages will vary depending on browser
 
-// }
   
+
+
+// service to get all registered admins 
   
 async function getAllAdmins(page = 1){
     // const offset = helper.getOffset(page, config.listPerPage);
@@ -327,6 +292,8 @@ async function getAllAdmins(page = 1){
 }
   }
   
+
+  //service to delete admin
 
   async function deleteAdmin(id){
 
@@ -355,37 +322,10 @@ async function getAllAdmins(page = 1){
 
 
 
-  async function resetPassword1( email){
-
-    try{
-
-    const user = await db.query(
-  
-      `Select email from users
-  
-      WHERE email=?`, 
-      [email]
-    );
-  
-    let message = 'Email exist';
-  
-    if (user.length > 0) {
-      message = 'Email not found';
-    }
-
-    return {message};
-
-  }
-  
-  catch (error) {
-    console.error(error);
  
-}
-  }
-
 
   
-  
+  //service to reset passwords
 async function resetPassword( email) {
 
 //  let message = 'not found';
@@ -532,7 +472,6 @@ catch (error) {
   module.exports = {
     getAllAdmins,
     registerAdmin,
-    // registration,
     updateAdmin,
     deleteAdmin,
     getEmail,

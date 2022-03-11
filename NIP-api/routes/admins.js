@@ -29,62 +29,9 @@ router.post('/register', async function(req, res, next) {
   });
 
 
-  router.post('/register2', async function(req, res, next) {
-    // try {
-    //   res.json(await newAdmin.register(req.body));
-    // } catch (err) {
-    //   console.error(`Error while creating new user`, err.message);
-    //   next(err);
-    // }
-
-  
-
-  //adding the user to the 
-  // newAdmin.register(newUser, (err, user) => {
-
-   
-
-        res.json(await newAdmin.registerAdmin(req.body, (err, user) => {
-        // res.json(await newAdmin.register(req.body));
-        //  } catch (err) {
-        // console.error(`Error while creating new user`, err.message);
-        // next(err);
-        // }
 
 
-          try {
-
-   
-          if (err) {
-              next(err);
-          } else {
-              const token = jwt.sign({ admin }, config.secret, {
-                  //1 wek in seconds this to force the use to log in after every week, that is when the token
-                  //gets expired
-                  expiresIn: "5h"
-              });
-
-              res.json({
-                  success: true,
-                  token: crypto.encrypt(token, config.secret),
-                  user: {
-                      username: user.username,
-                      email: user.email,
-                      role: user.role
-                      // applicant: true
-                  }
-              });
-          }
-
-          console.log(token);
-      } catch (err) {
-        console.log(err);
-    }
-  }));
-  }); 
-
-
-  /* update user details */
+  /*route to  update user details */
 
 router.put('/updateAdmin/:id', async function(req, res, next) {
     try {
@@ -108,7 +55,7 @@ router.put('/updateAdmin/:id', async function(req, res, next) {
 
 
 
-  /* DELETE a user*/
+  /* DELETE an admin*/
 router.post('/deleteAdmin', async function(req, res, next) {
     try {
       res.json(await newAdmin.deleteAdmin(req.body.id ));
@@ -177,42 +124,7 @@ router.post('/deleteAdmin', async function(req, res, next) {
           }
         });
 
-    
 
-  // exports.login = async function(req,res){
-  //   var username= req.body.username;
-  //   var password = req.body.password;
-  //   db.query('SELECT * FROM users WHERE username = ?',[username], async function (error, results, fields) {
-  //     if (error) {
-  //       res.send({
-  //         "code":400,
-  //         "failed":"error ocurred"
-  //       })
-  //     }else{
-  //       if(results.length >0){
-  //         const comparision = await bcrypt.compare(password, results[0].password)
-  //         if(comparision){
-  //             res.send({
-  //               "code":200,
-  //               "success":"login sucessfull"
-  //             })
-  //         }
-  //         else{
-  //           res.send({
-  //                "code":204,
-  //                "success":"Username and password does not match"
-  //           })
-  //         }
-  //       }
-  //       else{
-  //         res.send({
-  //           "code":206,
-  //           "success":"username does not exits"
-  //             });
-  //       }
-  //     }
-  //     });
-  // }
 
 
 module.exports = router;
