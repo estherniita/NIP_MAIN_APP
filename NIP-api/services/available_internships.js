@@ -21,7 +21,6 @@ async function availableInternships(availableInternship, res){
       availableInternship.internship_name, availableInternship.town_city, availableInternship.company_name, availableInternship.registration_number,
       availableInternship.number_of_positions, availableInternship.closing_date, availableInternship.email, availableInternship.pdf_file
       
-    
     ]
   );
   
@@ -40,6 +39,7 @@ else {
   message = 'Error while inserting';
 }
 
+console.log('message', message)
   return {message, success};
 
 }

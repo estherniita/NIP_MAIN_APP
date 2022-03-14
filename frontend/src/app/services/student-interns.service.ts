@@ -21,6 +21,8 @@ export class StudentInternsService {
   studentdata: any;
   private userMessage = new BehaviorSubject({});
   private server_url = environment.serverUrl;
+  private token = environment.token;
+
 
   constructor(private http: HttpClient,
     private router: Router) { }
@@ -36,7 +38,7 @@ export class StudentInternsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -50,12 +52,12 @@ export class StudentInternsService {
 
     newStudentInterns(firstname: string, surname: string, idNo_or_passportNo: string, student_number: string, student_email: string, student_phoneNumber: string, institution: string,
       field_of_study: string, internships_name: string, company: string, town_city: string, company_email: string, company_registrationNo: string, completion: string, admission: string, student_document: any): any {
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Content-Type': 'application/json',
-      //     // Authorization: this.token
-      //   })
-      // };
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+         Authorization: this.token
+        })
+      };
 
       const formData = new FormData();
       formData.append('firstname', firstname);
@@ -76,7 +78,7 @@ export class StudentInternsService {
       formData.append('student_document', student_document);
   
       return this.http
-        .post(this.server_url + 'student_interns/newStudentInterns', formData)
+        .post(this.server_url + 'student_interns/newStudentInterns', formData, {headers: httpOptions.headers})
         .toPromise();
     }
 
@@ -86,7 +88,7 @@ export class StudentInternsService {
     //   // const httpOptions = {
     //   //   headers: new HttpHeaders({
     //   //     'Content-Type': 'application/json',
-    //   //     // Authorization: this.token
+    //   //    Authorization: this.token
     //   //   })
     //   // };
 
@@ -118,7 +120,7 @@ export class StudentInternsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -136,7 +138,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -152,7 +154,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -168,7 +170,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -184,7 +186,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -200,7 +202,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -217,7 +219,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -235,7 +237,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -253,7 +255,7 @@ export class StudentInternsService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -277,7 +279,7 @@ export class StudentInternsService {
           const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type': 'application/json',
-              // Authorization: this.token
+             Authorization: this.token
             })
           };
       
@@ -298,7 +300,7 @@ export class StudentInternsService {
           const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type': 'application/json',
-              // Authorization: this.token
+             Authorization: this.token
             })
           };
       
@@ -319,7 +321,7 @@ export class StudentInternsService {
           const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type': 'application/json',
-              // Authorization: this.token
+             Authorization: this.token
             })
           };
       
@@ -355,7 +357,7 @@ export class StudentInternsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -376,7 +378,7 @@ export class StudentInternsService {
             const httpOptions = {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                // Authorization: this.token
+               Authorization: this.token
               })
             };
         

@@ -21,7 +21,7 @@ export class UserAuthService {
 
   private server_url = environment.serverUrl;
   authToken: any;
-  private token: any;
+  private token = environment.token;
   user?: Object;
   public surname?: any;
   userdata: any;
@@ -41,12 +41,12 @@ export class UserAuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-       // Authorization: this.token
+      Authorization: this.token
       })
     };
 
     return this.http
-      .post('http://localhost:3000/' + 'organization_register/registerOrganizations', user, {
+      .post(this.server_url + 'organization_register/registerOrganizations', user, {
         headers: httpOptions.headers
       })
       .pipe(map(res => res));
@@ -61,7 +61,7 @@ export class UserAuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-       // Authorization: this.token
+      Authorization: this.token
       })
     };
 
@@ -79,7 +79,7 @@ export class UserAuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: ''
+        Authorization: this.token
       })
     };
 
@@ -137,7 +137,7 @@ export class UserAuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 

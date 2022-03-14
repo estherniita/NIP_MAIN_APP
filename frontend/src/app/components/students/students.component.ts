@@ -43,8 +43,8 @@ export class StudentsComponent implements OnInit {
   loading: Boolean = false;
     public submitted = false;
   image!: File;
-  completion: string = "not updated";
-  admission: string = "not updated";
+  completion: string = "pending";
+  admission: string = "pending";
   selectedImage?: pdfSnippet;
   fileMessage: string = "No pdf document uploaded";
   btnWait: Boolean = false;

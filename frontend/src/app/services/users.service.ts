@@ -21,7 +21,7 @@ export class UsersService {
 
   private server_url = environment.serverUrl;
   authToken: any;
-  private token: any;
+  private token = environment.token;
   user?: Object;
   username?: String;
   userdata: any;
@@ -42,7 +42,7 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -59,7 +59,7 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
   
@@ -119,7 +119,7 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -136,7 +136,7 @@ export class UsersService {
     const httpOptions1 = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -158,6 +158,8 @@ export class UsersService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
+          Authorization: this.token
+
       
         })
       };
@@ -176,7 +178,7 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -197,7 +199,7 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 

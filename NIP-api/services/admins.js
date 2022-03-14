@@ -18,7 +18,8 @@ async function registerAdmin(newAdmin, res){
   try{
 
     const hashPass = await bcrypt.hash(newAdmin.password, 12);
-
+     
+    console.log('Password', hashPass )
 
     const result = await db.query(
       `INSERT INTO admins 

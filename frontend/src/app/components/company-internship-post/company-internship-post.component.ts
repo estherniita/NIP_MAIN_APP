@@ -170,7 +170,7 @@ export class CompanyInternshipPostComponent implements OnInit {
 
         // this.ngOnInit()
 
-      }
+      }  
 
       else {
         if (data.message === 'Error while inserting') {

@@ -16,6 +16,9 @@ const httpOptions = {
 })
 export class CompanyRegisterService {
 
+  private token = environment.token;
+
+
   organization?: Object;
   registration_number?: String;
   organizationdata: any;
@@ -36,7 +39,7 @@ export class CompanyRegisterService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -52,7 +55,7 @@ export class CompanyRegisterService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -69,7 +72,7 @@ export class CompanyRegisterService {
       const httpOptions1 = {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -91,6 +94,7 @@ export class CompanyRegisterService {
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
+            Authorization: this.token
         
           })
         };
@@ -109,7 +113,7 @@ export class CompanyRegisterService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -131,7 +135,7 @@ export class CompanyRegisterService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   

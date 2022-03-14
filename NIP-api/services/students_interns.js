@@ -218,7 +218,7 @@ async function getAllStudentInterns(){
 
     try{
     const students_interns = await db.query(
-      `SELECT * FROM students_interns WHERE (admission = 'No' OR admission = 'not updated') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      `SELECT * FROM students_interns WHERE (admission = 'No' OR admission = 'pending') AND company_registrationNo=? ORDER BY last_updated DESC`,
       [registration_number ]
       // [offset, config.listPerPage]
     );

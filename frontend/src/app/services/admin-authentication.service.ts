@@ -19,7 +19,7 @@ const httpOptions = {
 export class AdminAuthenticationService {
 
   authToken: any;
-  private token: any;
+  private token = environment.token;
   user?: Object;
   username?: String;
   userdata: any;
@@ -115,7 +115,7 @@ export class AdminAuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -132,7 +132,7 @@ export class AdminAuthenticationService {
     // const httpOptions = {
     //   headers: new HttpHeaders({
     //     'Content-Type': 'application/json',
-    //     // Authorization: this.token
+    //    Authorization: this.token
     //   })
     // };
   
@@ -168,7 +168,7 @@ export class AdminAuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -185,7 +185,7 @@ export class AdminAuthenticationService {
     const httpOptions1 = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -220,7 +220,7 @@ export class AdminAuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 

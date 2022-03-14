@@ -15,7 +15,7 @@ const httpOptions = {
 export class InternshipsService {
 
   authToken: any;
-  private token: any;
+  private token = environment.token;
   internships?: Object;
   public surname: any;
   internshipdata: any;
@@ -28,7 +28,7 @@ export class InternshipsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -44,7 +44,7 @@ export class InternshipsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -60,7 +60,7 @@ export class InternshipsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
@@ -76,12 +76,12 @@ export class InternshipsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: this.token
+       Authorization: this.token
       })
     };
 
     return this.http
-      .post(this.server_url + 'new-internships/sendNewInternships', internships, {
+      .post('https://api.mtc.com.na/nip/2.0.0/' + 'new-internships/sendNewInternships', internships, {
         headers: httpOptions.headers
       })
       .pipe(map(res => res));
@@ -94,7 +94,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -109,12 +109,12 @@ export class InternshipsService {
 
 
     companyInternsipPost(company_name: string, town_city: string, internship_name: string, registration_number: string, number_of_positions: string, email: string, closing_date: string, pdf_file: any): any {
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Content-Type': 'application/json',
-      //     // Authorization: this.token
-      //   })
-      // };
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.token
+        })
+      };
 
       const formData = new FormData();
       formData.append('company_name', company_name);
@@ -127,7 +127,7 @@ export class InternshipsService {
       formData.append('pdf_file', pdf_file);
   
       return this.http
-        .post(this.server_url + 'availableInternships/availableInternship', formData)
+        .post(this.server_url + 'availableInternships/availableInternship', formData, {headers: httpOptions.headers})
         .toPromise();
     }
 
@@ -136,7 +136,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -153,7 +153,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -169,7 +169,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -185,7 +185,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -201,7 +201,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -218,7 +218,7 @@ export class InternshipsService {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // Authorization: this.token
+         Authorization: this.token
         })
       };
   
@@ -239,7 +239,7 @@ export class InternshipsService {
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            // Authorization: this.token
+           Authorization: this.token
           })
         };
     
