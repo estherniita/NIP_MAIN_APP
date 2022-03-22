@@ -31,16 +31,32 @@
                     <h3><i class="fa fa-female fa-2x"></i> <i class="fa fa-male fa-2x" style="margin-left: 2rem;"></i></h3>
                 </div>
                 <div class="row p-2 no-gutters rounded" >
-                    <!-- <div class="col-6 rounded">
+                    <div class="col-4 rounded">
                         <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
-                            <h3>Completed</h3>
-                            <span class="medium text-uppercase">50</span>
+
+                            <div *ngFor=" let student of students"  let i = index>
+                            <h4>Total received</h4>
+                            
+                            <h4 class="medium text-uppercase">{{student.total_received}}</h4>
                         </div>
-                    </div> -->
-                    <div class="col-12 rounded">
+
+                
+                        </div>
+                    </div>
+                    <div class="col-4 rounded">
                         <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                            <h3>To be admitted or not </h3>
-                            <span class="medium text-uppercase"></span>
+                            <div *ngFor=" let student of pending"  let i = index>
+                            <h4>Total Pending</h4>
+                            <h4 class="medium text-uppercase"> {{student.total_pending}} </h4>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-4 rounded">
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <div *ngFor=" let student of interns"  let i = index>
+                                <h4>Total not Admitted</h4>
+                                <h4 class="medium text-uppercase"> {{student.total_not_admitted}} </h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,10 +75,24 @@
                     <h3><i class="fa fa-building fa-2x"></i></h3>
                 </div>
                 <div class="row p-2 no-gutters rounded" >
-                    <div class="col-12 rounded">
+                    <div class="col-6 rounded">
+                        <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                            
+                            <div *ngFor="let totalInternship of totalInternships"  let i = index>
+                                <h4>Total Internship requests</h4>
+                            
+                              <h4> {{totalInternship.total_internship}} </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 rounded">
                         <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                            <h3>Click on</h3>
-                            <span class="small text-uppercase">this tab</span>
+                            <h4>Total Internship Positions</h4>                      
+                            <div *ngFor="let totalInternship of totalInternshipPosts"  let i = index>
+                            
+                              <h4> {{totalInternship.total_internship_posts}} </h4>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -86,18 +116,27 @@
                         <h3><i class="fa fa-envelope-square fa-2x"></i></h3>
                     </div>
                     <div class="row p-2 no-gutters rounded" >
-                        <div class="col-12 rounded">
+                        <div class="col-6 rounded">
                             <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
-                                <h3>Admitted and Completted</h3>
-                                <span class="medium text-uppercase"></span>
+                                
+                                <div *ngFor="let student of admitted"  let i = index>
+                                    <h4>Total Admitted</h4>
+                                
+                                  <h4> {{student.total_admitted}} </h4>
+                                </div>
                             </div>
                         </div>
-                        <!-- <div class="col-6 rounded">
+                        <div class="col-6 rounded">
                             <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                                <h3>Still to be offered</h3>
-                                <span class="medium text-uppercase">110</span>
+                                <h4>Total Completed</h4>                      
+                                <!-- <div *ngFor="let totalInternship of totalInternshipPosts"  let i = index>
+                                
+                                  <h4> {{totalInternship.total_internship_posts}} </h4>
+                                </div> -->
+                                
                             </div>
-                        </div> -->
+                        </div>
+
                     </div>
                 </div>
               </a>

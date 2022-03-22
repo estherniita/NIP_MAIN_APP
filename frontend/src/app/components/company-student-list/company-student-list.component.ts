@@ -31,7 +31,7 @@ export class CompanyStudentListComponent implements OnInit {
   public companyData: any;
 
 
-  constructor(public studentService: StudentInternsService,     private activeModal: NgbActiveModal, private router: Router,
+  constructor(public studentService: StudentInternsService, private activeModal: NgbActiveModal, private router: Router,
     ) { }
 
   ngOnInit(): void {

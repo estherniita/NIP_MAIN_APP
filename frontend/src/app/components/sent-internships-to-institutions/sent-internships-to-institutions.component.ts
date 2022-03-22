@@ -33,6 +33,8 @@ export class SentInternshipsToInstitutionsComponent implements OnInit {
     .subscribe((result:any) => {
       // this.Users.push(result);
       result.data.forEach((val: any) => this.internships.push(val));
+
+      
     });
   }
 

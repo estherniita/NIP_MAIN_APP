@@ -198,6 +198,18 @@
                     </div>
                     </div>
                 <!--company-->
+
+                <div hidden class="form-group mb-3">
+                    <label for="internship_id" class="text-secondary">internship id <span class="text-danger">*</span></label>
+                    <input type="text" name="internship_id" readonly required formControlName="internship_id" class="form-control primary-border"
+                        [ngClass]="{ 'is-invalid': submitted && f?.internship_id?.errors, 'danger-border': submitted && f?.internship_id?.errors }">
+                 
+                        <div *ngIf="submitted && f?.internship_id?.errors" class="invalid-feedback">
+                            <div *ngIf="f?.internship_id?.errors?.required">Field internship id is required.</div>
+                            <div *ngIf="f?.internship_id?.errors?.pattern">Enter a valid internship id.</div>
+                        </div>
+                   
+                </div>
                 <div class="form-group mb-3">
                   <label for="company" class="text-secondary">Company name<span class="text-danger">*</span></label>
                   <input type="text" name="company" required formControlName="company" class="form-control primary-border"
@@ -248,25 +260,18 @@
                 <div class="row aqua-gradient">
                   <div class="col-12">
                     <div *ngIf="showtoast">
-                      <p id="toast">Student details successfully sent</p>
+                      <h3 id="toast">Student details successfully sent</h3>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div *ngIf="showtoast2" >
+                      <h3 id="toast" >Something went wrong while sending student details</h3>
                     </div>
                   </div>
                 </div>
               </div>
               
-
-     
-                    <!--description-->
-                    <!-- <div class="form-group mb-3">
-                        <label for="description" class="text-secondary">Company bio<span class="text-danger">*</span></label>
-                        <textarea name="description" rows="3" required formControlName="description" class="form-control primary-border"
-                            [ngClass]="{ 'is-invalid': submitted && f?.description?.errors, 'danger-border': submitted && f?.description?.errors }"></textarea>
-  
-                        <div *ngIf="submitted && f?.description?.errors" class="invalid-feedback">
-                            <div *ngIf="f?.description?.errors?.required">Please tell us about your company.</div>
-                            <div *ngIf="f?.description?.errors?.minlength">Min limit is 20 characters.</div>
-                        </div>
-                    </div> -->
   
                     <!--SUBMIT-->
                     <div class="form-group mb-2">

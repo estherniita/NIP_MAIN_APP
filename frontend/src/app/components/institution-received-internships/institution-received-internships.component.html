@@ -48,6 +48,8 @@
                       <a (click)="download(internship.pdf_file)" class="btn">Download</a>
                     </td>
                     <td hidden>{{ internship.company_email}}</td>
+                    <td hidden>{{ internship.id}}</td>
+
       
                     <td>
                     <div class="btn-group " role="group" aria-label="...">
@@ -69,7 +71,7 @@
           <div *ngIf="!internships.length" style="height: 100%; padding: 2rem;">
             <h1 class="text-center">Currently there are no internship(s) post for your institution</h1> 
           </div>
-        <!-- </div> -->
+         <!-- </div> -->
     </div>
     </div>
 </div>

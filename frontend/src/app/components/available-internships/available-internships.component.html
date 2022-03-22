@@ -50,7 +50,8 @@
         
         </div>
         <div class="job-details">
-        <h3>{{availableinternships.internship_name}}</h3>
+        <h3>{{availableinternships.internship_name}} </h3>
+        <h3 hidden>{{availableinternships.id}}</h3>
         <span class="company-neme"> 
           {{ availableinternships.company_name}}
         </span>
@@ -81,7 +82,7 @@
         <span class="btn-full-time">Due: {{availableinternships.closing_date}}</span>
         </div>
         <div class="col-lg-2 col-md-3 col-xs-12 text-left">
-        <span class="btn-apply" (click)="sendInternship(availableinternships)">Send request</span>
+        <span class="btn-apply btn" (click)="sendInternship(availableinternships)">Send request</span>
         <a (click)="download(availableinternships.pdf_file)" class="btn"> More Details</a>
         </div>
         </div>

@@ -21,9 +21,9 @@
         <li *ngIf="adminAuthenticationService.isUserAuthenticatedCompany()">
           <a  [routerLink]="['/companies']">Company Dashboard</a>
         </li>
-        <li *ngIf="userService.isUserAuthenticatedrole()">
+        <!-- <li *ngIf="userService.isUserAuthenticatedrole()">
           <a  [routerLink]="['/companies']">Company Dashboard</a>
-        </li>
+        </li> -->
         <li *ngIf="userService.isUserAuthenticatedrole()">
           <a  [routerLink]="['/user-management']">User Management</a>
         </li>

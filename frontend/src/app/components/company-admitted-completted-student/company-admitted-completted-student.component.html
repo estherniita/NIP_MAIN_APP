@@ -24,9 +24,9 @@
                     </th>
                   </tr>
               <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
-                <th>Organization/ company and town</th>
-                <th> Contact person</th>
-                <th>Company Registration number</th>
+                <!-- <th>Organization/ company and town</th> -->
+                <!-- <th> Contact person</th>
+                <th>Company Registration number</th> -->
                 <th> Internship Request</th>
                 <th>student fullname</th>
                 <th>Student number</th>
@@ -36,6 +36,7 @@
                 <th>Student Id/passport number</th>
                 <th>Admission</th>
                 <th>Completion</th>
+                <th>Student document</th>
                 
                
                 
@@ -46,9 +47,9 @@
             <tbody>
               <tr *ngFor="let student of students | searchInstitution: search; let i = index">
                
-                <td>{{student.company}}, {{student.town_city}}</td>
-                <td>{{student.company_email}}</td>
-                <td>{{student.company_registrationNo}}</td>
+                <!-- <td>{{student.company}}, {{student.town_city}}</td> -->
+                <!-- <td>{{student.company_email}}</td>
+                <td>{{student.company_registrationNo}}</td> -->
 
                 <td>{{student.internships_name}}</td>
                 <td>{{student.firstname}} {{student.surname}}</td>

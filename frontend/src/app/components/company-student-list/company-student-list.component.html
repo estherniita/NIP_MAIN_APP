@@ -9,12 +9,16 @@
   <div class="heading-container">
   <h1 class="h-m h-fw-1 news__heading">All National Internship Program Interns, to be updated and the one who are not admitted </h1>
 </div>
-  <div class="col-12">
-    <h1>List of students to be updated as admitted or not</h1>
+  <!-- <div class="col-12">
+    <h1>List of students to be updated as admitted or not</h1> -->
 
     <div class="row">
-      <!-- <div class="col-md-12 col-sm-12"> -->
-          
+
+      <div class="col-md-6 mb-6" >
+        <div class="info-color text-center white-text"  >
+            <h2 class="card-title">List of students still pending for admission</h2>
+        </div>
+
       <table *ngIf="students.length" mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
       st-safe-src="Users">
           <thead>
@@ -25,11 +29,11 @@
                   </th>
                 </tr>
             <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
-              <th>Organization/ company and town</th>
-              <th> Contact person</th>
+              <th hidden>Organization/ company and town</th>
+              <th hidden> Contact person</th>
               <th> Internship Request</th>
               <th>student fullname</th>
-              <th>Student number</th>
+              <th hidden>Student number</th>
               <th>Institution</th>
               <th>Field of Study</th>
               <th>Student phone number and email</th>
@@ -41,11 +45,11 @@
           <tbody>
             <tr *ngFor="let student of students | searchInstitution: search; let i = index">
              
-              <td>{{student.company}}, {{student.town_city}}</td>
-              <td>{{student.company_email}}</td>
+              <td hidden>{{student.company}}, {{student.town_city}}</td>
+              <td hidden>{{student.company_email}}</td>
               <td>{{student.internships_name}}</td>
               <td>{{student.firstname}} {{student.surname}}</td>
-              <td>{{student.student_number}}</td>
+              <td hidden>{{student.student_number}}</td>
               <td>{{student.institution}}</td>
               <td>{{student.field_of_study}}</td>
               <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
@@ -83,14 +87,19 @@
         <div *ngIf="!students.length" style="height: 100%; padding: 2rem;">
           <h3 class="text-center">No student(s) sent from any institution(s) for an internship request</h3> 
         </div>
-      </div>
+    
   </div>
+  
 
-
-  <div class="col-12">
+  <!-- <div class="col-12">
     <h1 style="margin-top: 5rem;">List of students who are not admitted</h1>
-    <div class="row">
+    <div class="row"> -->
       <!-- <div class="col-md-12 col-sm-12"> -->
+
+        <div class="col-md-6 mb-6" >
+          <div class="info-color text-center white-text"  >
+              <h2 class="card-title">List of students who are not admitted</h2>
+          </div>
         
           
       <table *ngIf="interns.length" mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
@@ -103,14 +112,14 @@
                   </th>
                 </tr>
             <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
-              <th>Organization/ company and town</th>
-              <th> Contact person</th>
+              <th hidden>Organization/ company and town</th>
+              <th hidden> Contact person</th>
               <th> Internship Request</th>
               <th>student fullname</th>
-              <th>Student number</th>
+              <th hidden>Student number</th>
               <th>Institution</th>
               <th>Field of Study</th>
-              <th>Student phone number and email</th>
+              <th hidden>Student phone number and email</th>
               <th>Student documents</th>
 
               
@@ -119,14 +128,14 @@
           <tbody>
             <tr *ngFor="let intern of interns | searchInstitution: search; let i = index">
              
-              <td>{{intern.company}}, {{intern.town_city}}</td>
-              <td>{{intern.company_email}}</td>
+              <td hidden>{{intern.company}}, {{intern.town_city}}</td>
+              <td hidden>{{intern.company_email}}</td>
               <td>{{intern.internships_name}}</td>
               <td>{{intern.firstname}} {{intern.surname}}</td>
-              <td>{{intern.student_number}}</td>
+              <td hidden>{{intern.student_number}}</td>
               <td>{{intern.institution}}</td>
               <td>{{intern.field_of_study}}</td>
-              <td>{{intern.student_email}}, {{intern.student_phoneNumber}}</td>
+              <td hidden>{{intern.student_email}}, {{intern.student_phoneNumber}}</td>
               <td>{{intern.student_document}} 
                 
                 <a (click)="download(intern.student_document)">Download</a>

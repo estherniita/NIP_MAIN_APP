@@ -6,6 +6,7 @@ import { InternshipsService } from '../../services/internships.service';
 import {StudentInternsService} from '../../services/student-interns.service';
 import {AdminAuthenticationService} from '../../services/admin-authentication.service';
 
+
 class pdfSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -17,6 +18,8 @@ class pdfSnippet {
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit {
+
+
 
   studentForm = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
@@ -35,10 +38,21 @@ export class StudentsComponent implements OnInit {
     completion: new FormControl('',),
     student_document: new FormControl('', [Validators.required]),
     town_city: new FormControl('', [Validators.required]),
+    internship_id: new FormControl('', [Validators.required]),
 
     // contact_details: new FormControl('', [Validators.required]),
   },
   );
+
+
+  // successModal() {
+  //   ($("#successModal")as any).modal('toggle');
+  // }
+
+
+
+
+ 
   data: any;
   loading: Boolean = false;
     public submitted = false;
@@ -52,6 +66,7 @@ export class StudentsComponent implements OnInit {
   message?: String;
   error:Boolean = false;
   maxUpload: Boolean = false;
+  showtoast2: Boolean = false;
   missingImage: Boolean = true;
   wrongType: Boolean = false;
   sizeLimit: Boolean = false;
@@ -94,6 +109,8 @@ export class StudentsComponent implements OnInit {
             company_email: this.data.data.company_email,
             company_registrationNo: this.data.data.registration_number,
             town_city: this.data.data.town_city,
+            internship_id: this.data.data.id
+
 
           });
           //getting the h1 element
@@ -164,6 +181,7 @@ export class StudentsComponent implements OnInit {
       this.f.town_city.value,
       this.f.company_email.value,
       this.f.company_registrationNo.value,
+      this.f.internship_id.value,
       this.completion,
       this.admission,
       this.image
@@ -199,33 +217,19 @@ export class StudentsComponent implements OnInit {
 
       }
 
-     else{
+     else{  
 
-      if (data.message === 'Error while sending details' || !data.success) {
-        this.showUError = 'something went wrong try again later';
-        this.loading = true;
-
-
-        console.log('eerror', this.showUError);
-        setTimeout(() => {
-          this.showUError = null;
-          // this.router.navigate(['/login']);
-        }, 10000);
-        // this.waiting = false;
-
-        this.showPwd = true;
-        setTimeout(() => {
-          this.closeAlert = true;
-          this.showPwd = false;
-        }, 10000);
-      } 
-
+      console.log('an error', data.error)
+       
+    
+      this.showtoast2 = true;
         
      }
 
-    }).finally(() => {
+    }) .finally(() => {
       this.onComplete();
     });
+   
     }
   }
 

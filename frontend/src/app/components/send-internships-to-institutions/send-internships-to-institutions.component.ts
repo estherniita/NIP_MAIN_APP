@@ -25,6 +25,8 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
     institution: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     pdf_file: new FormControl('', [Validators.required]),
+    internship_request_id: new FormControl('', [Validators.required]),
+
   
         }
 
@@ -93,8 +95,8 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
          no_of_internship: this.data.data.number_of_positions,
          email: this.data.data.email,
          closing_date: this.data.data.closing_date,
-         pdf_file: this.data.data.pdf_file
-
+         pdf_file: this.data.data.pdf_file,
+         internship_request_id: this.data.data.id
        });
        //getting the h1 element
       //  this.document.getElementById('header')!.innerText = `Send ${this.data.data.internship_name}'s positions`;
@@ -249,7 +251,8 @@ export class SendInternshipsToInstitutionsComponent implements OnInit {
         no_of_internship: this.new_internshipsForm.value.no_of_internship,
          closing_date: this.new_internshipsForm.value.closing_date,
         company_email: this.new_internshipsForm.value.company_email,
-        pdf_file: this.new_internshipsForm.value.pdf_file
+        pdf_file: this.new_internshipsForm.value.pdf_file,
+        internship_request_id: this.new_internshipsForm.value.internship_request_id
 
        
        

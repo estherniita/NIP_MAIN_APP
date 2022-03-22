@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Users } from '../Users';
 import { BehaviorSubject, interval, Observable } from 'rxjs';
@@ -120,9 +120,7 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + 'admin/register', user, {
-        headers: httpOptions.headers
-      })
+      .post(this.server_url + 'admin/register', user)
       .pipe(map(res => res));
   }
 
@@ -137,9 +135,7 @@ export class AdminAuthenticationService {
     // };
   
     return this.http
-      .post(this.server_url + 'admin/authenticate', user, {
-        headers: httpOptions.headers
-      })
+      .post(this.server_url + 'admin/authenticate', user)
       .pipe(map(res => res));
   }
 
@@ -173,9 +169,7 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + "admin/byusername", username, {
-        headers: httpOptions.headers
-      })
+      .post(this.server_url + "admin/byusername", username)
       .pipe(map(res => res));
   }
 
@@ -190,9 +184,7 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .get(this.server_url + "admin/getAllAdmins", {
-        headers: httpOptions1.headers
-      })
+      .get(this.server_url + "admin/getAllAdmins")
       .pipe(map(res => res));
   
   }
@@ -207,9 +199,7 @@ export class AdminAuthenticationService {
       };
   
       return this.http
-        .put(this.server_url + `admin/updateAdmin/${id}`, data, {
-          headers: httpOptions.headers
-        })
+        .put(this.server_url + `admin/updateAdmin/${id}`, data)
         .pipe(map(res => res));
     }
 
@@ -225,9 +215,7 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + `admin/deleteAdmin`, { id: data }, {
-        headers: httpOptions.headers
-      })
+      .post(this.server_url + `admin/deleteAdmin`, { id: data })
       .pipe(map(res => res));
   }
 

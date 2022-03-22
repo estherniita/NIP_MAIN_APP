@@ -33,9 +33,7 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllavailableInternships', {
-        headers: httpOptions.headers
-      })
+      .get(this.server_url + 'availableInternships/getAllavailableInternships')
       .pipe(map(res => res));
   }
 
@@ -49,9 +47,7 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllavailableInternships1', {
-        headers: httpOptions.headers
-      })
+      .get(this.server_url + 'availableInternships/getAllavailableInternships1')
       .pipe(map(res => res));
   }
 
@@ -65,9 +61,7 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllInternshipName', {
-        headers: httpOptions.headers
-      })
+      .get(this.server_url + 'availableInternships/getAllInternshipName')
       .pipe(map(res => res));
   }
   
@@ -81,9 +75,7 @@ export class InternshipsService {
     };
 
     return this.http
-      .post('https://api.mtc.com.na/nip/2.0.0/' + 'new-internships/sendNewInternships', internships, {
-        headers: httpOptions.headers
-      })
+      .post(this.server_url + 'new-internships/sendNewInternships', internships)
       .pipe(map(res => res));
   }
 
@@ -99,9 +91,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .post(this.server_url + 'smtp/sendemailplain', userdata, {
-          headers: httpOptions.headers
-        })
+        .post(this.server_url + 'smtp/sendemailplain', userdata, )
         .pipe(map(res => res));
     }
 
@@ -109,12 +99,16 @@ export class InternshipsService {
 
 
     companyInternsipPost(company_name: string, town_city: string, internship_name: string, registration_number: string, number_of_positions: string, email: string, closing_date: string, pdf_file: any): any {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: this.token
-        })
-      };
+      // const httpOptions = {
+      //   headers: new HttpHeaders({
+      //     // 'Content-Type': 'application/json'
+      //     // Authorization: this.token
+      //   })
+      // };
+
+      const headers = new HttpHeaders().set('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5UZG1aak00WkRrM05qWTBZemM1TW1abU9EZ3dNVEUzTVdZd05ERTVNV1JsWkRnNE56YzRaQT09In0.eyJhdWQiOiJodHRwOlwvXC9vcmcud3NvMi5hcGltZ3RcL2dhdGV3YXkiLCJzdWIiOiJhZG1pbkBjYXJib24uc3VwZXIiLCJhcHBsaWNhdGlvbiI6eyJvd25lciI6ImFkbWluIiwidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsInRpZXIiOiJVbmxpbWl0ZWQiLCJuYW1lIjoibmlwLWFwcCIsImlkIjo5OCwidXVpZCI6bnVsbH0sInNjb3BlIjoiYW1fYXBwbGljYXRpb25fc2NvcGUgZGVmYXVsdCIsImlzcyI6Imh0dHBzOlwvXC9tdGNwcmRhcGlndzEubXRjZGMuY29tLm5hOjk0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyJVbmxpbWl0ZWQiOnsidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsInN0b3BPblF1b3RhUmVhY2giOnRydWUsInNwaWtlQXJyZXN0TGltaXQiOjAsInNwaWtlQXJyZXN0VW5pdCI6bnVsbH19LCJrZXl0eXBlIjoiUFJPRFVDVElPTiIsInN1YnNjcmliZWRBUElzIjpbeyJzdWJzY3JpYmVyVGVuYW50RG9tYWluIjoiY2FyYm9uLnN1cGVyIiwibmFtZSI6Im5pcCIsImNvbnRleHQiOiJcL25pcFwvMS4wLjAiLCJwdWJsaXNoZXIiOiJhZG1pbiIsInZlcnNpb24iOiIxLjAuMCIsInN1YnNjcmlwdGlvblRpZXIiOiJVbmxpbWl0ZWQifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoibmlwIiwiY29udGV4dCI6IlwvbmlwXC8yLjAuMCIsInB1Ymxpc2hlciI6ImFkbWluIiwidmVyc2lvbiI6IjIuMC4wIiwic3Vic2NyaXB0aW9uVGllciI6IlVubGltaXRlZCJ9XSwiY29uc3VtZXJLZXkiOiJQVFdZZ3JVd0s4NmRITHdTWTBoVDlDU1dXaDBhIiwiZXhwIjozNzk0Njc2NzMwLCJpYXQiOjE2NDcxOTMwODMsImp0aSI6ImE1NGUzYWU4LWI4NDctNGViMi1iZDNhLTM5NTM5MDQ3ZmM2ZCJ9.bPtdpa-mN6xgqvXwlvk4vPefS-6rs-lsFmYM9w5Bg64gk3tDZp3q4uE17ZDO-ooBzZo9sOUYMyQHxgdvl2wzXMecuDBE35jIzn77TLnpU3gQDEmZKvcNS-68luFfo-mLhU3C92zqC28PPYT6Y9qGS9Srh2efPXGWGVsgaJU3wLd-HslV047-KaHUB8rfJEHHSY5tDrkkKWy0GzyeKK99Z5zFBq908tm_yxEbjAab1Q_zmHy6x75nJTzhKNZTGXkz-b7YOkEX91GJvsNTv4ajP6TJzIsGYHqXWLAcnwU246amU43PaQIsXjezcb4XSOat2e2B3gjNryy2flx18Ph6Gg')
+
+      
 
       const formData = new FormData();
       formData.append('company_name', company_name);
@@ -125,9 +119,9 @@ export class InternshipsService {
       formData.append('email', email);
       formData.append('closing_date', closing_date);
       formData.append('pdf_file', pdf_file);
-  
+      // console.log('headers', {headers: httpOptions.headers})
       return this.http
-        .post(this.server_url + 'availableInternships/availableInternship', formData, {headers: httpOptions.headers})
+        .post(this.server_url + 'availableInternships/availableInternship', formData, {headers})
         .toPromise();
     }
 
@@ -141,9 +135,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url  + 'new-internships/getIUMInternship', {
-          headers: httpOptions.headers
-        })
+        .get(this.server_url  + 'new-internships/getIUMInternship')
         .pipe(map(res => res));
     }
 
@@ -158,9 +150,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getNUSTInternship', {
-          headers: httpOptions.headers
-        })
+        .get(this.server_url + 'new-internships/getNUSTInternship')
         .pipe(map(res => res));
     }
 
@@ -174,9 +164,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getNIMTInternship', {
-          headers: httpOptions.headers
-        })
+        .get(this.server_url + 'new-internships/getNIMTInternship', )
         .pipe(map(res => res));
     }
 
@@ -190,9 +178,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getUNAMInternship', {
-          headers: httpOptions.headers
-        })
+        .get(this.server_url + 'new-internships/getUNAMInternship', )
         .pipe(map(res => res));
     }
 
@@ -206,9 +192,7 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getVTCInternship', {
-          headers: httpOptions.headers
-        })
+        .get(this.server_url + 'new-internships/getVTCInternship', )
         .pipe(map(res => res));
     }
 
@@ -223,9 +207,39 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getAllSendInternship', {
-          headers: httpOptions.headers
+        .get(this.server_url + 'new-internships/getAllSendInternship', )
+        .pipe(map(res => res));
+    }
+
+
+    
+
+    getTotalAvailableInternships(): any {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+         Authorization: this.token
         })
+      };
+  
+      return this.http
+        .get(this.server_url + 'availableInternships/getTotalAvailableInternships')
+        .pipe(map(res => res));
+    }
+
+
+    
+
+    getTotalAvailableInternshipPost(): any {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+         Authorization: this.token
+        })
+      };
+  
+      return this.http
+        .get(this.server_url + 'availableInternships/getTotalAvailableInternshipPost')
         .pipe(map(res => res));
     }
 
@@ -244,8 +258,7 @@ export class InternshipsService {
         };
     
         return this.http
-          .post(this.server_url + `availableInternships/download`, data, {responseType: 'blob',
-            headers: httpOptions.headers
+          .post(this.server_url + `availableInternships/download`, data, {responseType: 'blob'
           })
     
           .pipe(map(res => res));

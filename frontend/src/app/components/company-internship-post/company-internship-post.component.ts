@@ -46,7 +46,7 @@ export class CompanyInternshipPostComponent implements OnInit {
   errorMessage: Subject<string> = new Subject();
   data: any;
   public companyData: any;
-  showtoast: boolean = false;
+  showtoast: Boolean = false;
 
   showUError: any;
   showPwd = false;

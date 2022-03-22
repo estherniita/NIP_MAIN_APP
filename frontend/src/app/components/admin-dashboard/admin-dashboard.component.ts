@@ -4,7 +4,7 @@ import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 // import { UsersService } from '../../services/users.service';
 import { DOCUMENT } from '@angular/common';
 // import { AdminAuthenticationService } from '../../services/admin-authentication.service';
-// import { InternshipsService } from '../../services/internships.service';
+import { InternshipsService } from '../../services/internships.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -19,12 +19,14 @@ export class AdminDashboardComponent implements OnInit {
   username: any;
   search: any;
   data: any;
-  Internships = [];
+  totalInternships: any[] = [];
   showAlert?: boolean;
   number: any;
   loading = false;
   isSuccessful = false;
   showModal?: boolean;
+  totalInternship: any;
+
 
   constructor(
     // private config: NgbModalConfig,   
@@ -32,7 +34,7 @@ export class AdminDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router, 
     // private activeModal: NgbActiveModal, 
-    // private internshipService: InternshipsService,
+    private internshipService: InternshipsService,
     @Inject(DOCUMENT) private document: Document, 
     // public userService: UsersService, 
     // public adminAuthenticationService: AdminAuthenticationService
@@ -42,6 +44,28 @@ export class AdminDashboardComponent implements OnInit {
 
     document.title = "Admin Dashboard: National Internship Program"
 
+    this.getTotalAvailableInternships();
+
   }
+
+  
+  getTotalAvailableInternships() {
+    this.internshipService.getTotalAvailableInternships()
+      .subscribe((result: any) => {
+
+
+        // const data = JSON.parse(localStorage.getItem('userdata'));
+
+        result.totalAvailableInternship.forEach((val: any) => 
+          // this.number = result.Total_availablenternship;
+          // this.data = data.availableInternship;
+          this.totalInternships.push(val));
+ 
+
+        // this.spinner.hide();
+      });
+  }
+
+  
 
 }

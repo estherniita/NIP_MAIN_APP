@@ -83,6 +83,8 @@ router.get('/getAllInternshipName', async function(req, res, next) {
 
 /* POST new internships by organizations */
 router.post('/availableInternship', upload_product.single('pdf_file'), async function(req, res, next) {
+
+  if(req.file) {
   const internship = {
     company_name: req.body.company_name,
     town_city: req.body.town_city,
@@ -100,6 +102,12 @@ router.post('/availableInternship', upload_product.single('pdf_file'), async fun
       console.error(`Error while creating inserting available internships`, err.message);
       next(err);
     }
+
+  }
+
+  else if (!req.file) {
+    return res.send('Please select a pdf file for the internship to upload');
+}
   });
 
   
@@ -117,7 +125,29 @@ router.post('/availableInternship', upload_product.single('pdf_file'), async fun
 
 
 
+/* GET get total number of intership requests from companies . */
+router.get('/getTotalAvailableInternships', async function(req, res, next) {
+  
+  try {
+    res.json(await availableInternship.getTotalAvailableInternships(req.query.page));
+  } catch (err) {
+    console.error(`Error while getting the total `, err.message);
+    next(err);
+  }
+});
 
+
+
+
+router.get('/getTotalAvailableInternshipPost', async function(req, res, next) {
+  
+  try {
+    res.json(await availableInternship.getTotalAvailableInternshipPost(req.query.page));
+  } catch (err) {
+    console.error(`Error while getting the total `, err.message);
+    next(err);
+  }
+});
 
    //Download internship document route
  router.post('/download', async function(req, res, next) {

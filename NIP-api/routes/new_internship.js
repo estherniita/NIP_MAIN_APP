@@ -55,6 +55,7 @@ router.get('/getIUMInternship', async function(req, res, next) {
 });
 
   /* GET get all internship send to NUST. */
+
   router.get('/getNUSTInternship', async function(req, res, next) {
     try {
       res.json(await newInternships.getNUSTInternship(req.query.page));
@@ -66,6 +67,7 @@ router.get('/getIUMInternship', async function(req, res, next) {
 
 
     /* GET get all internship send to NIMT. */
+
 router.get('/getNIMTInternship', async function(req, res, next) {
   try {
     res.json(await newInternships.getNIMTInternship(req.query.page));
@@ -76,6 +78,7 @@ router.get('/getNIMTInternship', async function(req, res, next) {
 });
 
   /* GET get all internship send to UNAM. */
+
   router.get('/getUNAMInternship', async function(req, res, next) {
     try {
       res.json(await newInternships.getUNAMInternship(req.query.page));
@@ -87,6 +90,7 @@ router.get('/getNIMTInternship', async function(req, res, next) {
 
 
   /* GET get all internship send to VTC. */
+
   router.get('/getVTCInternship', async function(req, res, next) {
     try {
       res.json(await newInternships.getVTCInternship(req.query.page));

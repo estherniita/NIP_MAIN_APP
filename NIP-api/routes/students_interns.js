@@ -46,6 +46,8 @@ var upload_product = multer({
   /* POST new student */
 
   router.post('/newStudentInterns', upload_product.single('student_document'), async function(req, res, next) {
+
+    if(req.file) {
     const student_details = {
       firstname: req.body.firstname,
       surname: req.body.surname,
@@ -60,20 +62,28 @@ var upload_product = multer({
       town_city: req.body.town_city,
       company_email: req.body.company_email,
       company_registrationNo: req.body.company_registrationNo,
+      internship_id: req.body.internship_id,
       admission: req.body.admission,
       completion: req.body.completion,
       student_document: req.file.filename
       
     }
 
-    console.log(student_details);
 
     try {
       res.json(await studentsIntern.newStudentInterns(student_details));
-    } catch (err) {
+    }
+     catch (err) {
       console.error(`Error while submitting new student`, err.message);
       next(err);
+
     }
+
+  }
+
+  else if (!req.file) {
+    return res.send('Please select a pdf file for the internship to upload');
+}
     });
   
 
@@ -140,7 +150,6 @@ router.get('/downloadStudentInterns', async function(req, res, next) {
       
     }
 
-    console.log('student',student_details, req.params.id)
       try {
         res.json(await studentsIntern.updateStudentDetails(req.params.id, student_details));
       } catch (err) {
@@ -239,7 +248,7 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
 
 
          //get students by company
- router.post('/getAllInternsByOrganization', async function(req, res, next) {
+  router.post('/getAllInternsByOrganization', async function(req, res, next) {
   try {
     res.json(await  studentsIntern.getAllInternsByOrganization(req.body.registration_number));
   } catch (err) {
@@ -247,6 +256,29 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
     next(err);
   }
 });
+
+
+         //get total pending students per company
+         router.post('/getAllPendingInternsByOrganization', async function(req, res, next) {
+          try {
+            res.json(await  studentsIntern.getAllPendingInternsByOrganization(req.body.registration_number));
+          } catch (err) {
+            console.error(`Error while getting company registration number`, err.message);
+            next(err);
+          }
+        });
+
+         //get total students per company
+         router.post('/getTotalInternsPerOrganization', async function(req, res, next) {
+          try {
+          res.json(await  studentsIntern.getTotalInternsPerOrganization(req.body.registration_number));
+          } catch (err) {
+            console.error(`Error while getting email`, err.message);
+            next(err);
+          }
+        });
+
+
 
 
          //get admitted students by company
@@ -260,18 +292,42 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
         });
 
 
+            //get total admitted students by company
+            router.post('/getTotalAdmittedInternsPerOrganization', async function(req, res, next) {
+              try {
+                res.json(await  studentsIntern.getTotalAdmittedInternsPerOrganization(req.body.registration_number));
+              } catch (err) {
+                console.error(`Error while getting email`, err.message);
+                next(err);
+              }
+            });
+
+        
+
+
 
             //get students who are not admitted by company
             router.post('/getAllNotAdmittedInternsPerOrganization', async function(req, res, next) {
               try {
                 res.json(await  studentsIntern.getAllNotAdmittedInternsPerOrganization(req.body.registration_number));
               } catch (err) {
-                console.error(`Error while getting email`, err.message);
+                console.error(`Error while getting the list`, err.message);
                 next(err);
               }
             });
-      
 
+
+            
+      
+   //get total students who are not admitted by company
+   router.post('/getTotalNotAdmittedInternsPerOrganization', async function(req, res, next) {
+    try {
+      res.json(await  studentsIntern.getTotalNotAdmittedInternsPerOrganization(req.body.registration_number));
+    } catch (err) {
+      console.error(`Error while getting the list`, err.message);
+      next(err);
+    }
+  });
 
                //Download student route
  router.post('/download', async function(req, res, next) {

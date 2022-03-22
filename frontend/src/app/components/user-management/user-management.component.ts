@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-// import {ConfirmDeleteComponent} from  '../confirm-delete/confirm-delete.component';
+import {ConfirmDeleteComponent} from  '../confirm-delete/confirm-delete.component';
 import {AdminAuthenticationService} from '../../services/admin-authentication.service';
+import $ from 'jquery';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
   selector: 'app-user-management',
@@ -9,6 +12,11 @@ import {AdminAuthenticationService} from '../../services/admin-authentication.se
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
+
+  deleteModal() {
+    ($("#deleteModal")as any).modal('toggle');
+  }
+
 
   public Admins = [];
   id?: string;
@@ -19,7 +27,7 @@ export class UserManagementComponent implements OnInit {
   admins: string[] = [];
   showAlert?: boolean;
 
-  constructor(private router: Router,public adminAuthenticationService: AdminAuthenticationService) { }
+  constructor(private router: Router,public adminAuthenticationService: AdminAuthenticationService, private modal: NgbModal,) { }
 
   ngOnInit(): void {
 
@@ -66,14 +74,14 @@ export class UserManagementComponent implements OnInit {
   }
 
   //method to delete admin record details
-  deleteAdmin(data: any, i: any) {
+  deleteAdmin(data: { id: any; }, i: number) {
     this.admins.splice(i, 1);
     this.adminAuthenticationService.deleteAdmin(data.id)
       .subscribe((data: any) => {
         if (data.success) {
-          // this.showAlert = true;
-          this.admins.splice(i, 1);
-          // this.modal.open(ConfirmDeleteComponent, { centered: true });
+          this.showAlert = true;
+          this.admins.splice( i, 1);
+          this.modal.open(ConfirmDeleteComponent, { centered: true });
         }
       });
   

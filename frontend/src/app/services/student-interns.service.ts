@@ -51,7 +51,7 @@ export class StudentInternsService {
 
 
     newStudentInterns(firstname: string, surname: string, idNo_or_passportNo: string, student_number: string, student_email: string, student_phoneNumber: string, institution: string,
-      field_of_study: string, internships_name: string, company: string, town_city: string, company_email: string, company_registrationNo: string, completion: string, admission: string, student_document: any): any {
+      field_of_study: string, internships_name: string, company: string, town_city: string, company_email: string, company_registrationNo: string, internship_id: string, completion: string, admission: string, student_document: any): any {
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -73,12 +73,13 @@ export class StudentInternsService {
       formData.append('town_city', town_city);
       formData.append('company_email', company_email);
       formData.append('company_registrationNo', company_registrationNo);
+      formData.append('internship_id', internship_id);
       formData.append('completion', completion);
       formData.append('admission', admission);
       formData.append('student_document', student_document);
   
       return this.http
-        .post(this.server_url + 'student_interns/newStudentInterns', formData, {headers: httpOptions.headers})
+        .post(this.server_url + 'student_interns/newStudentInterns', formData)
         .toPromise();
     }
 
@@ -125,9 +126,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .post(this.server_url + 'student_interns/getStudentByInstitution', institution, {
-          headers: httpOptions.headers
-        })
+        .post(this.server_url + 'student_interns/getStudentByInstitution', institution)
         .pipe(map(res => res));
     }
   
@@ -143,9 +142,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getAllStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getAllStudentInterns',)
         .pipe(map(res => res));
      
     }
@@ -159,9 +156,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getIUMStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getIUMStudentInterns',)
         .pipe(map(res => res));
      
     }
@@ -175,9 +170,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getNUSTStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getNUSTStudentInterns',)
         .pipe(map(res => res));
       
     }
@@ -191,9 +184,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getNIMTStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getNIMTStudentInterns',)
         .pipe(map(res => res));
       
     }
@@ -207,9 +198,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getUNAMStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getUNAMStudentInterns',)
         .pipe(map(res => res));
       
     }
@@ -224,9 +213,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getVTCStudentInterns', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getVTCStudentInterns',)
         .pipe(map(res => res));
       
     }
@@ -242,9 +229,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getAllStudentsByInstiOrga', {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + 'student_interns/getAllStudentsByInstiOrga',)
         .pipe(map(res => res));
       
     }
@@ -260,9 +245,7 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + "student_interns/getAllStudentsByOrga", {
-          headers: httpOptions1.headers
-        })
+        .get(this.server_url + "student_interns/getAllStudentsByOrga",)
         .pipe(map(res => res));
       
     }
@@ -284,13 +267,54 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllInternsByOrganization', data, {
-              headers: httpOptions.headers
-            })
+            .post(this.server_url + 'student_interns/getAllInternsByOrganization', data, )
       
             .pipe(map(res => res));
         }
 
+
+          //method to get pending interns by organizations
+          getAllPendingInternsByOrganization(registration_number: any): any {
+            const data = {
+              registration_number
+            };
+        
+            const httpOptions = {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+               Authorization: this.token
+              })
+            };
+        
+            return this.http
+              .post(this.server_url + 'student_interns/getAllPendingInternsByOrganization', data, )
+        
+              .pipe(map(res => res));
+          }
+
+        
+
+
+         //method to get total student per organizations
+         getTotalInternsPerOrganization(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + 'student_interns/getTotalInternsPerOrganization', data, )
+      
+            .pipe(map(res => res));
+        }
+
+        
 
         getAllAdmittedInternsPerOrganization(registration_number: any): any {
           const data = {
@@ -305,13 +329,30 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllAdmittedInternsPerOrganization', data, {
-              headers: httpOptions.headers
-            })
+            .post(this.server_url + 'student_interns/getAllAdmittedInternsPerOrganization', data, )
       
             .pipe(map(res => res));
         }
- 
+
+        
+       
+        getTotalAdmittedInternsPerOrganization(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + 'student_interns/getTotalAdmittedInternsPerOrganization', data, )
+      
+            .pipe(map(res => res));
+        }
 
         getAllNotAdmittedInternsPerOrganization(registration_number: any): any {
           const data = {
@@ -326,12 +367,32 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllNotAdmittedInternsPerOrganization', data, {
-              headers: httpOptions.headers
-            })
+            .post(this.server_url + 'student_interns/getAllNotAdmittedInternsPerOrganization', data, )
       
             .pipe(map(res => res));
         }
+
+     
+
+        getTotalNotAdmittedInternsPerOrganization(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + 'student_interns/getTotalNotAdmittedInternsPerOrganization', data, )
+      
+            .pipe(map(res => res));
+        }
+
+        
         
   
       //method to update student details

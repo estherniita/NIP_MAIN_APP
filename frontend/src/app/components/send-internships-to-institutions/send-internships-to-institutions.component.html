@@ -25,6 +25,19 @@
   
                         <!--First Name-->
                         <div class="form-group mb-3">
+
+                            <div hidden class="form-group mb-3">
+                                <label for="internship_request_id" class="text-secondary">internship id <span class="text-danger">*</span></label>
+                                <input type="text" name="internship_request_id" readonly required formControlName="internship_request_id" class="form-control primary-border"
+                                    [ngClass]="{ 'is-invalid': submitted && f?.internship_request_id?.errors, 'danger-border': submitted && f?.internship_request_id?.errors }">
+                             
+                                    <div *ngIf="submitted && f?.internship_request_id?.errors" class="invalid-feedback">
+                                        <div *ngIf="f?.internship_request_id?.errors?.required">Internship request id is required.</div>
+                                        <div *ngIf="f?.internship_request_id?.errors?.pattern">Enter a valid internship request id.</div>
+                                    </div>
+                               
+                            </div>
+
                             <label for="internships_name" class="text-secondary">Field of study<span class="text-danger">*</span></label>
                             <input type="text" readonly required class="form-control primary-border" id="internships_name" name="internships_name"
                             formControlName="internships_name" 

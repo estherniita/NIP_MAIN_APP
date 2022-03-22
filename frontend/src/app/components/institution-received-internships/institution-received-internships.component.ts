@@ -72,7 +72,20 @@ export class InstitutionReceivedInternshipsComponent implements OnInit {
     if (user.isLoggedin) {
       setTimeout(() => {
 
+        
+
       switch (user.role) {
+
+        case 'adminUNAM': { 
+          this.internshipsService.UNAMreceived()
+            .subscribe((result:any) => {
+              // this.Users.push(result);
+              result.data.forEach((val: any) => this.internships.push(val as never));
+            });
+      
+            break;
+          }
+    
 
         case 'adminIUM': { 
     this.internshipsService.IUMreceived()
@@ -105,18 +118,6 @@ export class InstitutionReceivedInternshipsComponent implements OnInit {
     
           break;
         }
-
-
-     case 'adminUNAM': { 
-      this.internshipsService.UNAMreceived()
-        .subscribe((result:any) => {
-          // this.Users.push(result);
-          result.data.forEach((val: any) => this.internships.push(val as never));
-        });
-  
-        break;
-      }
-
 
 
     case 'adminVTC': { 

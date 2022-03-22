@@ -57,6 +57,7 @@ import { NgxCaptchaModule } from "ngx-captcha";
 import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
 
 
 
@@ -109,6 +110,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     CompanyUpdateStudentComponent,
     CompanyAdmittedComplettedStudentComponent,
     ForgotPasswordComponent,
+    DeleteConfirmationComponent,
 
 
 

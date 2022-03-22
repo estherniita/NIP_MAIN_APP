@@ -15,13 +15,13 @@ async function newStudentInterns(students_interns, res){
   const result  = await db.query(
     `INSERT INTO students_interns 
     (firstname, surname, idNo_or_passportNo, student_number, student_email, student_phoneNumber, institution, field_of_study, internships_name,
-      company, town_city, company_email, company_registrationNo, completion, admission, student_document ) 
+      company, town_city, company_email, company_registrationNo, internship_id, completion, admission, student_document ) 
     VALUES 
-    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
     [
       students_interns.firstname, students_interns.surname, students_interns.idNo_or_passportNo, students_interns.student_number, students_interns.student_email,
       students_interns.student_phoneNumber, students_interns.institution, students_interns.field_of_study, students_interns.internships_name, students_interns.company,
-      students_interns.town_city, students_interns.company_email, students_interns.company_registrationNo, students_interns.completion, students_interns.admission, students_interns.student_document
+      students_interns.town_city, students_interns.company_email, students_interns.company_registrationNo, students_interns.internship_id, students_interns.completion, students_interns.admission, students_interns.student_document
     
     ]
   );
@@ -44,10 +44,12 @@ else {
   return {message, success};
 
 }
+
 catch (error) {
 console.error(error);
-// expected output: ReferenceError: nonExistentFunction is not defined
-// Note - error messages will vary depending on browser
+
+return{error}
+
 
 }
 }
@@ -249,6 +251,81 @@ async function getAllStudentInterns(){
   }
 
 
+  async function getAllPendingInternsByOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT COUNT(id) as total_pending FROM students_interns WHERE (admission = 'No' OR admission = 'pending') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+   return{message, students_interns, match, success};
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
+
+  async function getTotalInternsPerOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT COUNT(id) as total_received FROM students_interns WHERE  company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+   return{message, students_interns, match, success};
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
+
+
   async function getAllAdmittedInternsPerOrganization(registration_number ){
     // const offset = helper.getOffset(page, config.listPerPage);
     match = false;
@@ -280,7 +357,45 @@ async function getAllStudentInterns(){
   //  console.log('results', message, students_interns, match, success);
    return{message, students_interns, match, success};
 
+  }
+  
+  catch (error) {
+    console.error(error);
  
+}
+  }
+
+
+  async function getTotalAdmittedInternsPerOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT COUNT(id) as total_admitted FROM students_interns WHERE (admission = 'Yes' OR admission = 'admitted') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+
+  //  console.log('results', message, students_interns, match, success);
+   return{message, students_interns, match, success};
 
   }
   
@@ -323,7 +438,47 @@ async function getAllStudentInterns(){
   //  console.log('results', message, students_interns, match, success);
    return{message, students_interns, match, success};
 
+  }
+  
+  catch (error) {
+    console.error(error);
  
+}
+  }
+
+
+  
+
+  async function getTotalNotAdmittedInternsPerOrganization(registration_number ){
+    // const offset = helper.getOffset(page, config.listPerPage);
+    match = false;
+    success = false;
+
+    try{
+    const students_interns = await db.query(
+      `SELECT COUNT(id) as total_not_admitted FROM students_interns WHERE (admission = 'not admitted') AND company_registrationNo=? ORDER BY last_updated DESC`,
+      [registration_number ]
+      // [offset, config.listPerPage]
+    );
+
+   let message = 'no data found';
+
+   if(students_interns.length >0){
+    match = true;
+    success = true;
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+   }
+
+
+  //  console.log('results', message, students_interns, match, success);
+   return{message, students_interns, match, success};
 
   }
   
@@ -618,5 +773,9 @@ async function getAllStudentInterns(){
     getAllStudentsByOrga,
     getAllInternsByOrganization,
     getAllAdmittedInternsPerOrganization,
-    getAllNotAdmittedInternsPerOrganization
+    getAllNotAdmittedInternsPerOrganization,
+    getTotalInternsPerOrganization,
+    getAllPendingInternsByOrganization,
+    getTotalNotAdmittedInternsPerOrganization,
+    getTotalAdmittedInternsPerOrganization
   }

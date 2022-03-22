@@ -13,7 +13,7 @@ async function availableInternships(availableInternship, res){
 
 
   const result  = await db.query(
-    `INSERT INTO available_internships 
+    `INSERT INTO internship_requests 
     (internship_name, town_city, company_name,  registration_number, number_of_positions, closing_date, company_email, pdf_file) 
     VALUES 
     (?, ?, ?, ?, ?, ?, ?, ?)`, 
@@ -60,7 +60,7 @@ console.error(error);
     try{
     const internshipName = await db.query(
       `SELECT DISTINCT LOWER(internship_name) 'internship_name'
-       FROM available_internships  ORDER BY internship_name ASC`
+       FROM internship_requests  ORDER BY internship_name ASC`
       // [offset, config.listPerPage]
     );
 
@@ -95,7 +95,7 @@ async function getAllavailableInternships(){
 
     try{
     const availableInternship = await db.query(
-      `SELECT * FROM available_internships ORDER BY date_posted DESC`
+      `SELECT * FROM internship_requests ORDER BY date_posted DESC`
     );
 
    let message = 'no data found';
@@ -128,7 +128,7 @@ async function getAllavailableInternships(){
 
     try{
     const availableInternship = await db.query(
-      `SELECT * FROM available_internships WHERE closing_date >= CURRENT_DATE ORDER BY date_posted DESC`
+      `SELECT * FROM internship_requests WHERE closing_date >= CURRENT_DATE ORDER BY date_posted DESC`
       // [offset, config.listPerPage]
     );
 
@@ -155,6 +155,77 @@ async function getAllavailableInternships(){
 }
   }
 
+
+
+    //service to get total number of internships posted by the companies
+    async function getTotalAvailableInternships(){
+      // const offset = helper.getOffset(page, config.listPerPage);
+  
+      try{
+      const totalAvailableInternship = await db.query(
+        `SELECT COUNT(id) as total_internship FROM internship_requests`
+        // [offset, config.listPerPage]
+      );
+  
+     let message = 'no data found';
+  
+     if(totalAvailableInternship.length >0){
+      
+      message = 'Available internships';
+  
+     }
+  
+     else 
+     {
+    message = 'No data found';
+     }
+  
+     return{message, totalAvailableInternship};
+  
+    }
+    
+    catch (error) {
+      console.error(error);
+   
+  }
+    }
+
+
+
+    //service to get total number of internships posts by the companies
+
+    async function getTotalAvailableInternshipPost(){
+      // const offset = helper.getOffset(page, config.listPerPage);
+  
+      try{
+      const totalAvailableInternshipPost = await db.query(
+        `SELECT SUM(number_of_positions) as total_internship_posts FROM internship_requests`
+        // [offset, config.listPerPage]
+      );
+  
+     let message = 'no data found';
+  
+     if(totalAvailableInternshipPost.length >0){
+      
+      message = 'Available internships';
+  
+     }
+  
+     else 
+     {
+    message = 'No data found';
+     }
+  
+     return{message, totalAvailableInternshipPost};
+  
+    }
+    
+    catch (error) {
+      console.error(error);
+   
+  }
+    }
+
   
 
 
@@ -164,5 +235,7 @@ async function getAllavailableInternships(){
     availableInternships,
     getAllavailableInternships,
     getAllInternshipName,
-    getAllavailableInternships1
+    getAllavailableInternships1,
+    getTotalAvailableInternships,
+    getTotalAvailableInternshipPost
   }
