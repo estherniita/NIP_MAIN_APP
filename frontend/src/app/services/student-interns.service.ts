@@ -79,9 +79,34 @@ export class StudentInternsService {
       formData.append('student_document', student_document);
   
       return this.http
-        .post(this.server_url + 'student_interns/newStudentInterns', formData)
+        .post(this.server_url + 'student_interns/newStudentInterns', formData, {
+          headers: httpOptions.headers
+        })
         .toPromise();
     }
+
+
+         //method to update student details
+    updateStudentCompleted(id:any, completion: string, comments: string, student_completion_report: any) {
+          const httpOptions = {
+           headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+          
+            })
+          };
+
+          const formData = new FormData();
+          formData.append('completion', completion);
+          formData.append('comments', comments);
+          formData.append('student_completion_report', student_completion_report);
+         
+          console.log('formdata', formData);
+
+          return this.http
+            .put(this.server_url + `student_interns/updateStudentCompleted/${id}`, formData, )
+             .toPromise();
+        }
+    
 
 
     // updateStudentDetails(firstname: string, surname: string, idNo_or_passportNo: string, student_number: string, student_email: string, student_phoneNumber: string, institution: string,
@@ -126,7 +151,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .post(this.server_url + 'student_interns/getStudentByInstitution', institution)
+        .post(this.server_url + 'student_interns/getStudentByInstitution', institution, {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
   
@@ -142,7 +169,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getAllStudentInterns',)
+        .get(this.server_url + 'student_interns/getAllStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
      
     }
@@ -156,7 +185,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getIUMStudentInterns',)
+        .get(this.server_url + 'student_interns/getIUMStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
      
     }
@@ -170,7 +201,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getNUSTStudentInterns',)
+        .get(this.server_url + 'student_interns/getNUSTStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -184,7 +217,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getNIMTStudentInterns',)
+        .get(this.server_url + 'student_interns/getNIMTStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -198,7 +233,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getUNAMStudentInterns',)
+        .get(this.server_url + 'student_interns/getUNAMStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -213,7 +250,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getVTCStudentInterns',)
+        .get(this.server_url + 'student_interns/getVTCStudentInterns', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -229,7 +268,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + 'student_interns/getAllStudentsByInstiOrga',)
+        .get(this.server_url + 'student_interns/getAllStudentsByInstiOrga', {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -245,7 +286,9 @@ export class StudentInternsService {
       };
   
       return this.http
-        .get(this.server_url + "student_interns/getAllStudentsByOrga",)
+        .get(this.server_url + "student_interns/getAllStudentsByOrga", {
+          headers: httpOptions1.headers
+        })
         .pipe(map(res => res));
       
     }
@@ -267,7 +310,9 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllInternsByOrganization', data, )
+            .post(this.server_url + 'student_interns/getAllInternsByOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
@@ -287,7 +332,9 @@ export class StudentInternsService {
             };
         
             return this.http
-              .post(this.server_url + 'student_interns/getAllPendingInternsByOrganization', data, )
+              .post(this.server_url + 'student_interns/getAllPendingInternsByOrganization', data, {
+                headers: httpOptions.headers
+              })
         
               .pipe(map(res => res));
           }
@@ -309,7 +356,9 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getTotalInternsPerOrganization', data, )
+            .post(this.server_url + 'student_interns/getTotalInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
@@ -329,7 +378,9 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllAdmittedInternsPerOrganization', data, )
+            .post(this.server_url + 'student_interns/getAllAdmittedInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
@@ -349,7 +400,9 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getTotalAdmittedInternsPerOrganization', data, )
+            .post(this.server_url + 'student_interns/getTotalAdmittedInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
@@ -367,12 +420,35 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getAllNotAdmittedInternsPerOrganization', data, )
+            .post(this.server_url + 'student_interns/getAllNotAdmittedInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
 
+
+        
      
+        getAllCompletedInternsPerOrgan(registration_number: any): any {
+          const data = {
+            registration_number
+          };
+      
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + 'student_interns/getAllCompletedInternsPerOrgan', data, {
+              headers: httpOptions.headers
+            })
+      
+            .pipe(map(res => res));
+        }
 
         getTotalNotAdmittedInternsPerOrganization(registration_number: any): any {
           const data = {
@@ -387,12 +463,81 @@ export class StudentInternsService {
           };
       
           return this.http
-            .post(this.server_url + 'student_interns/getTotalNotAdmittedInternsPerOrganization', data, )
+            .post(this.server_url + 'student_interns/getTotalNotAdmittedInternsPerOrganization', data, {
+              headers: httpOptions.headers
+            })
       
             .pipe(map(res => res));
         }
 
+
+
+        getAllPendingInterns() {
+          const httpOptions1 = {
+            headers: new HttpHeaders({
+              "Content-Type": "application/json",
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .get(this.server_url + "student_interns/getAllPendingInterns", {
+              headers: httpOptions1.headers
+            })
+            .pipe(map(res => res));
+          
+        }
+
+
+        getAllNotAdmittedInterns() {
+          const httpOptions1 = {
+            headers: new HttpHeaders({
+              "Content-Type": "application/json",
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .get(this.server_url + "student_interns/getAllNotAdmittedInterns", {
+              headers: httpOptions1.headers
+            })
+            .pipe(map(res => res));
+          
+        }
         
+
+        getAllAdmittedInterns() {
+          const httpOptions1 = {
+            headers: new HttpHeaders({
+              "Content-Type": "application/json",
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .get(this.server_url + "student_interns/getAllAdmittedInterns", {
+              headers: httpOptions1.headers
+            })
+            .pipe(map(res => res));
+          
+        }
+
+
+        getAllCompletedInterns() {
+          const httpOptions1 = {
+            headers: new HttpHeaders({
+              "Content-Type": "application/json",
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .get(this.server_url + "student_interns/getAllCompletedInterns", {
+              headers: httpOptions1.headers
+            })
+            .pipe(map(res => res));
+          
+        }
         
   
       //method to update student details
@@ -450,5 +595,21 @@ export class StudentInternsService {
         
               .pipe(map(res => res));
           }
+
+
+            // method to print the student list
+    downloadStudentInterns(): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.token
+      })
+    };
+
+    return this.http.get(this.server_url + `student_interns/downloadStudentInterns`,  {
+      responseType: 'blob',
+      headers: httpOptions.headers
+    });
+  }
   
 }

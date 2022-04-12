@@ -8,7 +8,6 @@ import {
   NgbModalConfig
 } from '@ng-bootstrap/ng-bootstrap';
 import { UsersService} from '../../services/users.service';
-import {ConfirmDeleteComponent} from  '../confirm-delete/confirm-delete.component';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";  
 import {AdminAuthenticationService} from '../../services/admin-authentication.service';
 import { saveAs } from 'file-saver';

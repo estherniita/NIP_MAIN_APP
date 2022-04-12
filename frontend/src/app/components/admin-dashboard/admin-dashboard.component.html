@@ -48,29 +48,54 @@
        
 
            <div class="col-md-6 mb-6" >
-             <a [routerLink]="'/studentlist'" data-toggle="tooltip" placement="top" title="All students who were offered and still to be offered internships">
+             <!-- <a [routerLink]="'/studentlist'" data-toggle="tooltip" placement="top" title="All students who were offered and still to be offered internships"> -->
 
              <div class="card text-center h-100 card-info"  >
                  <div class="card-body blue-gradient" >
-                     <h2 class="card-title">Interns</h2>
+                     <h2 class="card-title">All Interns</h2>
                      <h3><i class="fa fa-users fa-2x"></i></h3>
                  </div>
                  <div class="row p-2 no-gutters rounded" >
-                     <div class="col rounded">
-                         <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
-                             <h3>All students</h3>
-                             <span class="small text-uppercase">admitted, not admitted and completed.</span>
-                         </div>
+                     <div class="col-3 rounded">
+                         <a [routerLink]="'/pendingStudentList'">
+                            <div class="card card-block text-info rounded-0 border-left-0 border-right-0 border-top-0 border-bottom-0">
+                                <span class="medium text-uppercase">Pending</span>
+                                
+                                    <h3> {{number1}}  </h3> 
+                             </div>
+                         </a>
+                       
                      </div>
-                     <!-- <div class="col-6 rounded">
+                     
+                     <div class="col-3 rounded">
+                        <a [routerLink]="'/notAdmittedStudentList'">
                          <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                             <h3>30%</h3>
-                             <span class="small text-uppercase">savings</span>
+                            <span class="medium text-uppercase">Not admitted</span>
+                                <h3> {{number2}}  </h3> 
                          </div>
-                     </div> -->
+                        </a>
+                     </div>
+                     <div class="col-3 rounded">
+                        <a [routerLink]="'/admittedStudentList'">
+
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <span class="medium text-uppercase">Admitted</span>
+                               <h3> {{number3}}  </h3> 
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-3 rounded">
+                        <a [routerLink]="'/completedStudentList'">
+
+                        <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
+                            <span class="medium text-uppercase">Completed</span>
+                               <h3> {{number4}}  </h3> 
+                        </div>
+                        </a>
+                    </div>
                  </div>
              </div>
-           </a>
+           <!-- </a> -->
 
        </div>
           
@@ -88,7 +113,9 @@
                  <div class="row p-2 no-gutters rounded" >
                      <div class="col rounded">
                          <div class="card card-block text-info rounded-0 border-right-0 border-top-0 border-bottom-0">
-                             <h3>Data</h3>
+                             <h3>  <div *ngFor="let totalInternship of total_requests"  let i = index>
+                                <h3> {{totalInternship.total_request_sent}}  </h3> 
+                              </div>   Request</h3>
                              <span class="small text-uppercase">sent to institutions</span>
                          </div>
                      </div>

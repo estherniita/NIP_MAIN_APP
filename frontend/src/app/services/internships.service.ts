@@ -33,7 +33,9 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllavailableInternships')
+      .get(this.server_url + 'availableInternships/getAllavailableInternships', {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
@@ -47,7 +49,9 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllavailableInternships1')
+      .get(this.server_url + 'availableInternships/getAllavailableInternships1', {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
@@ -61,7 +65,9 @@ export class InternshipsService {
     };
 
     return this.http
-      .get(this.server_url + 'availableInternships/getAllInternshipName')
+      .get(this.server_url + 'availableInternships/getAllInternshipName', {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
   
@@ -75,7 +81,9 @@ export class InternshipsService {
     };
 
     return this.http
-      .post(this.server_url + 'new-internships/sendNewInternships', internships)
+      .post(this.server_url + 'new-internships/sendNewInternships', internships, {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
@@ -91,7 +99,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .post(this.server_url + 'smtp/sendemailplain', userdata, )
+        .post(this.server_url + 'smtp/sendemailplain', userdata, {
+          headers: httpOptions.headers
+        } )
         .pipe(map(res => res));
     }
 
@@ -135,7 +145,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url  + 'new-internships/getIUMInternship')
+        .get(this.server_url  + 'new-internships/getIUMInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -150,7 +162,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getNUSTInternship')
+        .get(this.server_url + 'new-internships/getNUSTInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -164,7 +178,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getNIMTInternship', )
+        .get(this.server_url + 'new-internships/getNIMTInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -178,7 +194,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getUNAMInternship', )
+        .get(this.server_url + 'new-internships/getUNAMInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -192,7 +210,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getVTCInternship', )
+        .get(this.server_url + 'new-internships/getVTCInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -207,11 +227,28 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'new-internships/getAllSendInternship', )
+        .get(this.server_url + 'new-internships/getAllSendInternship', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
 
+
+    getTotalRequestSentToInstitution(): any {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+         Authorization: this.token
+        })
+      };
+  
+      return this.http
+        .get(this.server_url + 'new-internships/getTotalRequestSentToInstitution', {
+          headers: httpOptions.headers
+        })
+        .pipe(map(res => res));
+    }
     
 
     getTotalAvailableInternships(): any {
@@ -223,10 +260,14 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'availableInternships/getTotalAvailableInternships')
+        .get(this.server_url + 'availableInternships/getTotalAvailableInternships', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
+
+    
 
     
 
@@ -239,7 +280,9 @@ export class InternshipsService {
       };
   
       return this.http
-        .get(this.server_url + 'availableInternships/getTotalAvailableInternshipPost')
+        .get(this.server_url + 'availableInternships/getTotalAvailableInternshipPost', {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
 
@@ -258,7 +301,9 @@ export class InternshipsService {
         };
     
         return this.http
-          .post(this.server_url + `availableInternships/download`, data, {responseType: 'blob'
+          .post(this.server_url + `availableInternships/download`, data, {responseType: 'blob', 
+            headers: httpOptions.headers
+          
           })
     
           .pipe(map(res => res));

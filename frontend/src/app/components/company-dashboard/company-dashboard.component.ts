@@ -34,6 +34,7 @@ export class CompanyDashboardComponent implements OnInit {
   admitted: any[] = [];
   intern: any;
   interns: any[] = [];
+  completed_students: any[] = [];
 
   constructor(public studentService: StudentInternsService, private router: Router, public adminAuthenticationService: AdminAuthenticationService, private internshipService: InternshipsService,
     ) { }
@@ -46,6 +47,7 @@ export class CompanyDashboardComponent implements OnInit {
     this.allNotAdmittedInternStudents();
     this.getAllPendingInternsByOrganization();
     this.getTotalAdmittedInternsPerOrganization();
+    this.getAllCompletedInternsPerOrgan();
 
   }
 
@@ -171,6 +173,43 @@ export class CompanyDashboardComponent implements OnInit {
 
 
      }
+
+    });
+  }
+
+
+  getAllCompletedInternsPerOrgan(){
+
+    this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
+
+    console.log('registration number', this.companyData.registration_number);
+
+    this.studentService.getAllCompletedInternsPerOrgan(this.companyData.registration_number)
+    .subscribe((data:any) => {
+      if ( data.match && data.success ) {
+      // this.Users.push(result);
+    
+
+       console.log('result', data);
+    
+    
+        // document.title = "Company: Post New Internship"
+    
+       
+          data.students_interns.forEach((val: any) =>
+          
+          this.completed_students.push(val));
+
+          this.number = data.count;
+
+       console.log('total', this.number);
+     }  
+
+     else {
+
+
+     }
+
 
     });
   }

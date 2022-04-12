@@ -5,10 +5,11 @@ const jwt = require("jsonwebtoken");
 const {body} = require('express-validator');
 const crypto = require("../cryptojs");
 const db = require('../services/db');
+// const auth = require("../auth");
 
 
 /* GET get all registered users. */
-router.get('/getAllAdmins', async function(req, res, next) {
+router.get('/getAllAdmins',  async function(req, res, next) {
   try {
     res.json(await newAdmin.getAllAdmins(req.query.page));
   } catch (err) {

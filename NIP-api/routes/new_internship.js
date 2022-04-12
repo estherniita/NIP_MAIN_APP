@@ -112,5 +112,15 @@ router.get('/getNIMTInternship', async function(req, res, next) {
   });
 
 
+  //get total request send internships to different institutions
+  router.get('/getTotalRequestSentToInstitution', async function(req, res, next) {
+    try {
+      res.json(await newInternships.getTotalRequestSentToInstitution(req.query.page));
+    } catch (err) {
+      console.error(`Error while getting the list `, err.message);
+      next(err);
+    }
+  });
+
 
 module.exports = router;

@@ -7,7 +7,7 @@
   <section>
 <div class="body-section">
     <div class="heading-container">
-    <h1 class="h-m h-fw-1 news__heading">All National Internship Program Interns who are admitted by your company/organization</h1>
+    <h1 class="h-m h-fw-1 news__heading">All National Internship Program Interns who are completed by your company/organization</h1>
 </div>
     <div class="col-12">
       <div class="row">
@@ -34,10 +34,10 @@
                 <th>Field of Study</th>
                 <th>Student phone number and email</th>
                 <th>Student Id/passport number</th>
-                <th>Admission</th>
+                <th>Admitted</th>
                 <th>Completion</th>
                 <th>Student document</th>
-                
+                <th>Completion Report</th>
                
                 
 
@@ -47,7 +47,7 @@
             <tbody>
               <tr *ngFor="let student of students | searchInstitution: search; let i = index">
                
-                <!-- <td>{{student.company}}, {{student.town_city}}</td> -->
+                <!-- <td>{{student.company}}, {{student.comments}}</td> -->
                 <!-- <td>{{student.company_email}}</td>
                 <td>{{student.company_registrationNo}}</td> -->
 
@@ -59,7 +59,10 @@
                 <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
                 <td>{{student.idNo_or_passportNo}}</td>
                 <td>{{student.admission}}</td>
-                <td>{{student.completion}}</td>
+                <td>  
+                    <div class="news-card__action u-mt-xs u-pb-xs">
+                  <a type="button" (click)="editRecord(student)"  data-toggle="modal" href="#updateModal" class="news-card__btn">Pending</a>
+                </div></td>
                
 
                 <td>{{student.student_document}} 
@@ -72,12 +75,201 @@
 
   
               </tr>
+
+              <tr *ngFor="let student of completed_students | searchInstitution: search; let i = index">
+               
+                <!-- <td>{{student.company}}, {{student.comments}}</td> -->
+                <!-- <td>{{student.company_email}}</td>
+                <td>{{student.company_registrationNo}}</td> -->
+
+                <td>{{student.internships_name}}</td>
+                <td>{{student.firstname}} {{student.surname}}</td>
+                <td>{{student.student_number}}</td>
+                <td>{{student.institution}}</td>
+                <td>{{student.field_of_study}}</td>
+                <td>{{student.student_email}}, {{student.student_phoneNumber}}</td>
+                <td>{{student.idNo_or_passportNo}}</td>
+                <td>{{student.admission}}</td>
+                <td>  {{student.completion}}
+                 </td>
+               
+
+                <td>{{student.student_document}} 
+                  
+                    <a (click)="download(student.student_document)" class="btn">Download</a>
+            
+                          </td>
+                
+               <td>{{student.student_completion_report}} 
+                  
+                    
+              </td>
+
+  
+              </tr>
             </tbody>
           </table>
+
+
+          
+     <!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="updateModalLabel">Update student who completed their internship and submit their reports</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container-fluid bg-lightest">
+   
+          <div class="row">
+        
+              <div class="col col-12 col-lg-12 col-xl-12 justify-content-center text-center form">
+                  <div class="mt-4">
+
+           <!--Create Profile Form-->
+           <form [formGroup]="studentForm" (ngSubmit)="onSubmit($event)" class="text-left mt-4 offset-override">
+  
+            
+            <app-error-message [obs]="errorMessage"></app-error-message>
+
+            <div class="row">
+                <div class="col-12">
+              
+                  <div class="form-group mb-12" id="completion">
+                    <label for="completion">Student completion</label>
+                    <select  formControlName="completion" class="form-control" type="text"
+                     [ngClass]="{ 'is-invalid': submitted && f?.completion?.errors }" placeholder="Select if student is completed or not" required>
+             
+                     <option value="" [disabled]="true">
+                        Select if student has completed</option>          
+                        <option>completed</option>
+                    </select>
+            
+                    <div *ngIf="submitted && f?.completion?.errors" class="invalid-feedback">
+                        <div *ngIf="f.completion?.errors?.required">
+                             Please indicated if student is completed                
+                        </div>
+                      </div>
+              </div>
+               
+          <!--document Upload-->
+          <div class="form-group mb-12">
+            <label for="student_completion_report">Upload student completion report PDF Document <span class="text-danger">*</span></label>
+            <br>
+            <label class="btn btn-secondary-light">
+                Browse <input type="file" name="student_completion_report" hidden accept="application/pdf" formControlName="student_completion_report"
+                (change)="selectImage($event)">
+            </label>
+            <span class="ml-2 f4 ">
+                {{ fileMessage }}
+            </span>
+            <div class="text-primary" *ngIf="!submitted || !f?.logo?.errors">
+
+            </div>
+
+                    <!--Form Errors-->
+        <div *ngIf="submitted">
+            <div *ngIf="missingImage" class="alert alert-danger" role="alert">
+                Please upload a student completion report for the internship.
+            </div>
+            <div *ngIf="wrongType" class="alert alert-danger" role="alert">
+                Invalid file type.
+            </div>
+            <div *ngIf="sizeLimit" class="alert alert-danger" role="alert">
+                Maximum file size is 3MB.
+            </div>
+            <div *ngIf="maxUpload" class="alert alert-danger" role="alert">
+                You already uploaded.
+            </div>
+            <div *ngIf="otherErr" class="alert alert-danger" role="alert">
+                Unexpected Error.
+            </div>
+        </div>
+        </div>
+        <!--company-->
+
+
+
+        <div class="form-group mb-12">
+          <label for="comments" >comments</label>
+          <textarea type="text" name="comments" formControlName="comments" class="form-control primary-border"
+              > </textarea>
+  
+      </div>
+           
+        </div>
+
+
+     
+
+
+    <div class="col-12">
+        <div class="row aqua-gradient">
+          <div class="col-12">
+            <div *ngIf="showtoast">
+              <h3 id="toast">Student details successfully updated</h3>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div *ngIf="showtoast2" >
+              <h3 id="toast" >Something went wrong while updating student details</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-12">
+        <div class="row ">
+          <div class="col-7">
+                    <!--SUBMIT-->
+                    <div class="form-group mb-2" >
+                      <button [disabled]="loading || btnWait" class="btn btn-login btn-primary "  ><span *ngIf="!loading" >Submit student detail</span>
+                      <div *ngIf="loading" class="spinner-border text-white" role="status">
+                          <span class="sr-only">Loading...</span>
+                      </div>
+                      </button>
+                  </div>
+                  <div class="text-center ">By clicking this button, you agree to our <a [routerLink]="['/terms']" target="_blank" class="acolor"><span class="f4">Terms and Conditions</span></a></div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group mb-2" >
+
+            <button class="btn btn-danger" data-dismiss="modal" style="font-size: 1.5rem;">Cancel</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    
+
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
        
 
-          <div *ngIf="!students.length" style="height: 100%; padding: 2rem;">
-            <h1 class="text-center">No student(s) admitted by the company</h1> 
+          <div *ngIf="!students.length || !completed_students" style="height: 100%; padding: 2rem;">
+            <h1 class="text-center">No student(s) admitted or completed internship at your company</h1> 
           </div>
         </div>
     </div>

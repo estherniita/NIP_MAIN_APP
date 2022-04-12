@@ -1,6 +1,67 @@
 const express = require('express');
 const router = express.Router();
 const studentsIntern = require('../services/students_interns');
+const fs = require('fs');
+const path = require('path');
+const json2csv = require('json2csv').parse;
+
+//Fields to show for the exel document
+const fields = [
+
+  {
+      label: 'Organization/ company and town', // Optional, column will be labeled 'path.to.something' if not defined)
+      value: 'company', // data.path.to.something
+      // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+  },
+
+
+  {
+      label: 'Student fullname', // Optional, column will be labeled 'path.to.something' if not defined)
+      value: 'firstname, surname', // data.path.to.something
+      // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+  },
+  {
+      label: 'Student Number', // Optional, column will be labeled 'path.to.something' if not defined)
+      value: 'student_number', // data.path.to.something
+      // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+  },
+  {
+    label: 'Institution', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'institution', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Field of Study', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'field_of_study', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Student Email address', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'student_email', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Student Phone Number', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'student_phoneNumber', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Admission', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'admission', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Completion', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'completion', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+{
+    label: 'Student Document', // Optional, column will be labeled 'path.to.something' if not defined)
+    value: 'student_document', // data.path.to.something
+    // default: 'N/A' // default if value is not found (Optional, overrides `defaultValue` for column)
+},
+];
+
 var multer = require('multer');
 
 var storage_product = multer.diskStorage({
@@ -87,6 +148,8 @@ var upload_product = multer({
     });
   
 
+    
+
 
 /* GET get the list of all submitted student. */
 router.get('/getAllStudentInterns', async function(req, res, next) {
@@ -123,6 +186,35 @@ router.get('/downloadStudentInterns', async function(req, res, next) {
   });
 
 
+
+//update student who completed their internship
+  router.put('/updateStudentCompleted/:id', upload_product.single('student_completion_report'), async function(req, res, next) {
+
+    if(req.file) {
+    const student_details = {
+      comments: req.body.comments,
+      completion: req.body.completion,
+      student_completion_report: req.file.filename
+      
+    }
+
+
+
+    try {
+      res.json(await studentsIntern.updateStudentCompleted(req.params.id, student_details));
+    }
+     catch (err) {
+      console.error(`Error while updating student details`, err.message);
+      next(err);
+
+    }
+
+  }
+
+  else if (!req.file) {
+    return res.send('Please select a pdf file report for the student to upload');
+}
+    });
   
 
   
@@ -301,10 +393,7 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
                 next(err);
               }
             });
-
-        
-
-
+            
 
             //get students who are not admitted by company
             router.post('/getAllNotAdmittedInternsPerOrganization', async function(req, res, next) {
@@ -316,9 +405,18 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
               }
             });
 
-
             
-      
+            
+            //get students who have completed their internship per organization
+            router.post('/getAllCompletedInternsPerOrgan', async function(req, res, next) {
+              try {
+                res.json(await  studentsIntern.getAllCompletedInternsPerOrgan(req.body.registration_number));
+              } catch (err) {
+                console.error(`Error while getting the list`, err.message);
+                next(err);
+              }
+            });
+
    //get total students who are not admitted by company
    router.post('/getTotalNotAdmittedInternsPerOrganization', async function(req, res, next) {
     try {
@@ -343,4 +441,105 @@ router.get('/getIUMStudentInterns', async function(req, res, next) {
   }
 });
   
+       /* GET get total students still pending */
+       router.get('/getAllPendingInterns', async function(req, res, next) {
+        try {
+          res.json(await studentsIntern.getAllPendingInterns(req.query.page));
+        } catch (err) {
+          console.error(`Error while getting the list `, err.message);
+          next(err);
+        }
+      });
+
+
+
+        /* GET get total students not admmitted. */
+        router.get('/getAllNotAdmittedInterns', async function(req, res, next) {
+          try {
+            res.json(await studentsIntern.getAllNotAdmittedInterns(req.query.page));
+          } catch (err) {
+            console.error(`Error while getting the list `, err.message);
+            next(err);
+          }
+        });
+
+
+              /* GET total students admmitted. */
+        router.get('/getAllAdmittedInterns', async function(req, res, next) {
+          try {
+            res.json(await studentsIntern.getAllAdmittedInterns(req.query.page));
+          } catch (err) {
+            console.error(`Error while getting the list `, err.message);
+            next(err);
+          }
+        });
+
+
+                /* GET total students completed. */
+        router.get('/getAllCompletedInterns', async function(req, res, next) {
+          try {
+            res.json(await studentsIntern.getAllCompletedInterns(req.query.page));
+          } catch (err) {
+            console.error(`Error while getting the list `, err.message);
+            next(err);
+          }
+        });
+
+                  /* GET total students completed. */
+    //  router.get('/downloadStudentInterns', async function(req, res, next) {
+    //       try {
+    //         res.json(await studentsIntern.downloadStudentInterns(req.query.page));
+    //       } catch (err) {
+    //         console.error(`Error while getting the list `, err.message);
+    //         next(err);
+    //       }
+    //     });
+
+
+
+
+        router.get('/download1', async (req, res, next) => {
+
+          // var token = req.headers["authorization"];
+          // jwt.verify(token, config.secret, (err, authorizedData) => {
+          //     if (err) {
+          //         //If error send Forbidden (403)
+          //         // console.log("ERROR: Could not connect to the protected route");
+          //        return res.sendStatus(403).json({ success: false, msg: 'user not authenticated' });
+          //    } else {
+        
+          try {
+            res.json(await studentsIntern.getAllPendingInterns(students_interns)) 
+                  if (err)
+                      next(err);
+              
+                  csv = json2csv(( students_interns), { fields });
+      
+                  //declaring the path for the csv file and its name
+                  const filePath = path.join(__dirname, "..", "reports", "exports", "All Pending Students" + ".csv")
+                  fs.writeFile(filePath, csv, function (err) {
+                      if (err) {
+                          return res.json(err).status(500);
+                      }
+                      else {
+      
+                          try {
+                              //send the response of the file created
+                              return res.sendFile(path.join(__dirname, `../reports/exports/All Pending Students.csv`));
+      
+                          } catch (error) {
+                              next(error)
+                          }
+                      }
+                  });
+              
+          } catch (error) {
+              return res.status(500).json({ errmsg: error });
+          }
+          //    }
+          // });
+      
+      });
+
+
   module.exports = router;

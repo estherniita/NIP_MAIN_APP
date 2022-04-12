@@ -41,9 +41,42 @@
             </div>
           </div>
       </div>
+
+      <!-- <div class="list row"> -->
+        <div class="col-md-8">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by title"
+              [(ngModel)]="title"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="searchTitle()"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+          ></pagination-controls>
+        </div>
       <div class=" col-lg-12 col-md-12 col-xs-12">
       <div *ngIf="userService.isUserAuthenticatedrole()  && Internships.length">
-      <div  class="job-listings"   *ngFor="let availableinternships of Internships"  let i = index>
+      <div  class="job-listings"   *ngFor="let availableinternships of Internships | paginate : {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+      };  let i = index">
         <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-12">
         <div class="job-company-logo">

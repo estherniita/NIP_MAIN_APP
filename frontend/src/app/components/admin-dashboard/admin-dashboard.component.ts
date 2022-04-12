@@ -5,6 +5,8 @@ import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 // import { AdminAuthenticationService } from '../../services/admin-authentication.service';
 import { InternshipsService } from '../../services/internships.service';
+import {StudentInternsService} from '../../services/student-interns.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -20,12 +22,25 @@ export class AdminDashboardComponent implements OnInit {
   search: any;
   data: any;
   totalInternships: any[] = [];
+  student_interns: any[] = [];
+  notAdmitted_interns: any[] = [];
+  admitted_interns: any[] = [];
+  completed_interns: any[] = [];
+  total_requests: any[] = [];
   showAlert?: boolean;
-  number: any;
+  number1: any;
+  number2: any;
+
+  number3: any;
+
+  number4: any;
+
   loading = false;
   isSuccessful = false;
   showModal?: boolean;
   totalInternship: any;
+  student_intern: any;
+  
 
 
   constructor(
@@ -36,6 +51,7 @@ export class AdminDashboardComponent implements OnInit {
     // private activeModal: NgbActiveModal, 
     private internshipService: InternshipsService,
     @Inject(DOCUMENT) private document: Document, 
+    public studentService: StudentInternsService
     // public userService: UsersService, 
     // public adminAuthenticationService: AdminAuthenticationService
     ) { }
@@ -45,6 +61,11 @@ export class AdminDashboardComponent implements OnInit {
     document.title = "Admin Dashboard: National Internship Program"
 
     this.getTotalAvailableInternships();
+    this.getAllPendingInterns();
+    this.getAllNotAdmittedInterns();
+    this.getAllAdmittedInterns();
+    this.getAllCompletedInterns();
+    this.getTotalRequestSentToInstitution();
 
   }
 
@@ -53,16 +74,76 @@ export class AdminDashboardComponent implements OnInit {
     this.internshipService.getTotalAvailableInternships()
       .subscribe((result: any) => {
 
-
-        // const data = JSON.parse(localStorage.getItem('userdata'));
-
         result.totalAvailableInternship.forEach((val: any) => 
-          // this.number = result.Total_availablenternship;
-          // this.data = data.availableInternship;
           this.totalInternships.push(val));
- 
+      });
+  }
 
-        // this.spinner.hide();
+
+  getTotalRequestSentToInstitution() {
+    this.internshipService.getTotalRequestSentToInstitution()
+      .subscribe((result: any) => {
+
+        result.requests.forEach((val: any) => 
+          this.total_requests.push(val));
+      });
+  }
+
+
+  getAllPendingInterns() {
+    this.studentService.getAllPendingInterns()
+      .subscribe((result: any) => {
+
+        result.students_interns.forEach((val: any) => 
+       
+          this.student_interns.push(val));
+
+          this.number1 = result.count;
+
+      });
+  }
+
+
+  getAllNotAdmittedInterns() {
+    this.studentService.getAllNotAdmittedInterns()
+      .subscribe((result: any) => {
+        result.students_interns.forEach((val: any) => 
+        
+          this.notAdmitted_interns.push(val));
+
+          this.number2 = result.count;
+
+ 
+      });
+  }
+
+
+  getAllAdmittedInterns() {
+    this.studentService.getAllAdmittedInterns()
+      .subscribe((result: any) => {
+        result.students_interns.forEach((val: any) => 
+
+
+          this.admitted_interns.push(val));
+
+          this.number3 = result.count;
+
+ 
+      });
+  }
+
+
+
+  getAllCompletedInterns() {
+    this.studentService.getAllCompletedInterns()
+      .subscribe((result: any) => {
+        result.students_interns.forEach((val: any) => 
+        
+          this.completed_interns.push(val));
+
+          this.number4 = result.count;
+
+ 
       });
   }
 

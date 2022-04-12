@@ -11,7 +11,6 @@ const crypto = require("../cryptojs");
 const crypto1 = require("crypto");
 
 
-
 async function register(newUser, res){
 
   try{
@@ -130,6 +129,178 @@ catch (error) {
 
 
 
+  // async function authenticate(username, password, user){
+  //   // const username = User.username;
+  //   // const password = User.password;
+
+  //   try{
+  
+  //    let message = 'user not found';
+  //    let  success = false; 
+  //    let  admin = false;  
+  //    let  organization = false; 
+  //    let  users = false;    
+
+  //   const result = await db.query(`SELECT * FROM users WHERE username =?`,[username]);
+  //     if (result.length < 0) {
+  //       // res.send({
+  //       //   "code":400,        //   "failed":"error ocurred"
+  //       // })
+  
+  //       message ='Username does not exits';
+  //       success = false;
+
+  //     }else{
+  
+  //       if(result.length > 0){
+  //         const comparision = await bcrypt.compare(password, result[0].password)
+  //         if(comparision){
+  //             // res.send({
+  //             //   "code":200,
+  //             //   "success":"login sucessfull"
+  //             // })
+  
+  //             const token = jwt.sign({ user }, process.env.TOKEN_KEY,
+  //               //1 wek in seconds this to force the use to log in after every week, that is when the token
+  //               //gets expired
+               
+  //               {
+
+  //                 expiresIn: "5h"
+  //               } 
+  //           );
+            
+  //           message = 'User "' + username + '" is logged in successfully';
+  //          token =   token;
+  //          success = true;
+  //           users = true;
+
+
+  //           return {message, token, success, result, username};
+
+
+  //         }
+  
+  //       message ='Incorrect password';
+  //       }
+
+  //       else{
+
+  //         const result = await db.query(`SELECT * FROM admins WHERE username =?`,[username]);
+
+  //         if (result.length < 0) {
+  //           // res.send({
+  //           //   "code":400,        //   "failed":"error ocurred"
+  //           // })
+      
+  //           message ='Username does not exits';
+  //           success = false;
+
+
+            
+  //         } else{
+      
+  //           if(result.length > 0){
+  //             const comparision = await bcrypt.compare(password, result[0].password)
+  //             if(comparision){
+  //                 // res.send({
+  //                 //   "code":200,
+  //                 //   "success":"login sucessfull"
+  //                 // })
+      
+  //                 const token = jwt.sign({ user }, "" + process.env.TOKEN_KEY,
+  //                   //1 wek in seconds this to force the use to log in after every week, that is when the token
+  //                   //gets expired
+                   
+  //                   {
+    
+  //                     expiresIn: "5h"
+  //                   } 
+  //               );
+                
+  //               message = 'User "' + username + '" is logged in successfully';
+  //              token =   token;
+  //              success = true;
+  //               admin = true;
+      
+          
+  //               return {message, token, success, result, admin, user};
+  //             }
+      
+  //           message ='Incorrect password';
+  //           }
+
+  //            else{
+
+  //         const result = await db.query(`SELECT * FROM organization_register WHERE registration_number =?`,[username]);
+
+  //         if (result.length < 0) {
+         
+  //           message ='Username does not exits';
+  //           success = false;
+  //         } else{
+      
+  //           if(result.length > 0){
+  //             const comparision = await bcrypt.compare(password, result[0].password)
+  //             if(comparision){
+      
+  //               const token = jwt.sign({ user }, process.env.TOKEN_KEY,
+  //                 //1 wek in seconds this to force the use to log in after every week, that is when the token
+  //                 //gets expired
+                 
+  //                 {
+  
+  //                   expiresIn: "5h"
+  //                 } 
+  //             );
+                
+  //               message = 'User "' + username + '" is logged in successfully';
+  //              token =   token;
+  //              success = true;
+  //               organization = true;
+      
+            
+  //               return {message, token, success, result, organization, user};
+  //             }
+      
+  //           message ='Incorrect password';
+  //           }
+  //           else{
+            
+      
+  //             message =('Incorrect password'), {success: false};
+  //           }
+  //       }
+  //     }
+
+  //           // else{
+  //           //   // res.send({
+  //           //   //   "code":206,
+  //           //   //   "success":"Username does not exits"
+  //           //   //     });
+      
+  //           //   message =('Username does not exits'), {success: false};
+  //           // }
+  //       }
+  //     }
+
+       
+
+  //     }
+  
+  //     return {message};
+
+  //   }
+  
+  //   catch (error) {
+  //     console.error(error);
+   
+  // }
+     
+   
+  //   }
+
+
   async function authenticate(username, password, user){
     // const username = User.username;
     // const password = User.password;
@@ -141,7 +312,6 @@ catch (error) {
      let  admin = false;  
      let  organization = false; 
      let  users = false;    
-
     const result = await db.query(`SELECT * FROM users WHERE username =?`,[username]);
       if (result.length < 0) {
         // res.send({
@@ -171,7 +341,17 @@ catch (error) {
            token =   token1;
            success = true;
             users = true;
-
+  
+            // res.send({
+            //      "code":204,
+            //      "success":"Username and password does not match"
+            // })
+  
+            // let encryptedEmail = crypto.encrypt(user.email, config.secret);
+  
+            //ecrypting the token using crypto
+            // let enjwt = crypto.encrypt(token);
+            // token1 = token;
 
             return {message, token, success, result, username};
 
@@ -216,7 +396,16 @@ catch (error) {
                success = true;
                 admin = true;
       
-          
+                // res.send({
+                //      "code":204,
+                //      "success":"Username and password does not match"
+                // })
+      
+                // let encryptedEmail = crypto.encrypt(user.email, config.secret);
+      
+                //ecrypting the token using crypto
+                // let enjwt = crypto.encrypt(token);
+                // token1 = token;
                 return {message, token, success, result, admin, user};
               }
       
@@ -228,7 +417,10 @@ catch (error) {
           const result = await db.query(`SELECT * FROM organization_register WHERE registration_number =?`,[username]);
 
           if (result.length < 0) {
-         
+            // res.send({
+            //   "code":400,        //   "failed":"error ocurred"
+            // })
+      
             message ='Username does not exits';
             success = false;
           } else{
@@ -236,9 +428,14 @@ catch (error) {
             if(result.length > 0){
               const comparision = await bcrypt.compare(password, result[0].password)
               if(comparision){
+                  // res.send({
+                  //   "code":200,
+                  //   "success":"login sucessfull"
+                  // })
       
                   const token1 = jwt.sign({ user }, config.secret, {
-                   
+                    //1 wek in seconds this to force the use to log in after every week, that is when the token
+                    //gets expired
                     expiresIn: "5h"
                 });
                 
@@ -247,14 +444,26 @@ catch (error) {
                success = true;
                 organization = true;
       
-            
+                // res.send({
+                //      "code":204,
+                //      "success":"Username and password does not match"
+                // })
+      
+                // let encryptedEmail = crypto.encrypt(user.email, config.secret);
+      
+                //ecrypting the token using crypto
+                // let enjwt = crypto.encrypt(token);
+                // token1 = token;
                 return {message, token, success, result, organization, user};
               }
       
             message ='Incorrect password';
             }
             else{
-            
+              // res.send({
+              //   "code":206,
+              //   "success":"Username does not exits"
+              //     });
       
               message =('Incorrect password'), {success: false};
             }
@@ -287,6 +496,7 @@ catch (error) {
      
    
     }
+
 
   
 

@@ -44,7 +44,9 @@ export class CompanyRegisterService {
       };
   
       return this.http
-        .post(this.server_url + 'organization_register/registerOrganizations', organization, )
+        .post(this.server_url + 'organization_register/registerOrganizations', organization, {
+          headers: httpOptions.headers
+        } )
         .pipe(map(res => res));
     }
 
@@ -58,7 +60,9 @@ export class CompanyRegisterService {
       };
   
       return this.http
-        .post(this.server_url + "organization_register/getOrganizationByRegistrationNo", registration_number, )
+        .post(this.server_url + "organization_register/getOrganizationByRegistrationNo", registration_number, {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
   
@@ -73,7 +77,9 @@ export class CompanyRegisterService {
       };
   
       return this.http
-        .get(this.server_url + "organization_register/getAllRegisteredOrganization", )
+        .get(this.server_url + "organization_register/getAllRegisteredOrganization", {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
       //  .toPromise()
       //  .then(data => {
@@ -94,7 +100,9 @@ export class CompanyRegisterService {
         };
     
         return this.http
-          .put(this.server_url + `organization_register/updateOrganizationDetails/${id}`, data,)
+          .put(this.server_url + `organization_register/updateOrganizationDetails/${id}`, data, {
+            headers: httpOptions.headers
+          })
           .pipe(map(res => res));
       }
   
@@ -110,7 +118,9 @@ export class CompanyRegisterService {
       };
   
       return this.http
-        .post(this.server_url + `organization_register/deleteOrganization`, { id: data }, )
+        .post(this.server_url + `organization_register/deleteOrganization`, { id: data }, {
+          headers: httpOptions.headers
+        })
         .pipe(map(res => res));
     }
   
@@ -130,7 +140,9 @@ export class CompanyRegisterService {
       };
   
       return this.http
-        .post(this.server_url + `organization_register/emailCheck`, data, )
+        .post(this.server_url + `organization_register/emailCheck`, data, {
+          headers: httpOptions.headers
+        })
   
         .pipe(map(res => res));
     }

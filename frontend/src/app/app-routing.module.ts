@@ -35,6 +35,11 @@ import { CompanyStudentListComponent } from './components/company-student-list/c
 import { CompanyUpdateStudentComponent } from './components/company-update-student/company-update-student.component';
 import { CompanyAdmittedComplettedStudentComponent } from './components/company-admitted-completted-student/company-admitted-completted-student.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { PendingStudentsComponent } from './components/pending-students/pending-students.component';
+import { NotAdmittedStudentsComponent } from './components/not-admitted-students/not-admitted-students.component';
+import { AdmittedNotCompletedStudentsComponent } from './components/admitted-not-completed-students/admitted-not-completed-students.component';
+import { AdmittedAndCompletedStudentsComponent } from './components/admitted-and-completed-students/admitted-and-completed-students.component';
 
 
 //defining our routes
@@ -151,7 +156,21 @@ const routes: Routes = [
   path:'admittedCompletedStudentInterns',  component:CompanyAdmittedComplettedStudentComponent, canActivate: [AdminGuard]
 },
 
+{path: "pendingStudentList", component: PendingStudentsComponent, canActivate: [superAdminGuard]},
 
+{path: "notAdmittedStudentList", component: NotAdmittedStudentsComponent, canActivate: [superAdminGuard]},
+
+{path: "admittedStudentList", component: AdmittedNotCompletedStudentsComponent, canActivate: [superAdminGuard]},
+
+{path: "completedStudentList", component: AdmittedAndCompletedStudentsComponent, canActivate: [superAdminGuard]},
+
+
+
+
+
+  //Wild Card Route for 404 request
+  { path: '**', pathMatch: 'full', 
+  component: PagenotfoundComponent },
 
 ];
 

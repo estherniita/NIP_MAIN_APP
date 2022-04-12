@@ -56,13 +56,15 @@ export class AvailableInternshipsComponent implements OnInit {
 
   file_name?: string;
 
-  bracket1 = "{{";
-
-  bracket2 = "}}";
-
- 
   availableinternships: any;
   availableInternship: any;
+
+  currentIndex = -1;
+  title = '';
+  page = 1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
 
   constructor(private internshipsService: InternshipsService, @Inject(DOCUMENT) private document: Document, public userService: UsersService, private route: Router) { }
 
@@ -130,6 +132,22 @@ export class AvailableInternshipsComponent implements OnInit {
         // this.spinner.hide();
       });
   }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.getAvailableInternships();
+  }
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.getAvailableInternships();
+  }
+  
+  searchTitle(): void {
+    this.page = 1;
+    this.getAvailableInternships();
+  }
+
 
 
   getInternshipNames() {

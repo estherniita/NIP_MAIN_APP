@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteConfirmationComponent } from './delete-confirmation.component';
+import { CompletedStudentComponent } from './completed-student.component';
 
-describe('DeleteConfirmationComponent', () => {
-  let component: DeleteConfirmationComponent;
-  let fixture: ComponentFixture<DeleteConfirmationComponent>;
+describe('CompletedStudentComponent', () => {
+  let component: CompletedStudentComponent;
+  let fixture: ComponentFixture<CompletedStudentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteConfirmationComponent ]
+      declarations: [ CompletedStudentComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteConfirmationComponent);
+    fixture = TestBed.createComponent(CompletedStudentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

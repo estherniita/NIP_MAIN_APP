@@ -120,22 +120,26 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + 'admin/register', user)
+      .post(this.server_url + 'admin/register', user, {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
   
 
   login(user: any): any {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //    Authorization: this.token
-    //   })
-    // };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+       Authorization: this.token
+      })
+    };
   
     return this.http
-      .post(this.server_url + 'admin/authenticate', user)
+      .post(this.server_url + 'admin/authenticate', user, {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
@@ -169,7 +173,9 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + "admin/byusername", username)
+      .post(this.server_url + "admin/byusername", username, {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
@@ -179,12 +185,32 @@ export class AdminAuthenticationService {
     const httpOptions1 = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-       Authorization: this.token
+      Authorization: this.token
       })
     };
 
     return this.http
-      .get(this.server_url + "admin/getAllAdmins")
+      .get(this.server_url + "admin/getAllAdmins", {
+        headers: httpOptions1.headers
+      })
+      .pipe(map(res => res));
+  
+  }
+
+
+  getAllRegisteredOrganization() {
+    const httpOptions1 = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      Authorization: this.token
+      })
+    };
+
+    return this.http
+      .get(this.server_url + "organization_register/getAllRegisteredOrganization", 
+      {
+        headers: httpOptions1.headers
+      })
       .pipe(map(res => res));
   
   }
@@ -204,7 +230,7 @@ export class AdminAuthenticationService {
     }
 
 
-      //method to delete a facilitator
+      //method to delete an admin
   deleteAdmin(data: any) {
 
     const httpOptions = {
@@ -215,9 +241,28 @@ export class AdminAuthenticationService {
     };
 
     return this.http
-      .post(this.server_url + `admin/deleteAdmin`, { id: data })
+      .post(this.server_url + `admin/deleteAdmin`, { id: data }, {
+        headers: httpOptions.headers
+      })
       .pipe(map(res => res));
   }
 
+
+        //method to delete an organization admin
+        deleteOrganization(data: any) {
+
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+             Authorization: this.token
+            })
+          };
+      
+          return this.http
+            .post(this.server_url + `organization_register/deleteOrganization`, { id: data }, {
+              headers: httpOptions.headers
+            })
+            .pipe(map(res => res));
+        }
 
 }

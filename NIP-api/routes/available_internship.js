@@ -138,6 +138,7 @@ router.get('/getTotalAvailableInternships', async function(req, res, next) {
 
 
 
+/* GET get total number of positions for posts . */
 
 router.get('/getTotalAvailableInternshipPost', async function(req, res, next) {
   

@@ -1,0 +1,74 @@
+<div class="row no-gutter">
+    <div class="home-intro">
+        <img src="assets/images/cubes-2492010_1920.jpg" alt=""> 
+        <div class="appOverlay"></div> 
+    </div>
+  </div>
+  <section>
+<div class="body-section">
+    <div class="heading-container">
+    <h1 class="h-m h-fw-1 news__heading">All Student Interns Not Admitted</h1>
+</div>
+    <div class="col-12">
+      <div class="row">
+        <!-- <div class="col-md-12 col-sm-12"> -->
+           
+            
+        <table *ngIf="notAdmitted_interns.length"  mdbTable striped="true" id="example" class="table table-striped table-bordered" style="width:100%" st-table="display_users"
+        st-safe-src="Users">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                      <input st-search placeholder="Search student_intern using institution name" class="input-sm form-control" type="search"
+                        [(ngModel)]="search" />
+                    </th>
+                  </tr>
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records" style="font-weight: bold;">
+                <th>Organization/ company and town</th>
+                <th> Contact person</th>
+                <th>student_intern fullname</th>
+                <th>Student number</th>
+                <th>Institution</th>
+                <th>Field of Study</th>
+                <th>Student phone number and email</th>
+                <th>Admission</th>
+                <th>Completion</th>
+                <th>Student documents</th>
+               
+
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student_intern of notAdmitted_interns | searchInstitution: search; let i = index">
+               
+                <td>{{student_intern.company}}, {{student_intern.town_city}}</td>
+                <td>{{student_intern.company_email}}</td>
+                <td>{{student_intern.firstname}} {{student_intern.surname}}</td>
+                <td>{{student_intern.student_number}}</td>
+                <td>{{student_intern.institution}}</td>
+                <td>{{student_intern.field_of_study}}</td>
+                <td>{{student_intern.student_email}}, {{student_intern.student_phoneNumber}}</td>
+                <td>{{student_intern.admission}}</td>
+                <td>{{student_intern.completion}}</td>
+                <td>{{student_intern.student_document}} 
+                   <!-- <button (click)="downloadStudentDocuments()">
+                  Download</button> -->
+                  <a (click)="download(student_intern.student_document)" class="btn">Download</a>
+  
+                </td>
+  
+              </tr>
+            </tbody>
+          </table>
+           
+          <div *ngIf="!notAdmitted_interns.length" style="height: 100%; padding: 2rem;">
+            <h1 class="text-center">No data found</h1> 
+          </div>
+
+
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+</section>

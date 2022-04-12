@@ -198,7 +198,8 @@ export class StudentsComponent implements OnInit {
         console.log('submitted');
         //  email data
         const userdata = {
-          email: this.studentForm.value.company_email,
+          email: `${this.studentForm.value.company_email}, internshipprogramme@mtc.com.na` ,
+          email_from:  this.studentForm.value.company_email,
           email_subject: 'Student(s) details for the internship request(s)',
           message: ` ${this.studentForm.value.company}  
           ${this.studentForm.value.company}

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {ConfirmDeleteComponent} from  '../confirm-delete/confirm-delete.component';
 import {AdminAuthenticationService} from '../../services/admin-authentication.service';
 import $ from 'jquery';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -12,6 +11,13 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
+
+
+
+ public popoverTitle: string = 'Admin Deletion';
+ public popoverMessage: string = 'Do you really want to delete this user?';
+  public confirmClicked: boolean = false;
+  public cancelClicked: boolean = false;
 
   deleteModal() {
     ($("#deleteModal")as any).modal('toggle');
@@ -26,6 +32,7 @@ export class UserManagementComponent implements OnInit {
   data: any;
   admins: string[] = [];
   showAlert?: boolean;
+  organization_admins: any[] = [];
 
   constructor(private router: Router,public adminAuthenticationService: AdminAuthenticationService, private modal: NgbModal,) { }
 
@@ -33,6 +40,7 @@ export class UserManagementComponent implements OnInit {
 
     document.title = "User management: National Internship Program";
     this.getAdmins();
+    this.getAllRegisteredOrganization();
 
   }
 
@@ -53,6 +61,14 @@ export class UserManagementComponent implements OnInit {
       .subscribe((result:any) => {
         // this.Users.push(result);
         result.data.forEach((val:any) => this.admins.push(val));
+      });
+  }
+
+  getAllRegisteredOrganization() {
+    this.adminAuthenticationService.getAllRegisteredOrganization()
+      .subscribe((result:any) => {
+        // this.Users.push(result);
+        result.data.forEach((val:any) => this.organization_admins.push(val));
       });
   }
 
@@ -81,10 +97,23 @@ export class UserManagementComponent implements OnInit {
         if (data.success) {
           this.showAlert = true;
           this.admins.splice( i, 1);
-          this.modal.open(ConfirmDeleteComponent, { centered: true });
         }
       });
   
   }
+
+
+    //method to delete admin record details
+    deleteOrganization(data: { id: any; }, i: number) {
+      this.organization_admins.splice(i, 1);
+      this.adminAuthenticationService.deleteOrganization(data.id)
+        .subscribe((data: any) => {
+          if (data.success) {
+            this.showAlert = true;
+            this.organization_admins.splice( i, 1);
+          }
+        });
+    
+    }
 
 }

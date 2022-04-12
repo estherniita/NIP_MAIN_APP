@@ -40,7 +40,6 @@ import { CompanyInternshipPostComponent } from './components/company-internship-
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { NotLoggedInComponent } from './components/sign-in/notLoggedIn.component';
-import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { InstitutionDashboardComponent } from './components/institution-dashboard/institution-dashboard.component';
 import { InstitutionReceivedInternshipsComponent } from './components/institution-received-internships/institution-received-internships.component';
@@ -57,8 +56,13 @@ import { NgxCaptchaModule } from "ngx-captcha";
 import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { DeleteConfirmationComponent } from './components/delete-confirmation/delete-confirmation.component';
-
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { PendingStudentsComponent } from './components/pending-students/pending-students.component';
+import { AdmittedNotCompletedStudentsComponent } from './components/admitted-not-completed-students/admitted-not-completed-students.component';
+import { NotAdmittedStudentsComponent } from './components/not-admitted-students/not-admitted-students.component';
+import { AdmittedAndCompletedStudentsComponent } from './components/admitted-and-completed-students/admitted-and-completed-students.component';
+import { CompletedStudentComponent } from './components/completed-student/completed-student.component';
 
 
 @NgModule({
@@ -98,7 +102,6 @@ import { DeleteConfirmationComponent } from './components/delete-confirmation/de
     UserManagementComponent,
     RegisterAdminComponent,
     NotLoggedInComponent,
-    ConfirmDeleteComponent,
     InstitutionDashboardComponent,
     InstitutionReceivedInternshipsComponent,
     StudentsComponent,
@@ -110,7 +113,12 @@ import { DeleteConfirmationComponent } from './components/delete-confirmation/de
     CompanyUpdateStudentComponent,
     CompanyAdmittedComplettedStudentComponent,
     ForgotPasswordComponent,
-    DeleteConfirmationComponent,
+    PagenotfoundComponent,
+    PendingStudentsComponent,
+    AdmittedNotCompletedStudentsComponent,
+    NotAdmittedStudentsComponent,
+    AdmittedAndCompletedStudentsComponent,
+    CompletedStudentComponent,
 
 
 
@@ -137,6 +145,11 @@ import { DeleteConfirmationComponent } from './components/delete-confirmation/de
     //     disallowedRoutes: []
     //   }
     // })
+
+    ConfirmationPopoverModule.forRoot({
+
+      confirmButtonType:'danger'
+    }),
 
     ReCaptchaModule.forRoot({
       invisible: {

@@ -73,9 +73,9 @@ router.put('/updateOrganizationDetails/:id', async function(req, res, next) {
 
 
   /* DELETE organization */
-router.delete('/deleteOrganization/:id', async function(req, res, next) {
+router.post('/deleteOrganization', async function(req, res, next) {
     try {
-      res.json(await registeredOrganizations.deleteOrganization(req.params.id));
+      res.json(await registeredOrganizations.deleteOrganization(req.body.id));
     } catch (err) {
       console.error(`Error while deleting organization`, err.message);
       next(err);

@@ -320,7 +320,37 @@ async function createNewInternship(newInternships){
   }
 
 
+  async function getTotalRequestSentToInstitution(){
 
+    try{
+    const requests = await db.query(
+      `SELECT COUNT(DISTINCT internship_request_id) as total_request_sent FROM internship_requests_sent_to_institutions`
+     
+    );
+
+   let message = 'no data found';
+
+   if(requests.length >0){
+    
+    message = 'Students Intern';
+
+   }
+
+   else 
+   {
+  message = 'No data found';
+
+   }
+
+   return{message, requests};
+
+  }
+  
+  catch (error) {
+    console.error(error);
+ 
+}
+  }
   
   module.exports = {
     getAllSendInternship,
@@ -334,4 +364,5 @@ async function createNewInternship(newInternships){
     getNIMTInternship,
     getUNAMInternship,
     getVTCInternship,
+    getTotalRequestSentToInstitution
   }

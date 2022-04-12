@@ -6,6 +6,7 @@ const path = require('path');
 var email = '';
 const config = require('../services/db');
 
+
 //roter to send an email to institutions
 router.post('/sendemailplain', async (req, res, next) => {
 
