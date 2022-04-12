@@ -249,6 +249,7 @@ onComplete() {
   
 
 
+  //Method
   allAdmittedInternStudents(){
 
     this.companyData = JSON.parse(localStorage.getItem('userdata') || '{}');
@@ -283,6 +284,7 @@ onComplete() {
   }
 
 
+  //method to get
   
   getAllCompletedInternsPerOrgan(){
 
